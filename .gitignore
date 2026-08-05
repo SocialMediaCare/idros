@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# Claude Code
+.claude/
+settings.local.json
+
+# Dipendenze / build (per il futuro backend)
+node_modules/
+.next/
+dist/
+.vercel/
+
+# Variabili d'ambiente (Supabase, SMTP, ecc.)
+.env
+.env.*
+!.env.example

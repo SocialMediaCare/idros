@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IDROS Milano Marittima — Ristorante, Cena Spettacolo e Club</title>
+<meta name="description" content="IDROS, Milano Marittima. Alta cucina, cena spettacolo con musica dal vivo e DJ set con format esclusivi, dove un tempo sorgeva l'Idroscalo.">
+<meta name="theme-color" content="#000000">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="IDROS Milano Marittima">
+<meta property="og:description" content="Alta cucina, spettacolo e musica sul mare di Milano Marittima.">
+<meta property="og:locale" content="it_IT">
+<meta property="og:locale:alternate" content="en_GB">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Playfair+Display:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "IDROS",
+  "servesCuisine": ["Italiana", "Pesce", "Alta cucina"],
+  "priceRange": "€€€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Viale Gramsci 1",
+    "addressLocality": "Milano Marittima",
+    "addressRegion": "RA",
+    "postalCode": "48015",
+    "addressCountry": "IT"
+  },
+  "telephone": "+39 0544 000000",
+  "acceptsReservations": "True"
+}
+</script>
+</head>
+<body class="no-js">
+<script>
+document.body.classList.remove('no-js');
+document.body.classList.add('js');
+setTimeout(function(){
+  if(!document.body.classList.contains('reveal-ready')){
+    document.documentElement.classList.add('reveal-force');
+  }
+},2000);
+</script>
+
+<a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto principale</a>
+
+<!-- ═════════ NAV ═════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="#hero" aria-label="IDROS — torna in cima">IDROS</a>
+    <nav class="nav__links" aria-label="Navigazione principale">
+      <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
+      <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
+      <a href="#eventi"       data-i18n="nav.events">Eventi</a>
+      <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
+      <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
+    </nav>
+    <div class="nav__actions">
+      <div class="lang" role="group" aria-label="Lingua / Language">
+        <button type="button" class="lang__btn is-active" data-lang="it" aria-pressed="true">IT</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="nav__reserve" href="#prenota" data-i18n="nav.book">Prenotazioni</a>
+      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Apri il menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="drawer" id="drawer" hidden>
+  <nav class="drawer__nav" aria-label="Navigazione mobile">
+    <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
+    <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
+    <a href="#eventi"       data-i18n="nav.events">Eventi</a>
+    <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
+    <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
+    <a href="#prenota" class="drawer__reserve" data-i18n="nav.book">Prenotazioni</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ═════════ 1 · HERO ═════════ -->
+<section class="sec sec--hero" data-layout="hero" id="hero">
+  <div class="hero__media media" data-img-slot="hero" aria-hidden="true">
+    <span class="media__label" data-i18n="slot.hero">Video o fotografia · La sala</span>
+  </div>
+
+  <div class="booking">
+    <a class="ghost" href="#prenota" data-book="cena"       data-i18n="book.b1">Tavoli ristorante</a>
+    <a class="ghost" href="#prenota" data-book="spettacolo" data-i18n="book.b2">Cena spettacolo</a>
+    <a class="ghost" href="#prenota" data-book="club"       data-i18n="book.b3">DJ set &amp; dopocena</a>
+    <a class="ghost" href="#prenota" data-book="privato"    data-i18n="book.b4">Eventi privati</a>
+  </div>
+
+  <div class="hero__foot">
+    <h1 class="hero__title" data-i18n="hero.title">Benvenuti da IDROS</h1>
+    <p class="hero__sub" data-i18n="hero.sub">Milano Marittima · Ravenna</p>
+  </div>
+
+  <a class="scrollcue" href="#scopri" aria-label="Scorri">
+    <span data-i18n="hero.scroll">Scorri</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v15m0 0l-5-5m5 5l5-5" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+  </a>
+</section>
+
+<!-- ═════════ 2 · QUICK LINKS (tre quadrati a zigzag) ═════════ -->
+<section class="sec" data-layout="quickLinks" id="scopri">
+  <div class="wrap">
+    <div class="ql">
+      <div class="ql__col">
+        <article class="ql__card" data-reveal>
+          <figure class="media media--square" data-img-slot="ql-cena">
+            <span class="media__label" data-i18n="slot.qlCena">Fotografia · Il piatto</span>
+          </figure>
+          <div class="ql__over">
+            <h3 class="ql__t" data-i18n="ql.1.t">Vieni a cena</h3>
+            <a class="link" href="#ristorante" data-i18n="ql.1.c">Il ristorante</a>
+          </div>
+        </article>
+
+        <article class="ql__card" data-reveal>
+          <figure class="media media--square" data-img-slot="ql-eventi">
+            <span class="media__label" data-i18n="slot.qlEv">Fotografia · Il DJ set</span>
+          </figure>
+          <div class="ql__over">
+            <h3 class="ql__t" data-i18n="ql.3.t">Le nostre serate</h3>
+            <a class="link" href="#eventi" data-i18n="ql.3.c">Il calendario</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="ql__col ql__col--offset">
+        <article class="ql__card" data-reveal>
+          <figure class="media media--square" data-img-slot="ql-esperienza">
+            <span class="media__label" data-i18n="slot.qlExp">Fotografia · Lo spettacolo</span>
+          </figure>
+          <div class="ql__over">
+            <h3 class="ql__t" data-i18n="ql.2.t">L'esperienza IDROS</h3>
+            <a class="link" href="#esperienza" data-i18n="ql.2.c">Scopri di più</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 3 · ESPERIENZA (twoImagesText) ═════════ -->
+<section class="sec" data-layout="twoImagesText" id="esperienza">
+  <div class="wrap tit">
+    <div class="tit__text" data-reveal>
+      <p class="eyebrow" data-i18n="exp.eyebrow">L'esperienza</p>
+      <h2 class="h2" data-i18n="exp.title">Una cena che non resta seduta</h2>
+      <p data-i18n="exp.lead">
+        Dove ammaravano gli idrovolanti, oggi la sala si spegne fra una portata e l'altra.
+        Un violino attraversa i tavoli, due ballerine aprono lo spazio al centro,
+        un attore racconta un pezzo di questa costa.
+      </p>
+      <a class="link link--block" href="#prenota" data-book="spettacolo" data-i18n="cta.book">Prenota</a>
+    </div>
+
+    <div class="tit__sec" data-parallax="secondary">
+      <figure class="media media--23" data-img-slot="esperienza-2">
+        <span class="media__label" data-i18n="slot.exp2">Fotografia · Dettaglio</span>
+      </figure>
+    </div>
+
+    <div class="tit__main">
+      <figure class="media media--47" data-img-slot="esperienza-1">
+        <span class="media__label" data-i18n="slot.exp1">Fotografia · La sala</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 4 · FULL BLEED (dichiarazione) ═════════ -->
+<section class="sec sec--bleed" data-layout="fullBleedMedia" id="dichiarazione">
+  <div class="media bleed__media" data-img-slot="bleed" aria-hidden="true">
+    <span class="media__label" data-i18n="slot.bleed">Fotografia a tutta pagina · La notte</span>
+  </div>
+  <div class="bleed__body" data-reveal>
+    <h2 class="h2 h2--xl" data-i18n="bleed.title">Spettacolare</h2>
+    <p class="bleed__lead" data-i18n="bleed.lead">Dal tramonto all'ultimo set.</p>
+  </div>
+</section>
+
+<!-- ═════════ 5 · RISTORANTE (twoImagesText, specchiato) ═════════ -->
+<section class="sec" data-layout="twoImagesText" data-mirror id="ristorante">
+  <div class="wrap tit">
+    <div class="tit__text" data-reveal>
+      <p class="eyebrow" data-i18n="rest.eyebrow">Il ristorante</p>
+      <h2 class="h2" data-i18n="rest.title">Adriatico, tecnica, insolenza</h2>
+      <p data-i18n="rest.lead">
+        Una carta breve, che cambia con il pescato e con la stagione.
+        Crudi dell'Adriatico, paste tirate a mano, pesce al sale e cotture sulla brace:
+        pochi piatti, ognuno con una ragione precisa per essere in lista.
+      </p>
+      <p data-i18n="rest.lead2">
+        La cantina segue lo stesso criterio — Romagna, bollicine e qualche incursione
+        francese — e la cucina riscrive volentieri un piatto attorno a un'allergia
+        o a una preferenza, se ce lo dite in prenotazione.
+      </p>
+
+      <div class="actions">
+        <a class="link" href="#prenota" data-book="cena" data-i18n="cta.bookTable">Prenota un tavolo</a>
+        <a class="link" href="#" data-i18n="cta.menu">Scopri il nostro menù</a>
+      </div>
+    </div>
+
+    <div class="tit__sec" data-parallax="secondary">
+      <figure class="media media--23" data-img-slot="ristorante-2">
+        <span class="media__label" data-i18n="slot.rest2">Fotografia · Il piatto</span>
+      </figure>
+    </div>
+
+    <div class="tit__main">
+      <figure class="media media--47" data-img-slot="ristorante-1">
+        <span class="media__label" data-i18n="slot.rest1">Fotografia · La cucina</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 6 · EVENTI (twoImagesTextAltLayout) ═════════ -->
+<section class="sec" data-layout="twoImagesTextAltLayout" id="eventi">
+  <div class="wrap alt">
+    <div class="alt__main">
+      <figure class="media media--69" data-img-slot="eventi-1">
+        <span class="media__label" data-i18n="slot.ev1">Fotografia · La serata</span>
+      </figure>
+    </div>
+
+    <div class="alt__side">
+      <div class="alt__sec" data-parallax="secondary">
+        <figure class="media media--68" data-img-slot="eventi-2">
+          <span class="media__label" data-i18n="slot.ev2">Fotografia · Evento privato</span>
+        </figure>
+      </div>
+
+      <div class="alt__text" data-reveal>
+        <p class="eyebrow" data-i18n="ev.eyebrow">Eventi</p>
+        <h2 class="h2" data-i18n="ev.title">I prossimi appuntamenti</h2>
+
+        <ul class="events">
+          <li class="event">
+            <time class="event__date" datetime="2026-08-08">08.08</time>
+            <div class="event__body">
+              <h3 class="event__title" data-i18n="ev.1.t">Salsedine — Opening Night</h3>
+              <span class="event__tag" data-i18n="tag.show">Cena spettacolo</span>
+            </div>
+          </li>
+          <li class="event">
+            <time class="event__date" datetime="2026-08-14">14.08</time>
+            <div class="event__body">
+              <h3 class="event__title" data-i18n="ev.2.t">Notte di Mezz'Agosto</h3>
+              <span class="event__tag" data-i18n="tag.special">Serata speciale</span>
+            </div>
+          </li>
+          <li class="event">
+            <time class="event__date" datetime="2026-08-22">22.08</time>
+            <div class="event__body">
+              <h3 class="event__title" data-i18n="ev.3.t">Idros Nights — Riviera Deep</h3>
+              <span class="event__tag" data-i18n="tag.dj">DJ set</span>
+            </div>
+          </li>
+          <li class="event">
+            <time class="event__date" datetime="2026-09-05">05.09</time>
+            <div class="event__body">
+              <h3 class="event__title" data-i18n="ev.4.t">Ultimo Volo — chiusura d'estate</h3>
+              <span class="event__tag" data-i18n="tag.show">Cena spettacolo</span>
+            </div>
+          </li>
+        </ul>
+
+        <a class="link link--block" href="#prenota" data-book="privato" data-i18n="ev.cta">Eventi privati</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 7 · GALLERIA (striscia sfalsata) ═════════ -->
+<section class="sec sec--gallery" data-layout="gallery" id="galleria" aria-label="Galleria">
+  <div class="gal" id="gal">
+    <figure class="media gal__p" data-img-slot="gal-1"><span class="media__label" data-i18n="slot.g1">Sala</span></figure>
+    <figure class="media gal__l" data-img-slot="gal-2"><span class="media__label" data-i18n="slot.g2">Terrazza</span></figure>
+    <figure class="media gal__p" data-img-slot="gal-3"><span class="media__label" data-i18n="slot.g3">Danza</span></figure>
+    <figure class="media gal__l" data-img-slot="gal-4"><span class="media__label" data-i18n="slot.g4">Bar</span></figure>
+    <figure class="media gal__p" data-img-slot="gal-5"><span class="media__label" data-i18n="slot.g5">Piatto</span></figure>
+    <figure class="media gal__l" data-img-slot="gal-6"><span class="media__label" data-i18n="slot.g6">Notte</span></figure>
+  </div>
+</section>
+
+<!-- ═════════ 8 · COME RAGGIUNGERCI (twoImagesText) ═════════ -->
+<section class="sec" data-layout="twoImagesText" id="raggiungerci">
+  <div class="wrap tit">
+    <div class="tit__text" data-reveal>
+      <p class="eyebrow" data-i18n="reach.eyebrow">Come raggiungerci</p>
+      <h2 class="h2" data-i18n="reach.title">Sul mare, dietro la pineta</h2>
+
+      <address class="addr">
+        Viale Gramsci 1<br>
+        48015 Milano Marittima (RA)<br>
+        <span data-i18n="reach.country">Italia</span>
+      </address>
+
+      <dl class="ways">
+        <div><dt data-i18n="reach.w1t">In auto</dt><dd data-i18n="reach.w1d">Uscita Cervia dalla E45, poi lungomare. Parcheggio custodito a cento metri.</dd></div>
+        <div><dt data-i18n="reach.w2t">In treno</dt><dd data-i18n="reach.w2d">Stazione di Cervia–Milano Marittima, dieci minuti a piedi.</dd></div>
+        <div><dt data-i18n="reach.w3t">In aereo</dt><dd data-i18n="reach.w3d">Rimini a 40 km, Bologna a 100 km. Transfer su richiesta.</dd></div>
+        <div><dt data-i18n="reach.w4t">In barca</dt><dd data-i18n="reach.w4d">Porto di Cervia, ormeggio convenzionato per gli ospiti a cena.</dd></div>
+      </dl>
+
+      <a class="link link--block" href="https://maps.google.com/?q=Milano+Marittima+Ravenna"
+         target="_blank" rel="noopener noreferrer" data-i18n="reach.cta">Apri in mappa</a>
+    </div>
+
+    <div class="tit__sec" data-parallax="secondary">
+      <figure class="media media--23" data-img-slot="raggiungerci-2">
+        <span class="media__label" data-i18n="slot.reach2">Fotografia · L'ingresso</span>
+      </figure>
+    </div>
+
+    <div class="tit__main">
+      <figure class="media media--47" data-img-slot="raggiungerci-1">
+        <span class="media__label" data-i18n="slot.reach1">Mappa o fotografia</span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 9 · CONTATTI + MODULO ═════════ -->
+<section class="sec" data-layout="form" id="contatti">
+  <div class="wrap">
+    <div class="cont">
+      <div class="cont__side" data-reveal>
+        <p class="eyebrow" data-i18n="cont.eyebrow">Contatti</p>
+        <h2 class="h2" data-i18n="cont.title">Riserviamo il vostro tavolo</h2>
+        <p class="lead" data-i18n="cont.lead">
+          Compilate il modulo e rispondiamo entro poche ore. Per la stessa sera,
+          o per gruppi oltre le dieci persone, chiamateci: è più rapido.
+        </p>
+
+        <dl class="cont__list">
+          <div><dt data-i18n="cont.phone">Telefono</dt><dd><a href="tel:+390544000000">+39 0544 000000</a></dd></div>
+          <div><dt data-i18n="cont.wa">WhatsApp</dt><dd><a id="waLink" href="https://wa.me/390000000000" target="_blank" rel="noopener noreferrer" data-i18n="cont.waD">Scriveteci</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:prenotazioni@idros.it">prenotazioni@idros.it</a></dd></div>
+          <div><dt data-i18n="cont.hours">Orari</dt><dd>
+            <span data-i18n="cont.h1">Martedì — Domenica, 19:30 — 23:00</span><br>
+            <span data-i18n="cont.h2">Bar e DJ set venerdì e sabato fino alle 3:00</span><br>
+            <span data-i18n="cont.h3">Lunedì chiuso</span>
+          </dd></div>
+        </dl>
+
+        <div class="social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.5h-2.5A4.5 4.5 0 0 0 10 7v1.5H7.5V12H10v9.5h4V12h2.5l.5-3.5H14Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
+          <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.6 9.4c2.9-.8 6-.5 8.6.9M8.2 12.4c2.4-.6 5-.4 7.1.8M8.8 15.3c1.9-.5 3.9-.3 5.6.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+        </div>
+      </div>
+
+      <form class="form" id="bookingForm" novalidate data-reveal>
+        <p class="form__title" id="prenota" data-i18n="f.title">Modulo di prenotazione</p>
+
+        <div class="row">
+          <div class="field">
+            <label for="f-name" data-i18n="f.name">Nome e cognome</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+            <p class="err" data-err-for="f-name" hidden></p>
+          </div>
+          <div class="field">
+            <label for="f-phone" data-i18n="f.phone">Telefono</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
+            <p class="err" data-err-for="f-phone" hidden></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-email" data-i18n="f.email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+          <p class="err" data-err-for="f-email" hidden></p>
+        </div>
+
+        <div class="row row--3">
+          <div class="field">
+            <label for="f-date" data-i18n="f.date">Data</label>
+            <input id="f-date" name="date" type="date" required>
+            <p class="err" data-err-for="f-date" hidden></p>
+          </div>
+          <div class="field">
+            <label for="f-time" data-i18n="f.time">Ora</label>
+            <input id="f-time" name="time" type="time" value="20:30" required>
+            <p class="err" data-err-for="f-time" hidden></p>
+          </div>
+          <div class="field">
+            <label for="f-guests" data-i18n="f.guests">Coperti</label>
+            <input id="f-guests" name="guests" type="number" min="1" max="40" value="2" required>
+            <p class="err" data-err-for="f-guests" hidden></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-kind" data-i18n="f.kind">Tipo di serata</label>
+          <select id="f-kind" name="kind">
+            <option value="cena"         data-i18n="f.k1">Tavoli ristorante</option>
+            <option value="spettacolo"   data-i18n="f.k2">Cena spettacolo</option>
+            <option value="degustazione" data-i18n="f.k3">Menu degustazione</option>
+            <option value="club"         data-i18n="f.k4">DJ set &amp; dopocena</option>
+            <option value="privato"      data-i18n="f.k5">Evento privato</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="f-notes" data-i18n="f.notes">Note, allergie, occasioni speciali</label>
+          <textarea id="f-notes" name="notes" rows="3"></textarea>
+        </div>
+
+        <div class="field field--check">
+          <input id="f-privacy" name="privacy" type="checkbox" required>
+          <label for="f-privacy" data-i18n="f.privacy">Ho letto l'informativa privacy e acconsento al trattamento dei dati per la gestione della prenotazione.</label>
+          <p class="err" data-err-for="f-privacy" hidden></p>
+        </div>
+
+        <div class="form__actions">
+          <button type="submit" class="ghost ghost--solid" data-i18n="f.submit">Invia richiesta</button>
+          <button type="button" class="ghost" id="waSend" data-i18n="f.wa">Invia su WhatsApp</button>
+        </div>
+
+        <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+        <p class="note" data-i18n="f.legal">La richiesta non è confermata finché non ricevete la nostra risposta.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 10 · FAQ ═════════ -->
+<section class="sec" data-layout="faqs" id="faq">
+  <div class="wrap faq">
+    <h2 class="h2 faq__title" data-reveal data-i18n="faq.title">Domande frequenti</h2>
+    <div class="faq__list" data-reveal>
+      <details class="faq__item">
+        <summary data-i18n="faq.1.q">Che cos'è l'esperienza IDROS?</summary>
+        <p data-i18n="faq.1.a">Una cena in cui il servizio e la scena si intrecciano: tre quadri di danza, teatro e musica dal vivo distribuiti fra le portate.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.2.q">Cosa succede dopo lo spettacolo?</summary>
+        <p data-i18n="faq.2.a">Il venerdì e il sabato la sala cambia forma e si va avanti con il DJ set fino alle tre. L'accesso è riservato agli ospiti a cena.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.3.q">C'è un dress code?</summary>
+        <p data-i18n="faq.3.a">Elegante. Non serve l'abito da sera, ma vestitevi per una serata a teatro più che per una cena in spiaggia.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.4.q">Gestite intolleranze e allergie?</summary>
+        <p data-i18n="faq.4.a">Sì. Segnalatele in fase di prenotazione e la cucina riscrive il percorso su misura.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═════════ 11 · FOOTER ═════════ -->
+<footer class="footer" data-layout="socialMedia">
+  <div class="wrap footer__inner">
+    <p class="footer__brand">IDROS</p>
+    <p class="footer__claim" data-i18n="foot.claim">Cucina, musica e scena sul mare di Milano Marittima.</p>
+    <p class="footer__meta">
+      © <span id="year">2026</span> IDROS · <span data-i18n="foot.vat">P. IVA 00000000000</span>
+      · <a href="#" data-i18n="foot.privacy">Privacy</a>
+      · <a href="#" data-i18n="foot.cookie">Cookie</a>
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/i18n.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
