@@ -95,14 +95,31 @@ setTimeout(function(){
 <!-- ═════════ NAV ═════════ -->
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a class="nav__brand" href="#hero" aria-label="IDROS — torna in cima">IDROS</a>
-    <nav class="nav__links" aria-label="Navigazione principale">
-      <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
-      <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
-      <a href="#eventi"       data-i18n="nav.events">Eventi</a>
-      <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
-      <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
-    </nav>
+
+    <!-- SINISTRA — menù a tendina -->
+    <div class="navmenu">
+      <button type="button" class="navmenu__btn" id="menuBtn"
+              aria-expanded="false" aria-controls="menuPanel">
+        <span class="navmenu__bars" aria-hidden="true"><span></span><span></span></span>
+        <span class="navmenu__word" data-i18n="nav.menu">Menu</span>
+      </button>
+
+      <nav class="navmenu__panel" id="menuPanel" hidden aria-label="Navigazione principale">
+        <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
+        <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
+        <a href="#eventi"       data-i18n="nav.events">Eventi</a>
+        <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
+        <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
+        <a href="#prenota" class="navmenu__book" data-i18n="nav.book">Prenotazioni</a>
+      </nav>
+    </div>
+
+    <!-- CENTRO — logo -->
+    <a class="nav__brand" href="#hero" aria-label="IDROS — torna in cima">
+      <span class="nav__logo">IDROS</span>
+    </a>
+
+    <!-- DESTRA — lingua e prenotazioni -->
     <div class="nav__actions">
       <div class="lang" role="group" aria-label="Lingua / Language">
         <button type="button" class="lang__btn is-active" data-lang="it" aria-pressed="true">IT</button>
@@ -110,23 +127,11 @@ setTimeout(function(){
         <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
       <a class="nav__reserve" href="#prenota" data-i18n="nav.book">Prenotazioni</a>
-      <button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Apri il menu">
-        <span></span><span></span>
-      </button>
     </div>
+
   </div>
 </header>
 
-<div class="drawer" id="drawer" hidden>
-  <nav class="drawer__nav" aria-label="Navigazione mobile">
-    <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
-    <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
-    <a href="#eventi"       data-i18n="nav.events">Eventi</a>
-    <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
-    <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
-    <a href="#prenota" class="drawer__reserve" data-i18n="nav.book">Prenotazioni</a>
-  </nav>
-</div>
 
 <main id="main">
 
@@ -137,10 +142,10 @@ setTimeout(function(){
   </div>
 
   <div class="booking">
-    <a class="ghost" href="#prenota" data-book="cena"       data-i18n="book.b1">Tavoli ristorante</a>
-    <a class="ghost" href="#prenota" data-book="spettacolo" data-i18n="book.b2">Cena spettacolo</a>
-    <a class="ghost" href="#prenota" data-book="club"       data-i18n="book.b3">DJ set &amp; dopocena</a>
-    <a class="ghost" href="#prenota" data-book="privato"    data-i18n="book.b4">Eventi privati</a>
+    <a class="ghost" href="#prenota"      data-book="cena"    data-i18n="book.b1">Prenota il tuo tavolo</a>
+    <a class="ghost" href="#eventi"                           data-i18n="book.b2">I nostri eventi</a>
+    <a class="ghost" href="#raggiungerci"                     data-i18n="book.b3">Come raggiungerci</a>
+    <a class="ghost" href="#prenota"      data-book="privato" data-i18n="book.b4">Eventi privati</a>
   </div>
 
   <div class="hero__foot">
@@ -330,50 +335,52 @@ setTimeout(function(){
 
 <!-- ═════════ 7 · GALLERIA (striscia sfalsata) ═════════ -->
 <section class="sec sec--gallery" data-layout="gallery" id="galleria" aria-label="Galleria">
-  <div class="gal" id="gal" data-cursor="Trascina">
-    <figure class="media gal__p" data-img-slot="gal-1"><span class="media__label" data-i18n="slot.g1">Sala</span></figure>
-    <figure class="media gal__l" data-img-slot="gal-2"><span class="media__label" data-i18n="slot.g2">Terrazza</span></figure>
-    <figure class="media gal__p" data-img-slot="gal-3"><span class="media__label" data-i18n="slot.g3">Danza</span></figure>
-    <figure class="media gal__l" data-img-slot="gal-4"><span class="media__label" data-i18n="slot.g4">Bar</span></figure>
-    <figure class="media gal__p" data-img-slot="gal-5"><span class="media__label" data-i18n="slot.g5">Piatto</span></figure>
-    <figure class="media gal__l" data-img-slot="gal-6"><span class="media__label" data-i18n="slot.g6">Notte</span></figure>
+  <div class="gal">
+    <div class="gal__track">
+      <figure class="media gal__p" data-img-slot="gal-1"><span class="media__label" data-i18n="slot.g1">Sala</span></figure>
+      <figure class="media gal__l" data-img-slot="gal-2"><span class="media__label" data-i18n="slot.g2">Terrazza</span></figure>
+      <figure class="media gal__p" data-img-slot="gal-3"><span class="media__label" data-i18n="slot.g3">Danza</span></figure>
+      <figure class="media gal__l" data-img-slot="gal-4"><span class="media__label" data-i18n="slot.g4">Bar</span></figure>
+      <figure class="media gal__p" data-img-slot="gal-5"><span class="media__label" data-i18n="slot.g5">Piatto</span></figure>
+      <figure class="media gal__l" data-img-slot="gal-6"><span class="media__label" data-i18n="slot.g6">Notte</span></figure>
+      <!-- copia della serie: serve a far sembrare il nastro infinito -->
+      <div class="gal__clone" aria-hidden="true">
+      <figure class="media gal__p" data-img-slot="gal-1"><span class="media__label" >Sala</span></figure>
+      <figure class="media gal__l" data-img-slot="gal-2"><span class="media__label" >Terrazza</span></figure>
+      <figure class="media gal__p" data-img-slot="gal-3"><span class="media__label" >Danza</span></figure>
+      <figure class="media gal__l" data-img-slot="gal-4"><span class="media__label" >Bar</span></figure>
+      <figure class="media gal__p" data-img-slot="gal-5"><span class="media__label" >Piatto</span></figure>
+      <figure class="media gal__l" data-img-slot="gal-6"><span class="media__label" >Notte</span></figure>
+      </div>
+    </div>
   </div>
-  <p class="gal__cue" data-anim="fade"><i></i><span data-i18n="gal.cue">Trascina o scorri</span><i></i></p>
 </section>
 
 <!-- ═════════ 8 · COME RAGGIUNGERCI (twoImagesText) ═════════ -->
-<section class="sec" data-layout="twoImagesText" id="raggiungerci">
-  <div class="wrap tit">
-    <div class="tit__text">
+<section class="sec" data-layout="reach" id="raggiungerci">
+  <div class="wrap reach">
+    <div class="reach__text">
       <p class="eyebrow" data-anim="fade" data-i18n="reach.eyebrow">Come raggiungerci</p>
       <h2 class="h2" data-anim="lines" data-i18n="reach.title">Sul mare, dietro la pineta</h2>
 
       <address class="addr" data-anim="rise">
         Viale Gramsci 1<br>
-        48015 Milano Marittima (RA)<br>
-        <span data-i18n="reach.country">Italia</span>
+        48015 Milano Marittima (RA)
       </address>
 
-      <dl class="ways" data-anim="stagger">
-        <div><dt data-i18n="reach.w1t">In auto</dt><dd data-i18n="reach.w1d">Uscita Cervia dalla E45, poi lungomare. Parcheggio custodito a cento metri.</dd></div>
-        <div><dt data-i18n="reach.w2t">In treno</dt><dd data-i18n="reach.w2d">Stazione di Cervia–Milano Marittima, dieci minuti a piedi.</dd></div>
-        <div><dt data-i18n="reach.w3t">In aereo</dt><dd data-i18n="reach.w3d">Rimini a 40 km, Bologna a 100 km. Transfer su richiesta.</dd></div>
-        <div><dt data-i18n="reach.w4t">In barca</dt><dd data-i18n="reach.w4d">Porto di Cervia, ormeggio convenzionato per gli ospiti a cena.</dd></div>
-      </dl>
+      <p class="reach__note" data-anim="rise" data-i18n="reach.note">
+        Uscita Cervia dalla E45, parcheggio custodito a cento metri.
+        Stazione di Cervia–Milano Marittima a dieci minuti a piedi.
+      </p>
 
-      <a class="link link--block" data-anim="rise" href="https://maps.google.com/?q=Milano+Marittima+Ravenna"
+      <a class="link link--block" data-anim="rise"
+         href="https://maps.google.com/?q=Milano+Marittima+Ravenna"
          target="_blank" rel="noopener noreferrer" data-i18n="reach.cta">Apri in mappa</a>
     </div>
 
-    <div class="tit__sec" data-parallax="secondary" data-depth="1.6">
-      <figure class="media media--23" data-img-slot="raggiungerci-2" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.reach2">Fotografia · L'ingresso</span>
-      </figure>
-    </div>
-
-    <div class="tit__main">
-      <figure class="media media--47" data-img-slot="raggiungerci-1" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.reach1">Mappa o fotografia</span>
+    <div class="reach__media">
+      <figure class="media media--23" data-img-slot="raggiungerci-1" data-anim="unveil">
+        <span class="media__label" data-i18n="slot.reach1">Fotografia · L'ingresso</span>
       </figure>
     </div>
   </div>
@@ -401,12 +408,6 @@ setTimeout(function(){
             <span data-i18n="cont.h3">Lunedì chiuso</span>
           </dd></div>
         </dl>
-
-        <div class="social" data-anim="stagger">
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.5h-2.5A4.5 4.5 0 0 0 10 7v1.5H7.5V12H10v9.5h4V12h2.5l.5-3.5H14Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
-          <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.6 9.4c2.9-.8 6-.5 8.6.9M8.2 12.4c2.4-.6 5-.4 7.1.8M8.8 15.3c1.9-.5 3.9-.3 5.6.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
-        </div>
       </div>
 
       <form class="form" id="bookingForm" novalidate data-anim="rise">
@@ -521,7 +522,7 @@ setTimeout(function(){
 
 <!-- ═════════ 10 · FAQ ═════════ -->
 <section class="sec" data-layout="faqs" id="faq">
-  <div class="wrap faq">
+  <div class="wrap faq faq--center">
     <h2 class="h2 faq__title" data-anim="lines" data-i18n="faq.title">Domande frequenti</h2>
     <div class="faq__list" data-anim="stagger">
       <details class="faq__item">
@@ -550,7 +551,19 @@ setTimeout(function(){
 <footer class="footer" data-layout="socialMedia">
   <p class="footer__mark" aria-hidden="true">IDROS</p>
   <div class="wrap footer__inner">
+
+    <a class="footer__logo" href="#hero" aria-label="IDROS — torna in cima">
+      <span class="nav__logo">IDROS</span>
+    </a>
+
     <p class="footer__claim" data-i18n="foot.claim">Cucina, musica e scena sul mare di Milano Marittima.</p>
+
+    <div class="social social--footer">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.5h-2.5A4.5 4.5 0 0 0 10 7v1.5H7.5V12H10v9.5h4V12h2.5l.5-3.5H14Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
+      <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.6 9.4c2.9-.8 6-.5 8.6.9M8.2 12.4c2.4-.6 5-.4 7.1.8M8.8 15.3c1.9-.5 3.9-.3 5.6.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+    </div>
+
     <p class="footer__meta">
       © <span id="year">2026</span> IDROS · <span data-i18n="foot.vat">P. IVA 00000000000</span>
       · <a href="#" data-i18n="foot.privacy">Privacy</a>

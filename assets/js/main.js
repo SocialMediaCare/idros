@@ -35,33 +35,33 @@
   /* ---------- 2. NAV ---------- */
   var nav = document.getElementById('nav');
 
-  /* ---------- 3. MENU MOBILE ---------- */
-  var burger = document.getElementById('burger');
-  var drawer = document.getElementById('drawer');
+  /* ---------- 3. MENÙ A TENDINA ---------- */
+  var menuBtn   = document.getElementById('menuBtn');
+  var menuPanel = document.getElementById('menuPanel');
 
-  function setDrawer(open) {
-    if (!burger || !drawer) return;
-    burger.setAttribute('aria-expanded', String(open));
-    burger.setAttribute('aria-label', T(open ? 'aria.burgerClose' : 'aria.burger'));
-    drawer.hidden = !open;
-    document.body.style.overflow = open ? 'hidden' : '';
-    if (window.IDROS_LOCK) window.IDROS_LOCK(open);
+  function setMenu(open) {
+    if (!menuBtn || !menuPanel) return;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuPanel.hidden = !open;
   }
-  if (burger) {
-    burger.addEventListener('click', function () {
-      setDrawer(burger.getAttribute('aria-expanded') !== 'true');
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setMenu(menuBtn.getAttribute('aria-expanded') !== 'true');
     });
   }
-  if (drawer) {
-    drawer.addEventListener('click', function (e) { if (e.target.closest('a')) setDrawer(false); });
+  if (menuPanel) {
+    menuPanel.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
   }
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && burger && burger.getAttribute('aria-expanded') === 'true') {
-      setDrawer(false); burger.focus();
-    }
+  /* Un clic fuori chiude: senza, la tendina resterebbe aperta alle spalle */
+  document.addEventListener('click', function (e) {
+    if (menuBtn && menuPanel && !menuPanel.hidden && !e.target.closest('.navmenu')) setMenu(false);
   });
-  window.matchMedia('(min-width: 1024px)').addEventListener('change', function (e) {
-    if (e.matches) setDrawer(false);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menuBtn && menuBtn.getAttribute('aria-expanded') === 'true') {
+      setMenu(false); menuBtn.focus();
+    }
   });
 
   /* ---------- 4. REVEAL E PARALLASSE (fallback) ----------
@@ -133,29 +133,6 @@
     }, 3000);
   }
 
-  /* ---------- 6. GALLERIA: trascinamento col mouse ---------- */
-  var gal = document.getElementById('gal');
-  if (gal) {
-    var down = false, startX = 0, startScroll = 0, moved = false;
-    gal.addEventListener('pointerdown', function (e) {
-      if (e.pointerType === 'touch') return;      /* il touch scorre già da sé */
-      down = true; moved = false;
-      startX = e.clientX; startScroll = gal.scrollLeft;
-      gal.style.cursor = 'grabbing';
-    });
-    window.addEventListener('pointermove', function (e) {
-      if (!down) return;
-      var dx = e.clientX - startX;
-      if (Math.abs(dx) > 3) moved = true;
-      gal.scrollLeft = startScroll - dx;
-    });
-    window.addEventListener('pointerup', function () {
-      if (!down) return;
-      down = false; gal.style.cursor = '';
-    });
-    gal.addEventListener('click', function (e) { if (moved) e.preventDefault(); }, true);
-    gal.style.cursor = 'grab';
-  }
 
   /* ---------- 7. PRENOTAZIONI ---------- */
   var form    = document.getElementById('bookingForm');
@@ -419,10 +396,6 @@
 
   document.addEventListener('idros:lang', function () {
     if (form && form.querySelector('.field.is-invalid')) validate();
-    if (burger) {
-      var open = burger.getAttribute('aria-expanded') === 'true';
-      burger.setAttribute('aria-label', T(open ? 'aria.burgerClose' : 'aria.burger'));
-    }
   });
 
   /* ---------- 8. SMOOTH SCROLL ---------- */

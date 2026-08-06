@@ -12,10 +12,7 @@
     'doc.desc': 'IDROS, Milano Marittima. Fine dining, dinner shows with live music and DJ sets with exclusive formats, where the seaplane base once stood.',
 
     'skip': 'Skip to main content',
-    'aria.burger': 'Open menu',
-    'aria.burgerClose': 'Close menu',
     'load.place': 'Milano Marittima',
-    'gal.cue': 'Drag or scroll',
 
     'nav.exp': 'Experience',
     'nav.rest': 'Restaurant',
@@ -23,11 +20,12 @@
     'nav.reach': 'Reach us',
     'nav.contact': 'Contact',
     'nav.book': 'Reservations',
+    'nav.menu': 'Menu',
 
     /* --- hero --- */
-    'book.b1': 'Restaurant tables',
-    'book.b2': 'Dinner show',
-    'book.b3': 'DJ set &amp; after dinner',
+    'book.b1': 'Book your table',
+    'book.b2': 'Our events',
+    'book.b3': 'Reach us',
     'book.b4': 'Private events',
     'hero.title': 'Welcome to IDROS',
     'hero.sub': 'Milano Marittima · Ravenna',
@@ -55,7 +53,6 @@
     'slot.ev1': 'Photograph · The night',
     'slot.ev2': 'Photograph · Private event',
     'slot.reach1': 'Map or photograph',
-    'slot.reach2': 'Photograph · The entrance',
     'slot.bleed': 'Full-page photograph · The night',
     'slot.g1': 'Room',
     'slot.g2': 'Terrace',
@@ -95,15 +92,7 @@
     /* --- come raggiungerci --- */
     'reach.eyebrow': 'Reach us',
     'reach.title': 'On the sea, behind the pine forest',
-    'reach.country': 'Italy',
-    'reach.w1t': 'By car',
-    'reach.w1d': 'Cervia exit from the E45, then the seafront road. Guarded parking a hundred metres away.',
-    'reach.w2t': 'By train',
-    'reach.w2d': 'Cervia–Milano Marittima station, ten minutes on foot.',
-    'reach.w3t': 'By plane',
-    'reach.w3d': 'Rimini 40 km away, Bologna 100 km. Transfer on request.',
-    'reach.w4t': 'By boat',
-    'reach.w4d': 'Cervia marina, arranged mooring for dinner guests.',
+    'reach.note': 'Cervia exit from the E45, guarded parking a hundred metres away. Cervia–Milano Marittima station is ten minutes on foot.',
     'reach.cta': 'Open in maps',
 
     /* --- contatti --- */
@@ -186,8 +175,6 @@
   var IT_EXTRA = {
     'doc.title': 'IDROS Milano Marittima — Ristorante, Cena Spettacolo e Club',
     'doc.desc': "IDROS, Milano Marittima. Alta cucina, cena spettacolo con musica dal vivo e DJ set con format esclusivi, dove un tempo sorgeva l'Idroscalo.",
-    'aria.burger': 'Apri il menu',
-    'aria.burgerClose': 'Chiudi il menu',
     'msg.required': 'Questo campo è obbligatorio.',
     'msg.email': 'Inserite un indirizzo email valido.',
     'msg.phone': 'Inserite un numero di telefono valido.',
