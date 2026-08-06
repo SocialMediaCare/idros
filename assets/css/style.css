@@ -608,10 +608,9 @@ body.no-js [data-anim]{opacity:1;transform:none}
    dà 2,3:1: illeggibile. Qui serve --wine-lt, che arriva a 5,05:1. */
 .navmenu__panel a:hover,
 .navmenu__panel a:focus-visible{color:var(--wine-lt)}
-.navmenu__book{
-  color:var(--wine-lt);
-  margin-top:var(--sp-4);
-}
+/* Nessun margine extra: le voci devono essere equidistanti.
+   A distinguere Prenotazioni basta il colore. */
+.navmenu__book{color:var(--wine-lt)}
 .navmenu__book:hover{color:var(--white)}
 
 .nav__brand{justify-self:center;padding:0}
@@ -677,10 +676,10 @@ body.no-js [data-anim]{opacity:1;transform:none}
      (misurato: 62px a 900, 322 a 1280, 439 a 1440 — circa 0,7·vw − 566).
      Un valore fisso in vw andrebbe bene a 1440 e farebbe finire il testo
      sotto le card a 900. La formula sotto risale di quasi tutto lo spazio
-     lasciandone ~130px a ogni misura. Il clamp regge oltre i 1664px, dove
+     lasciandone ~150px a ogni misura. Il clamp regge oltre i 1664px, dove
      il contenuto smette di allargarsi e lo spazio si assesta.
      Se un domani i testi cambiano lunghezza, va ritarata. */
-  #esperienza{margin-top:clamp(-465px, calc(696px - 69.8vw), 70px)}
+  #esperienza{margin-top:clamp(-445px, calc(716px - 69.8vw), 95px)}
 
   /* "I prossimi appuntamenti" è la sezione più importante della pagina:
      qui l'incastro si ferma e il blocco prende aria da entrambi i lati. */
@@ -750,4 +749,9 @@ body.no-js [data-anim]{opacity:1;transform:none}
 
   /* Le domande frequenti restano centrate come su desktop */
   .faq--center{justify-items:center;text-align:center}
+
+  /* "Come raggiungerci" andava su due righe e rompeva l'equidistanza
+     delle voci: corpo e spaziatura ridotti perché stiano tutte su
+     una riga sola, e il min-height fa il resto. */
+  .navmenu__panel a{font-size:1.35rem;letter-spacing:.06em;padding:.6rem .5rem}
 }
