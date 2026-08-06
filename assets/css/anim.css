@@ -142,43 +142,12 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
   to{transform:scale(1.12) translate3d(-1.5%,1.5%,0)}
 }
 
-/* ---------- 5. MARQUEE ----------
-   Fascia di testo che scorre e reagisce alla velocità di scroll. */
-.marquee{
-  position:relative;overflow:hidden;
-  padding-block:clamp(1.6rem,4vw,3.2rem);
-  border-block:1px solid var(--line-soft);
-  margin-block:clamp(2rem,6vw,5rem);
-  user-select:none;
-}
-.marquee__track{
-  display:flex;width:max-content;will-change:transform;
-  animation:marquee-fallback 34s linear infinite;
-}
-html.gsap-on .marquee__track{animation:none}
-.marquee__group{display:flex;align-items:center;flex:none}
-.marquee__group span{
-  display:inline-flex;align-items:center;flex:none;
-  font-family:var(--font-display);
-  font-size:clamp(2rem,1rem + 5vw,5.5rem);
-  font-weight:400;line-height:1;letter-spacing:.01em;
-  padding-inline:.35em;color:var(--white);
-}
-.marquee__group i{
-  flex:none;width:.42em;height:.42em;margin-inline:.3em;
-  background:var(--wine);border-radius:50%;
-}
-.marquee__group span:nth-child(4n+3){
-  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.42);
-}
-@keyframes marquee-fallback{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
-
-/* ---------- 6. HERO ---------- */
+/* ---------- 5. HERO ---------- */
 .hero__title{overflow:hidden}
 /* la lente scura si scioglie mentre si scende */
 .sec--hero .hero__media{will-change:transform}
 
-/* ---------- 7. NAV DINAMICA ----------
+/* ---------- 6. NAV DINAMICA ----------
    Sale fuori campo scendendo, rientra risalendo. */
 .nav{will-change:transform}
 .nav.is-hidden{transform:translateY(-101%)}
@@ -191,7 +160,7 @@ html.gsap-on .marquee__track{animation:none}
   pointer-events:none;
 }
 
-/* ---------- 8. BOTTONI MAGNETICI ---------- */
+/* ---------- 7. BOTTONI MAGNETICI ---------- */
 .ghost,.link{will-change:transform}
 .ghost{position:relative;overflow:hidden;isolation:isolate}
 /* riempimento che sale dal basso invece del cambio colore secco */
@@ -209,13 +178,13 @@ html.gsap-on .marquee__track{animation:none}
 .ghost--solid::before{transform:translateY(101%)}
 .ghost--solid:hover{background:var(--white);color:var(--white);border-color:var(--wine-lt)}
 
-/* ---------- 9. QUICK LINKS: ingrandimento morbido ---------- */
+/* ---------- 8. QUICK LINKS: ingrandimento morbido ---------- */
 .ql__card .media{transition:transform 900ms var(--ease-out-expo),filter 900ms var(--ease-out-expo)}
 .ql__card:hover .media{transform:scale(1.035);filter:brightness(1.08)}
 .ql__t{transition:transform 700ms var(--ease-out-expo)}
 .ql__card:hover .ql__t{transform:translateY(-6px)}
 
-/* ---------- 10. EVENTI: anteprima che segue il puntatore ---------- */
+/* ---------- 9. EVENTI: anteprima che segue il puntatore ---------- */
 .events{position:relative}
 .event{
   position:relative;cursor:pointer;
@@ -231,7 +200,7 @@ html.gsap-on .marquee__track{animation:none}
 .event:hover .event__title{color:var(--wine-lt)}
 .event__title{transition:color 380ms var(--ease-out-expo)}
 
-/* ---------- 11. GALLERIA: inclinazione sulla velocità ---------- */
+/* ---------- 10. GALLERIA: inclinazione sulla velocità ---------- */
 .gal>*{will-change:transform}
 .gal__cue{
   display:flex;align-items:center;gap:.6rem;
@@ -240,15 +209,15 @@ html.gsap-on .marquee__track{animation:none}
 }
 .gal__cue i{display:block;width:34px;height:1px;background:var(--line)}
 
-/* ---------- 12. FULL BLEED: parola gigante ---------- */
+/* ---------- 11. FULL BLEED: parola gigante ---------- */
 .bleed__body{will-change:transform}
 .h2--xl{will-change:transform}
 
-/* ---------- 13. FAQ: apertura fluida ---------- */
+/* ---------- 12. FAQ: apertura fluida ---------- */
 .faq__item{overflow:hidden}
 .faq__item p{will-change:opacity,transform}
 
-/* ---------- 14. FOOTER: marchio monumentale ---------- */
+/* ---------- 13. FOOTER: marchio monumentale ---------- */
 .footer{position:relative;overflow:hidden}
 .footer__mark{
   display:block;margin:0;padding-block:clamp(.5rem,2vw,1.5rem);
@@ -261,7 +230,7 @@ html.gsap-on .marquee__track{animation:none}
 }
 @media(min-width:900px){.footer__mark{-webkit-text-stroke-width:1.5px}}
 
-/* ---------- 15. SELEZIONE E SCROLLBAR ---------- */
+/* ---------- 14. SELEZIONE E SCROLLBAR ---------- */
 ::selection{background:var(--wine);color:var(--white)}
 html{scrollbar-color:rgba(255,255,255,.25) transparent;scrollbar-width:thin}
 
@@ -283,12 +252,11 @@ html.lenis{scroll-behavior:auto}
 .lenis.lenis-smooth{scroll-behavior:auto}
 .lenis.lenis-stopped{overflow:hidden}
 
-/* ---------- 16. MOVIMENTO RIDOTTO ----------
+/* ---------- 15. MOVIMENTO RIDOTTO ----------
    Chi lo chiede vede la pagina ferma e completa. */
 @media(prefers-reduced-motion:reduce){
   .grain{animation:none;opacity:.03}
   .media--kb::before{animation:none}
-  .marquee__track{animation:none}
   .cursor{display:none!important}
   html.has-cursor,html.has-cursor *{cursor:auto!important}
   .loader,.loader__panel{display:none!important}

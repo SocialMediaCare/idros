@@ -294,38 +294,7 @@
   }
 
   /* ============================================================
-     8. FASCIA DI TESTO SCORREVOLE
-     Va da sola, accelera con lo scorrimento e cambia verso
-     quando si risale: dà l'impressione che la pagina abbia un motore.
-     ============================================================ */
-  function marquee() {
-    var track = document.querySelector('.marquee__track');
-    if (!track) return;
-    var group = track.querySelector('.marquee__group');
-    if (!group) return;
-
-    var width = group.offsetWidth;
-    var x = 0, dir = -1, base = .55;
-
-    /* duplichiamo finché la fascia non copre due volte lo schermo */
-    while (track.offsetWidth < window.innerWidth * 2) {
-      track.appendChild(group.cloneNode(true));
-    }
-
-    gsap.ticker.add(function () {
-      var v = lenis ? Math.min(Math.abs(lenis.velocity || 0) * .06, 6) : 0;
-      if (lenis && lenis.direction) dir = lenis.direction === 1 ? -1 : 1;
-      x += (base + v) * dir;
-      if (x <= -width) x += width;
-      if (x >= 0) x -= width;
-      track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
-    });
-
-    window.addEventListener('resize', function () { width = group.offsetWidth; }, { passive: true });
-  }
-
-  /* ============================================================
-     9. GALLERIA
+     8. GALLERIA
      Scorre in orizzontale seguendo lo scorrimento verticale.
      Al primo trascinamento manuale il collegamento si stacca:
      comanda l'utente, non la pagina.
@@ -362,7 +331,7 @@
   }
 
   /* ============================================================
-     10. CURSORE
+     9. CURSORE
      ============================================================ */
   function cursor() {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -411,7 +380,7 @@
   }
 
   /* ============================================================
-     11. BOTTONI MAGNETICI
+     10. BOTTONI MAGNETICI
      ============================================================ */
   function magnetic() {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
@@ -431,7 +400,7 @@
   }
 
   /* ============================================================
-     12. NAV E BARRA DI AVANZAMENTO
+     11. NAV E BARRA DI AVANZAMENTO
      ============================================================ */
   function navBar() {
     var nav = document.getElementById('nav');
@@ -456,7 +425,7 @@
   }
 
   /* ============================================================
-     13. FAQ — apertura fluida
+     12. FAQ — apertura fluida
      `details` apre di scatto: qui l'altezza viene animata a mano.
      ============================================================ */
   function faq() {
@@ -488,7 +457,7 @@
   }
 
   /* ============================================================
-     14. MARCHIO DEL PIÈ DI PAGINA
+     13. MARCHIO DEL PIÈ DI PAGINA
      ============================================================ */
   function footerMark() {
     var mark = document.querySelector('.footer__mark');
@@ -500,7 +469,7 @@
   }
 
   /* ============================================================
-     15. SEZIONI: velo che si dissolve entrando
+     14. SEZIONI: velo che si dissolve entrando
      ============================================================ */
   function sections() {
     document.querySelectorAll('.sec:not(.sec--hero)').forEach(function (sec) {
@@ -512,7 +481,7 @@
   }
 
   /* ============================================================
-     16. AVVIO
+     15. AVVIO
      ============================================================ */
   function start() {
     heroIn();
@@ -520,7 +489,6 @@
     buildReveals();
     parallax();
     bleed();
-    marquee();
     gallery();
     cursor();
     magnetic();
