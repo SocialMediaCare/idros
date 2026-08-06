@@ -672,9 +672,15 @@ body.no-js [data-anim]{opacity:1;transform:none}
    altre respirare. Ogni valore qui sotto risponde a un'esigenza precisa. */
 @media(min-width:900px){
 
-  /* Le card di "Scopri" e le foto dell'Esperienza si compenetrano:
-     l'Esperienza risale dentro la sezione precedente. */
-  #esperienza{margin-top:-13vw}
+  /* Le card di "Scopri" e l'Esperienza si compenetrano.
+     Lo spazio disponibile non è costante: cresce con la larghezza
+     (misurato: 62px a 900, 322 a 1280, 439 a 1440 — circa 0,7·vw − 566).
+     Un valore fisso in vw andrebbe bene a 1440 e farebbe finire il testo
+     sotto le card a 900. La formula sotto risale di quasi tutto lo spazio
+     lasciandone ~40px a ogni misura. Il clamp regge oltre i 1664px, dove
+     il contenuto smette di allargarsi e lo spazio si assesta.
+     Se un domani i testi cambiano lunghezza, va ritarata. */
+  #esperienza{margin-top:clamp(-550px, calc(611px - 69.8vw), 0px)}
 
   /* "I prossimi appuntamenti" è la sezione più importante della pagina:
      qui l'incastro si ferma e il blocco prende aria da entrambi i lati. */
@@ -714,4 +720,34 @@ body.no-js [data-anim]{opacity:1;transform:none}
   .gal__track{animation:none;width:max-content}
   .gal__track>*,.gal__clone>*{scroll-snap-align:center}
   .gal__clone{display:none}   /* senza animazione i cloni sarebbero solo doppioni */
+}
+
+/* ---------- RITMO SU MOBILE ----------
+   Sotto i 900px le regole per sezione non si applicano e tutto finisce
+   a distanza uniforme. Qui il mobile riceve lo stesso disegno del
+   desktop, con valori proporzionati allo schermo. */
+@media(max-width:899px){
+
+  /* Le card di "Scopri" stanno in due contenitori: su mobile il primo
+     perdeva il passo interno e le sue due card si toccavano, mentre la
+     terza restava a 72px. Stesso passo per tutte. */
+  .ql__col{display:flex;flex-direction:column;gap:var(--sp-7)}
+
+  /* Scopri ed Esperienza si avvicinano anche qui, per quanto lo
+     consente l'impilamento */
+  #esperienza{margin-top:-1.25rem}
+
+  /* Gli appuntamenti restano la sezione con più aria attorno */
+  #eventi{margin-top:1.5rem;padding-block:var(--sp-5)}
+  #galleria{margin-top:1rem}
+
+  /* Come raggiungerci e Contatti si toccano: un blocco solo */
+  #raggiungerci{margin-top:1.5rem}
+  #contatti{margin-top:0}
+
+  #faq{margin-top:1.5rem}
+  .footer{margin-top:2rem}
+
+  /* Le domande frequenti restano centrate come su desktop */
+  .faq--center{justify-items:center;text-align:center}
 }
