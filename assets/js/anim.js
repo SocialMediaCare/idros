@@ -133,11 +133,19 @@
       onComplete: function () {
         loader.remove();
         panels.forEach(function (p) { p.remove(); });
-        doc.classList.remove('is-loading');
         if (lenis) lenis.start();
-        done();
       }
     });
+
+    /* Il resto della pagina si prepara quando le ante cominciano ad
+       aprirsi, non quando hanno finito: così l'hero è già in movimento
+       dietro al sipario invece di partire in ritardo a scena aperta.
+       `is-loading` va tolto prima, altrimenti ScrollTrigger misura la
+       pagina mentre è ancora alta 100vh e sbaglia tutti i punti. */
+    function reveal() {
+      doc.classList.remove('is-loading');
+      done();
+    }
 
     tl.to(brand, { y: '0%', opacity: 1, duration: .9, stagger: .05, ease: EASE })
       .to(bar, { right: '0%', duration: 1.5, ease: 'power2.inOut' }, .15)
@@ -147,7 +155,7 @@
       }, .15)
       .to(loader.querySelector('.loader__inner'), { opacity: 0, y: -20, duration: .5, ease: 'power2.in' }, '+=0.15')
       .set(loader, { autoAlpha: 0 })
-      .to(panels[0], { yPercent: -100, duration: 1.1, ease: EASE }, '<')
+      .to(panels[0], { yPercent: -100, duration: 1.1, ease: EASE, onStart: reveal }, '<')
       .to(panels[1], { yPercent: 100, duration: 1.1, ease: EASE }, '<');
   }
 
@@ -164,12 +172,15 @@
 
     var tl = gsap.timeline({ defaults: { ease: EASE } });
 
+    /* fromTo e non from: lo stato spento ora arriva dal CSS, quindi
+       il valore d'arrivo va scritto a mano, altrimenti l'animazione
+       finirebbe dov'è cominciata e non si vedrebbe più nulla. */
     tl.from(hero.querySelector('.hero__media'), { scale: 1.18, duration: 1.8, ease: 'power2.out' }, 0)
       .to(lines, { y: '0%', duration: 1.25, stagger: .09, onComplete: function () { if (title) unmask(title); } }, .25)
-      .from(hero.querySelectorAll('.hero__sub'), { y: 24, opacity: 0, duration: .9 }, .55)
-      .from(hero.querySelectorAll('.booking .ghost'), { y: 26, opacity: 0, duration: .8, stagger: .07 }, .45)
-      .from(hero.querySelector('.scrollcue'), { opacity: 0, y: 14, duration: .7 }, .9)
-      .from('.nav__inner > *', { y: -18, opacity: 0, duration: .8, stagger: .06 }, .1);
+      .fromTo(hero.querySelectorAll('.hero__sub'), { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .9 }, .55)
+      .fromTo(hero.querySelectorAll('.booking .ghost'), { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .07 }, .45)
+      .fromTo(hero.querySelector('.scrollcue'), { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: .7 }, .9)
+      .fromTo('.nav__inner > *', { y: -18, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .06 }, .1);
   }
 
   /* La foto dell'hero resta indietro e si scurisce mentre si scende */

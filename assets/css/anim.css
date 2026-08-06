@@ -114,6 +114,14 @@ html.gsap-on [data-anim="lines"],
 html.gsap-on .hero__title,
 html.gsap-on [data-anim="stagger"] > *{opacity:0}
 
+/* Anche le parti dell'hero e della barra che anima anim.js devono
+   partire spente. Senza questa riga il sipario si apre su una pagina
+   già composta, che un istante dopo sparisce per rientrare animata. */
+html.gsap-on .hero__sub,
+html.gsap-on .booking .ghost,
+html.gsap-on .scrollcue,
+html.gsap-on .nav__inner > *{opacity:0}
+
 /* Le righe di testo scorrono da sotto una maschera */
 .line{display:block;overflow:hidden}
 .line__in{display:block;will-change:transform}
@@ -274,7 +282,11 @@ html.lenis{scroll-behavior:auto}
   .loader,.loader__panel{display:none!important}
   html.is-loading,html.is-loading body{overflow:visible;height:auto}
   html.gsap-on [data-anim],
-  html.gsap-on .hero__title{opacity:1!important;clip-path:none!important}
+  html.gsap-on .hero__title,
+  html.gsap-on .hero__sub,
+  html.gsap-on .booking .ghost,
+  html.gsap-on .scrollcue,
+  html.gsap-on .nav__inner > *{opacity:1!important;clip-path:none!important}
   html.gsap-on [data-anim="stagger"] > *{opacity:1!important}
   html.gsap-on .line__in{transform:none!important}
 }
