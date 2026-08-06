@@ -9,7 +9,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="admin.css">
+<!-- Percorsi assoluti: con cleanUrls la pagina è servita a /admin, senza
+     barra finale, quindi un percorso relativo verrebbe cercato nella
+     radice del sito (/admin.css) invece che dentro /admin/. -->
+<link rel="stylesheet" href="/admin/admin.css">
 </head>
 <body>
 
@@ -128,6 +131,6 @@
   <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
 </div>
 
-<script src="admin.js" type="module"></script>
+<script src="/admin/admin.js" type="module"></script>
 </body>
 </html>
