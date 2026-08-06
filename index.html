@@ -104,14 +104,6 @@ setTimeout(function(){
         <span class="navmenu__word" data-i18n="nav.menu">Menu</span>
       </button>
 
-      <nav class="navmenu__panel" id="menuPanel" hidden aria-label="Navigazione principale">
-        <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
-        <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
-        <a href="#eventi"       data-i18n="nav.events">Eventi</a>
-        <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
-        <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
-        <a href="#prenota" class="navmenu__book" data-i18n="nav.book">Prenotazioni</a>
-      </nav>
     </div>
 
     <!-- CENTRO — logo -->
@@ -132,6 +124,17 @@ setTimeout(function(){
   </div>
 </header>
 
+<nav class="navmenu__panel" id="menuPanel" hidden aria-label="Navigazione principale">
+  <div class="navmenu__inner">
+    <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
+    <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
+    <a href="#eventi"       data-i18n="nav.events">Eventi</a>
+    <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
+    <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
+    <a href="#prenota" class="navmenu__book" data-i18n="nav.book">Prenotazioni</a>
+  </div>
+</nav>
+
 
 <main id="main">
 
@@ -150,7 +153,7 @@ setTimeout(function(){
 
   <div class="hero__foot">
     <h1 class="hero__title" data-i18n="hero.title">Benvenuti da IDROS</h1>
-    <p class="hero__sub" data-i18n="hero.sub">Milano Marittima · Ravenna</p>
+    <p class="hero__sub" data-i18n="hero.sub">Milano Marittima</p>
   </div>
 
   <a class="scrollcue" href="#scopri" aria-label="Scorri">
@@ -549,7 +552,6 @@ setTimeout(function(){
 
 <!-- ═════════ 11 · FOOTER ═════════ -->
 <footer class="footer" data-layout="socialMedia">
-  <p class="footer__mark" aria-hidden="true">IDROS</p>
   <div class="wrap footer__inner">
 
     <a class="footer__logo" href="#hero" aria-label="IDROS — torna in cima">

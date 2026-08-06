@@ -43,6 +43,9 @@
     if (!menuBtn || !menuPanel) return;
     menuBtn.setAttribute('aria-expanded', String(open));
     menuPanel.hidden = !open;
+    /* A tutto schermo la pagina sotto non deve scorrere */
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (window.IDROS_LOCK) window.IDROS_LOCK(open);
   }
 
   if (menuBtn) {
