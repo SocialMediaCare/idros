@@ -677,10 +677,10 @@ body.no-js [data-anim]{opacity:1;transform:none}
      (misurato: 62px a 900, 322 a 1280, 439 a 1440 — circa 0,7·vw − 566).
      Un valore fisso in vw andrebbe bene a 1440 e farebbe finire il testo
      sotto le card a 900. La formula sotto risale di quasi tutto lo spazio
-     lasciandone ~40px a ogni misura. Il clamp regge oltre i 1664px, dove
+     lasciandone ~130px a ogni misura. Il clamp regge oltre i 1664px, dove
      il contenuto smette di allargarsi e lo spazio si assesta.
      Se un domani i testi cambiano lunghezza, va ritarata. */
-  #esperienza{margin-top:clamp(-550px, calc(611px - 69.8vw), 0px)}
+  #esperienza{margin-top:clamp(-465px, calc(696px - 69.8vw), 70px)}
 
   /* "I prossimi appuntamenti" è la sezione più importante della pagina:
      qui l'incastro si ferma e il blocco prende aria da entrambi i lati. */
@@ -733,9 +733,9 @@ body.no-js [data-anim]{opacity:1;transform:none}
      terza restava a 72px. Stesso passo per tutte. */
   .ql__col{display:flex;flex-direction:column;gap:var(--sp-7)}
 
-  /* Scopri ed Esperienza si avvicinano anche qui, per quanto lo
-     consente l'impilamento */
-  #esperienza{margin-top:-1.25rem}
+  /* Impilate una sotto l'altra, le due sezioni non hanno bisogno di
+     risalire: bastano i 40px naturali */
+  #esperienza{margin-top:0}
 
   /* Gli appuntamenti restano la sezione con più aria attorno */
   #eventi{margin-top:1.5rem;padding-block:var(--sp-5)}
