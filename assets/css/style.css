@@ -595,7 +595,7 @@ body.no-js [data-anim]{opacity:1;transform:none}
   width:min(100%,46rem);
 }
 .navmenu__panel a{
-  position:relative;isolation:isolate;
+  position:relative;
   display:flex;align-items:center;justify-content:center;
   width:100%;min-height:64px;
   padding:.6rem 1.5rem;
@@ -604,19 +604,10 @@ body.no-js [data-anim]{opacity:1;transform:none}
   color:var(--dim);
   transition:color 420ms var(--ease);
 }
-/* L'evidenziazione rossa entra da sinistra, come le righe degli eventi
-   ma con il colore del marchio invece del bianco appena accennato. */
-.navmenu__panel a::before{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:var(--wine);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform 420ms var(--ease);
-}
+/* Vira la parola, non il suo sfondo. Il bordeaux pieno (--wine) su nero
+   dà 2,3:1: illeggibile. Qui serve --wine-lt, che arriva a 5,05:1. */
 .navmenu__panel a:hover,
-.navmenu__panel a:focus-visible{color:var(--white)}
-.navmenu__panel a:hover::before,
-.navmenu__panel a:focus-visible::before{transform:scaleX(1)}
-.navmenu__panel a:hover{color:var(--white);background:rgba(255,255,255,.05)}
+.navmenu__panel a:focus-visible{color:var(--wine-lt)}
 .navmenu__book{
   color:var(--wine-lt);
   margin-top:var(--sp-4);
@@ -683,7 +674,7 @@ body.no-js [data-anim]{opacity:1;transform:none}
 
   /* Le card di "Scopri" e le foto dell'Esperienza si compenetrano:
      l'Esperienza risale dentro la sezione precedente. */
-  #esperienza{margin-top:-10vw}
+  #esperienza{margin-top:-13vw}
 
   /* "I prossimi appuntamenti" è la sezione più importante della pagina:
      qui l'incastro si ferma e il blocco prende aria da entrambi i lati. */
