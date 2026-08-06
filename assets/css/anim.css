@@ -1,0 +1,280 @@
+/* ============================================================
+   IDROS — livello cinematico
+   Stati iniziali, overlay e componenti animate.
+   Il movimento è guidato da assets/js/anim.js (GSAP + Lenis);
+   qui stanno solo gli stati di partenza e i fallback.
+   ============================================================ */
+
+/* ---------- 0. TOKEN AGGIUNTIVI ---------- */
+:root{
+  --cursor-size: 10px;
+  --ring-size: 46px;
+  --ease-out-expo: cubic-bezier(.16,1,.3,1);
+}
+
+/* Con il preloader attivo il corpo non scorre */
+html.is-loading,
+html.is-loading body{overflow:hidden;height:100%}
+
+/* ---------- 1. PRELOADER ----------
+   Sipario nero, marchio che si compone lettera per lettera,
+   riga di avanzamento e apertura verticale. */
+.loader{
+  position:fixed;inset:0;z-index:200;
+  display:grid;place-items:center;
+  background:var(--black);
+  pointer-events:none;
+}
+.loader__inner{
+  display:flex;flex-direction:column;align-items:center;gap:1.6rem;
+  width:min(76vw,420px);
+}
+.loader__brand{
+  display:flex;gap:.42em;padding-left:.42em;
+  font-size:clamp(1.6rem,1rem + 3vw,2.6rem);
+  font-weight:200;letter-spacing:.42em;line-height:1;
+}
+.loader__brand span{display:block;opacity:0;transform:translateY(110%)}
+.loader__bar{
+  position:relative;width:100%;height:1px;background:var(--line-soft);overflow:hidden;
+}
+.loader__bar i{
+  position:absolute;inset:0 100% 0 0;background:var(--white);
+  display:block;transform-origin:left center;
+}
+.loader__meta{
+  display:flex;justify-content:space-between;width:100%;
+  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+}
+.loader__pct{font-variant-numeric:tabular-nums}
+/* le due ante che si aprono a fine caricamento */
+.loader__panel{
+  position:fixed;left:0;right:0;height:50.5vh;z-index:199;background:var(--black);
+  pointer-events:none;
+}
+.loader__panel--t{top:0}
+.loader__panel--b{bottom:0}
+html.no-js .loader,
+html.no-js .loader__panel{display:none}
+
+/* ---------- 2. GRANA E VIGNETTATURA ----------
+   Una pellicola sottilissima sopra tutto: toglie la piattezza
+   del nero puro e tiene insieme foto e fondali. */
+.grain{
+  position:fixed;inset:-150%;z-index:150;pointer-events:none;
+  opacity:.05;mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 6s steps(6) infinite;
+  will-change:transform;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}     16%{transform:translate(-2%,-3%)}
+  33%{transform:translate(-4%,2%)} 50%{transform:translate(2%,-4%)}
+  66%{transform:translate(-3%,3%)} 83%{transform:translate(3%,2%)}
+  100%{transform:translate(0,0)}
+}
+.vignette{
+  position:fixed;inset:0;z-index:149;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 45%,transparent 45%,rgba(0,0,0,.55));
+}
+
+/* ---------- 3. CURSORE ----------
+   Solo su dispositivi con puntatore fine: sul touch resta quello nativo. */
+.cursor{display:none}
+@media(hover:hover) and (pointer:fine){
+  html.has-cursor,
+  html.has-cursor *{cursor:none!important}
+  .cursor{
+    position:fixed;top:0;left:0;z-index:180;pointer-events:none;
+    display:block;mix-blend-mode:difference;
+  }
+  .cursor__dot{
+    position:absolute;top:0;left:0;
+    width:var(--cursor-size);height:var(--cursor-size);margin:calc(var(--cursor-size)/-2);
+    border-radius:50%;background:var(--white);
+  }
+  .cursor__ring{
+    position:absolute;top:0;left:0;
+    width:var(--ring-size);height:var(--ring-size);margin:calc(var(--ring-size)/-2);
+    border:1px solid rgba(255,255,255,.7);border-radius:50%;
+    display:grid;place-items:center;
+  }
+  .cursor__label{
+    font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--white);opacity:0;white-space:nowrap;
+  }
+}
+
+/* ---------- 4. STATI INIZIALI DELLE ANIMAZIONI ----------
+   Applicati solo quando GSAP ha davvero preso il controllo:
+   se la CDN non risponde, la pagina resta leggibile. */
+html.gsap-on [data-anim="fade"],
+html.gsap-on [data-anim="rise"],
+html.gsap-on [data-anim="lines"],
+html.gsap-on .hero__title,
+html.gsap-on [data-anim="stagger"] > *{opacity:0}
+
+/* Le righe di testo scorrono da sotto una maschera */
+.line{display:block;overflow:hidden}
+.line__in{display:block;will-change:transform}
+html.gsap-on .line__in{transform:translateY(115%)}
+
+/* Le immagini si aprono da una fessura */
+html.gsap-on [data-anim="unveil"]{clip-path:inset(0 0 100% 0)}
+html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
+
+/* Zoom lento e continuo sulle foto grandi */
+.media--kb::before{
+  content:"";position:absolute;inset:-6%;z-index:0;
+  background:inherit;
+  animation:kenburns 26s ease-in-out infinite alternate;
+}
+@keyframes kenburns{
+  from{transform:scale(1) translate3d(0,0,0)}
+  to{transform:scale(1.12) translate3d(-1.5%,1.5%,0)}
+}
+
+/* ---------- 5. MARQUEE ----------
+   Fascia di testo che scorre e reagisce alla velocità di scroll. */
+.marquee{
+  position:relative;overflow:hidden;
+  padding-block:clamp(1.6rem,4vw,3.2rem);
+  border-block:1px solid var(--line-soft);
+  margin-block:clamp(2rem,6vw,5rem);
+  user-select:none;
+}
+.marquee__track{
+  display:flex;width:max-content;will-change:transform;
+  animation:marquee-fallback 34s linear infinite;
+}
+html.gsap-on .marquee__track{animation:none}
+.marquee__group{display:flex;align-items:center;flex:none}
+.marquee__group span{
+  display:inline-flex;align-items:center;flex:none;
+  font-family:var(--font-display);
+  font-size:clamp(2rem,1rem + 5vw,5.5rem);
+  font-weight:400;line-height:1;letter-spacing:.01em;
+  padding-inline:.35em;color:var(--white);
+}
+.marquee__group i{
+  flex:none;width:.42em;height:.42em;margin-inline:.3em;
+  background:var(--wine);border-radius:50%;
+}
+.marquee__group span:nth-child(4n+3){
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.42);
+}
+@keyframes marquee-fallback{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* ---------- 6. HERO ---------- */
+.hero__title{overflow:hidden}
+/* la lente scura si scioglie mentre si scende */
+.sec--hero .hero__media{will-change:transform}
+
+/* ---------- 7. NAV DINAMICA ----------
+   Sale fuori campo scendendo, rientra risalendo. */
+.nav{will-change:transform}
+.nav.is-hidden{transform:translateY(-101%)}
+.nav{transition:background 620ms var(--ease),border-color 620ms var(--ease),transform 520ms var(--ease)}
+
+/* Barra di avanzamento della lettura */
+.progress{
+  position:fixed;top:0;left:0;right:0;height:2px;z-index:70;
+  background:var(--wine-lt);transform:scaleX(0);transform-origin:left center;
+  pointer-events:none;
+}
+
+/* ---------- 8. BOTTONI MAGNETICI ---------- */
+.ghost,.link{will-change:transform}
+.ghost{position:relative;overflow:hidden;isolation:isolate}
+/* riempimento che sale dal basso invece del cambio colore secco */
+.ghost::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--white);transform:translateY(101%);
+  transition:transform 520ms var(--ease-out-expo);
+}
+.ghost:hover::before,
+.ghost:focus-visible::before{transform:translateY(0)}
+.ghost{transition:color 380ms var(--ease-out-expo),border-color 380ms var(--ease-out-expo)}
+.ghost:hover{background:transparent;color:var(--black)}
+.ghost--solid::before{background:var(--wine-lt);transform:translateY(0)}
+.ghost--solid{background:var(--white);color:var(--black)}
+.ghost--solid::before{transform:translateY(101%)}
+.ghost--solid:hover{background:var(--white);color:var(--white);border-color:var(--wine-lt)}
+
+/* ---------- 9. QUICK LINKS: ingrandimento morbido ---------- */
+.ql__card .media{transition:transform 900ms var(--ease-out-expo),filter 900ms var(--ease-out-expo)}
+.ql__card:hover .media{transform:scale(1.035);filter:brightness(1.08)}
+.ql__t{transition:transform 700ms var(--ease-out-expo)}
+.ql__card:hover .ql__t{transform:translateY(-6px)}
+
+/* ---------- 10. EVENTI: anteprima che segue il puntatore ---------- */
+.events{position:relative}
+.event{
+  position:relative;cursor:pointer;
+  transition:padding-left 620ms var(--ease-out-expo),color 380ms var(--ease-out-expo);
+}
+.event::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--wine-lt);transform:scaleY(0);transform-origin:bottom center;
+  transition:transform 520ms var(--ease-out-expo);
+}
+.event:hover{padding-left:1.1rem}
+.event:hover::before{transform:scaleY(1);transform-origin:top center}
+.event:hover .event__title{color:var(--wine-lt)}
+.event__title{transition:color 380ms var(--ease-out-expo)}
+
+/* ---------- 11. GALLERIA: inclinazione sulla velocità ---------- */
+.gal>*{will-change:transform}
+.gal__cue{
+  display:flex;align-items:center;gap:.6rem;
+  margin:1rem auto 0;width:fit-content;
+  font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+}
+.gal__cue i{display:block;width:34px;height:1px;background:var(--line)}
+
+/* ---------- 12. FULL BLEED: parola gigante ---------- */
+.bleed__body{will-change:transform}
+.h2--xl{will-change:transform}
+
+/* ---------- 13. FAQ: apertura fluida ---------- */
+.faq__item{overflow:hidden}
+.faq__item p{will-change:opacity,transform}
+
+/* ---------- 14. FOOTER: marchio monumentale ---------- */
+.footer{position:relative;overflow:hidden}
+.footer__mark{
+  display:block;margin:0;padding-block:clamp(.5rem,2vw,1.5rem);
+  font-family:var(--font-display);
+  font-size:clamp(4rem,18vw,17rem);
+  font-weight:400;line-height:.9;letter-spacing:.02em;
+  color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.16);
+  text-align:center;pointer-events:none;user-select:none;
+  will-change:transform;
+}
+@media(min-width:900px){.footer__mark{-webkit-text-stroke-width:1.5px}}
+
+/* ---------- 15. SELEZIONE E SCROLLBAR ---------- */
+::selection{background:var(--wine);color:var(--white)}
+html{scrollbar-color:rgba(255,255,255,.25) transparent;scrollbar-width:thin}
+
+/* Con Lenis attivo lo scorrimento nativo va spento */
+html.lenis,html.lenis body{height:auto}
+html.lenis{scroll-behavior:auto}
+.lenis.lenis-smooth{scroll-behavior:auto}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* ---------- 16. MOVIMENTO RIDOTTO ----------
+   Chi lo chiede vede la pagina ferma e completa. */
+@media(prefers-reduced-motion:reduce){
+  .grain{animation:none;opacity:.03}
+  .media--kb::before{animation:none}
+  .marquee__track{animation:none}
+  .cursor{display:none!important}
+  html.has-cursor,html.has-cursor *{cursor:auto!important}
+  .loader,.loader__panel{display:none!important}
+  html.is-loading,html.is-loading body{overflow:visible;height:auto}
+  html.gsap-on [data-anim],
+  html.gsap-on .hero__title{opacity:1!important;clip-path:none!important}
+  html.gsap-on [data-anim="stagger"] > *{opacity:1!important}
+  html.gsap-on .line__in{transform:none!important}
+}

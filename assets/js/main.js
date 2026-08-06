@@ -10,10 +10,15 @@
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var T = function (k) { return window.IDROS_I18N ? window.IDROS_I18N.t(k) : k; };
 
+  /* Quando anim.js è riuscito a partire, reveal, parallasse e
+     scorrimento passano a lui: qui restano solo i fallback. */
+  var CINEMATIC = document.documentElement.classList.contains('anim-ready');
+
   /* Contatti — segnaposto, da sostituire con quelli reali */
   var CONFIG = {
     whatsapp: '390000000000',   // formato internazionale, senza +
-    email:    'prenotazioni@idros.it'
+    email:    'prenotazioni@idros.it',
+    api:      '/api/reservations'
   };
 
   /* Corsa del parallasse, misurata sul riferimento:
@@ -40,6 +45,7 @@
     burger.setAttribute('aria-label', T(open ? 'aria.burgerClose' : 'aria.burger'));
     drawer.hidden = !open;
     document.body.style.overflow = open ? 'hidden' : '';
+    if (window.IDROS_LOCK) window.IDROS_LOCK(open);
   }
   if (burger) {
     burger.addEventListener('click', function () {
@@ -58,30 +64,29 @@
     if (e.matches) setDrawer(false);
   });
 
-  /* ---------- 4. REVEAL ----------
-     Stessa partenza del riferimento: opacity 0 / translateY(50px). */
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  /* ---------- 4. REVEAL E PARALLASSE (fallback) ----------
+     Con anim.js attivo se ne occupa GSAP. Qui restiamo per il caso in
+     cui la CDN non risponda o l'utente abbia chiesto meno movimento:
+     una dissolvenza semplice, e la parallasse a rAF di prima. */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-anim]'));
 
-  function revealAll() { revealEls.forEach(function (el) { el.classList.add('is-in'); }); }
-
-  if (REDUCED || !('IntersectionObserver' in window)) {
-    revealAll();
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        if (!en.isIntersecting) return;
-        en.target.classList.add('is-in');
-        io.unobserve(en.target);
-      });
-    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
-    revealEls.forEach(function (el) { io.observe(el); });
+  if (!CINEMATIC) {
+    if (REDUCED || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function (el) { el.classList.add('is-in'); });
+    } else {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (!en.isIntersecting) return;
+          en.target.classList.add('is-in');
+          io.unobserve(en.target);
+        });
+      }, { rootMargin: '0px 0px -12% 0px', threshold: 0.05 });
+      revealEls.forEach(function (el) { io.observe(el); });
+    }
   }
 
-  /* ---------- 5. PARALLASSE ----------
-     Le immagini secondarie scorrono più lentamente della pagina:
-     è quello che, nel riferimento, tiene "vive" le composizioni
-     sfalsate mentre si scorre. */
-  var parallaxEls = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  var parallaxEls = CINEMATIC ? [] :
+    Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
   var ticking = false;
 
   function updateParallax() {
@@ -113,18 +118,20 @@
   onScroll();
   updateParallax();
 
-  /* ---------- 5b. FAILSAFE ----------
+  /* ---------- 4b. FAILSAFE ----------
      Se dopo 3s un elemento già a schermo è ancora invisibile
      (observer non partito, errore JS a monte), mostriamo tutto.
      Una pagina senza animazione è sempre meglio di una vuota. */
-  setTimeout(function () {
-    var broken = revealEls.some(function (el) {
-      var r = el.getBoundingClientRect();
-      var inView = r.top < window.innerHeight * 0.9 && r.bottom > 0;
-      return inView && parseFloat(getComputedStyle(el).opacity) < 0.05;
-    });
-    if (broken) document.documentElement.classList.add('reveal-force');
-  }, 3000);
+  if (!CINEMATIC) {
+    setTimeout(function () {
+      var broken = revealEls.some(function (el) {
+        var r = el.getBoundingClientRect();
+        var inView = r.top < window.innerHeight * 0.9 && r.bottom > 0;
+        return inView && parseFloat(getComputedStyle(el).opacity) < 0.05;
+      });
+      if (broken) document.documentElement.classList.add('reveal-force');
+    }, 3000);
+  }
 
   /* ---------- 6. GALLERIA: trascinamento col mouse ---------- */
   var gal = document.getElementById('gal');
@@ -244,11 +251,38 @@
     return { ok: ok, first: first };
   }
 
-  function collect() {
-    var get = function (id) {
-      var el = form.querySelector('#' + id);
-      return el ? el.value.trim() : '';
+  function get(id) {
+    var el = form.querySelector('#' + id);
+    return el ? el.value.trim() : '';
+  }
+
+  function checked(id) {
+    var el = form.querySelector('#' + id);
+    return !!(el && el.checked);
+  }
+
+  /* Quello che finisce nel database */
+  function payload() {
+    return {
+      name:      get('f-name'),
+      email:     get('f-email'),
+      phone:     get('f-phone'),
+      date:      get('f-date'),
+      time:      get('f-time'),
+      guests:    get('f-guests'),
+      kind:      kindSel ? kindSel.value : 'cena',
+      notes:     get('f-notes'),
+      birthdate: get('f-birth'),
+      city:      get('f-city'),
+      privacy:   checked('f-privacy'),
+      marketing: checked('f-marketing'),
+      website:   get('f-website'),
+      lang:      document.documentElement.lang === 'en' ? 'en' : 'it'
     };
+  }
+
+  /* Quello che si legge in un messaggio WhatsApp */
+  function collect() {
     var kindLabel = kindSel && kindSel.selectedOptions[0]
       ? kindSel.selectedOptions[0].textContent.trim() : '';
 
@@ -279,7 +313,8 @@
   function focusFirst(first) {
     if (!first) return;
     first.focus();
-    first.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' });
+    if (window.IDROS_SCROLL) window.IDROS_SCROLL(first);
+    else first.scrollIntoView({ block: 'center', behavior: REDUCED ? 'auto' : 'smooth' });
   }
 
   if (form) {
@@ -294,15 +329,81 @@
       });
     });
 
+    /* ---------- 7b. INVIO ALLA PIATTAFORMA ----------
+       La richiesta finisce nel database e fa partire due email:
+       il riepilogo al cliente e l'avviso al ristorante. La conferma
+       vera arriva solo quando il proprietario accetta. */
+    var submitBtn = document.getElementById('formSubmit');
+    var doneBox   = document.getElementById('formDone');
+    var refEl     = document.getElementById('formRef');
+    var againBtn  = document.getElementById('formAgain');
+    var sending   = false;
+
+    function setBusy(on) {
+      sending = on;
+      form.classList.toggle('is-busy', on);
+      if (submitBtn) submitBtn.disabled = on;
+    }
+
+    function showErrors(fields) {
+      var map = {
+        name: 'f-name', email: 'f-email', phone: 'f-phone', date: 'f-date',
+        time: 'f-time', guests: 'f-guests', privacy: 'f-privacy'
+      };
+      var first = null;
+      Object.keys(fields || {}).forEach(function (key) {
+        var el = form.querySelector('#' + (map[key] || ''));
+        if (!el) return;
+        setError(el, 'msg.' + fields[key]);
+        if (!first) first = el;
+      });
+      focusFirst(first);
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (sending) return;
+
       var v = validate();
       if (!v.ok) { say('msg.fix', true); focusFirst(v.first); return; }
-      say('msg.opening', false);
-      window.location.href = 'mailto:' + CONFIG.email +
-        '?subject=' + encodeURIComponent(T('msg.subject')) +
-        '&body=' + encodeURIComponent(collect());
+
+      setBusy(true);
+      say('msg.sending', false);
+
+      fetch(CONFIG.api, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload())
+      }).then(function (r) {
+        return r.json().then(function (data) { return { status: r.status, data: data }; });
+      }).then(function (res) {
+        if (res.status === 422) { say('msg.fix', true); showErrors(res.data.fields); return; }
+        if (res.status === 429) { say('msg.throttled', true); return; }
+        if (!res.data || !res.data.ok) { say('msg.serverError', true); return; }
+
+        if (refEl) refEl.textContent = res.data.ref || '—';
+        say(res.data.mailed ? '' : 'msg.noMail', !res.data.mailed);
+        form.hidden = true;
+        if (doneBox) {
+          doneBox.hidden = false;
+          if (window.IDROS_SCROLL) window.IDROS_SCROLL(doneBox);
+        }
+        form.reset();
+      }).catch(function () {
+        say('msg.network', true);
+      }).then(function () {
+        setBusy(false);
+      });
     });
+
+    if (againBtn) {
+      againBtn.addEventListener('click', function () {
+        if (doneBox) doneBox.hidden = true;
+        form.hidden = false;
+        say('', false);
+        if (window.IDROS_SCROLL) window.IDROS_SCROLL(form);
+      });
+    }
 
     if (waBtn) {
       waBtn.addEventListener('click', function () {
@@ -332,7 +433,8 @@
       var target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
+      if (window.IDROS_SCROLL) window.IDROS_SCROLL(target);
+      else target.scrollIntoView({ behavior: REDUCED ? 'auto' : 'smooth', block: 'start' });
       target.setAttribute('tabindex', '-1');
       target.focus({ preventScroll: true });
     });

@@ -14,6 +14,8 @@
     'skip': 'Skip to main content',
     'aria.burger': 'Open menu',
     'aria.burgerClose': 'Close menu',
+    'load.place': 'Milano Marittima',
+    'gal.cue': 'Drag or scroll',
 
     'nav.exp': 'Experience',
     'nav.rest': 'Restaurant',
@@ -131,10 +133,19 @@
     'f.k4': 'DJ set &amp; after dinner',
     'f.k5': 'Private event',
     'f.notes': 'Notes, allergies, special occasions',
+    'f.birth': 'Date of birth <span class="opt">optional</span>',
+    'f.city': 'Town <span class="opt">optional</span>',
     'f.privacy': 'I have read the privacy notice and consent to my data being processed to manage this reservation.',
+    'f.marketing': 'Keep me posted on IDROS: nights, seasonal menus and private invitations.',
     'f.submit': 'Send request',
     'f.wa': 'Send via WhatsApp',
     'f.legal': 'Your request is not confirmed until you receive our reply.',
+
+    /* --- esito invio --- */
+    'done.title': 'Request sent',
+    'done.lead': 'We have emailed you a summary. This is not a confirmed booking yet: as soon as the table is ours to hold, the final confirmation will follow.',
+    'done.ref': 'Reference',
+    'done.again': 'Send another request',
 
     /* --- FAQ --- */
     'faq.title': 'Frequently asked questions',
@@ -158,6 +169,11 @@
     'msg.wa': 'Opening WhatsApp with the request ready to send…',
     'msg.fix': 'Check the highlighted fields.',
     'msg.subject': 'Reservation request — IDROS',
+    'msg.sending': 'Sending your request…',
+    'msg.throttled': 'We already have several requests from you. Please call us instead.',
+    'msg.serverError': 'Something went wrong on our side. Try again, or call us.',
+    'msg.network': 'No connection. Check your network and try again.',
+    'msg.noMail': 'Request registered, but the summary email did not go out. We have it all the same.',
 
     /* --- footer --- */
     'foot.claim': 'Kitchen, music and stage on the sea at Milano Marittima.',
@@ -181,7 +197,12 @@
     'msg.opening': 'Apriamo il vostro client di posta con la richiesta già pronta…',
     'msg.wa': 'Apriamo WhatsApp con la richiesta già pronta…',
     'msg.fix': 'Controllate i campi evidenziati.',
-    'msg.subject': 'Richiesta di prenotazione — IDROS'
+    'msg.subject': 'Richiesta di prenotazione — IDROS',
+    'msg.sending': 'Stiamo inviando la richiesta…',
+    'msg.throttled': 'Abbiamo già diverse richieste da questo indirizzo. Meglio se ci chiamate.',
+    'msg.serverError': 'Qualcosa non ha funzionato da parte nostra. Riprovate, oppure chiamateci.',
+    'msg.network': 'Connessione assente. Controllate la rete e riprovate.',
+    'msg.noMail': 'Richiesta registrata, ma la mail di riepilogo non è partita. Da noi è arrivata lo stesso.'
   };
 
   var IT = {};

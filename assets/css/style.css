@@ -511,6 +511,33 @@ button,input,select,textarea{font:inherit;color:inherit}
 .form__actions{display:flex;flex-wrap:wrap;gap:var(--sp-3)}
 .form__status{margin:0;min-height:1.4em;font-size:.88rem;color:var(--wine-lt)}
 .form__status.is-error{color:#E8A0A0}
+.form.is-busy{opacity:.55;pointer-events:none}
+
+/* Etichetta dei campi non obbligatori */
+.opt{letter-spacing:.1em;color:rgba(255,255,255,.28);text-transform:none;font-size:.62rem}
+
+/* Il campo esca deve essere invisibile ma non `display:none`:
+   i robot saltano i campi nascosti in quel modo. */
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* Schermata di esito */
+.done{
+  display:grid;gap:var(--sp-3);justify-items:start;align-content:center;
+  padding:var(--sp-6) var(--sp-5);border:1px solid var(--line-soft);background:var(--surface);
+}
+@media(min-width:768px){.done{padding:var(--sp-7) var(--sp-6)}}
+.done[hidden]{display:none}
+.done__mark{
+  margin:0;display:grid;place-items:center;width:54px;height:54px;
+  border:1px solid var(--wine-lt);border-radius:50%;color:var(--wine-lt);
+  font-size:1.35rem;line-height:1;
+}
+.done__title{font-size:var(--fs-h3);letter-spacing:.12em;text-transform:uppercase;font-weight:300;margin:0}
+.done__lead{margin:0;color:var(--dim);max-width:46ch}
+.done__ref{
+  margin:0;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);
+}
+.done__ref b{color:var(--white);font-weight:400}
 
 /* ---------- 17. FAQ ---------- */
 .faq{display:grid;gap:var(--sp-5);grid-template-columns:1fr}
@@ -537,21 +564,22 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- 18. FOOTER ---------- */
 .footer{border-top:1px solid var(--line-soft);padding-block:var(--sp-7);text-align:center}
-.footer__brand{margin:0 0 var(--sp-3);font-size:1.3rem;letter-spacing:.5em;font-weight:200;padding-left:.5em}
 .footer__claim{margin:0 0 var(--sp-5);font-size:.88rem;letter-spacing:.06em;color:var(--muted)}
 .footer__meta{margin:0;font-size:.74rem;letter-spacing:.1em;color:var(--muted)}
 .footer__meta a{border-bottom:1px solid var(--line-soft);transition:border-color var(--dur) var(--ease),color var(--dur) var(--ease)}
 .footer__meta a:hover{color:var(--white);border-color:var(--white)}
 
-/* ---------- 19. REVEAL ----------
-   Il riferimento parte da opacity:0 / translateY(50px). Identico. */
-body.js [data-reveal]{opacity:0;transform:translateY(50px)}
-body.js [data-reveal].is-in{
+/* ---------- 19. REVEAL (fallback) ----------
+   Percorso senza GSAP: dissolvenza semplice, come prima.
+   Con `html.gsap-on` gli stati iniziali arrivano da anim.css e
+   queste regole devono restare fuori dai piedi. */
+html:not(.gsap-on) body.js [data-anim]{opacity:0;transform:translateY(50px)}
+html:not(.gsap-on) body.js [data-anim].is-in{
   opacity:1;transform:none;
   transition:opacity var(--dur-reveal) var(--ease),transform var(--dur-reveal) var(--ease);
 }
-body.no-js [data-reveal]{opacity:1;transform:none}
-.reveal-force body.js [data-reveal]{opacity:1!important;transform:none!important}
+body.no-js [data-anim]{opacity:1;transform:none}
+.reveal-force body.js [data-anim]{opacity:1!important;transform:none!important}
 
 /* Il parallasse è guidato da JS: qui solo l'ottimizzazione */
 [data-parallax]{will-change:transform}
@@ -561,6 +589,6 @@ body.no-js [data-reveal]{opacity:1;transform:none}
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   .scrollcue svg{animation:none!important}
-  body.js [data-reveal]{opacity:1!important;transform:none!important}
+  body.js [data-anim]{opacity:1!important;transform:none!important}
   [data-parallax]{transform:none!important;will-change:auto}
 }

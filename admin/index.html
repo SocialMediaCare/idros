@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Gestione prenotazioni — IDROS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ============ ACCESSO ============ -->
+<section class="gate" id="gate">
+  <form class="gate__card" id="loginForm" novalidate>
+    <p class="gate__brand">IDROS</p>
+    <h1 class="gate__title">Area riservata</h1>
+    <p class="gate__lead">Accesso al pannello prenotazioni.</p>
+
+    <div class="field">
+      <label for="l-email">Email</label>
+      <input id="l-email" type="email" autocomplete="username" required>
+    </div>
+    <div class="field">
+      <label for="l-pass">Password</label>
+      <input id="l-pass" type="password" autocomplete="current-password" required>
+    </div>
+
+    <button class="btn btn--full" type="submit" id="loginBtn">Entra</button>
+    <p class="gate__msg" id="loginMsg" role="alert" aria-live="polite"></p>
+    <a class="gate__back" href="/">← Torna al sito</a>
+  </form>
+</section>
+
+<!-- ============ PANNELLO ============ -->
+<div class="app" id="app" hidden>
+
+  <header class="top">
+    <div class="top__left">
+      <a class="top__brand" href="/">IDROS</a>
+      <nav class="tabs" id="tabs">
+        <button class="tab is-on" type="button" data-view="bookings">Prenotazioni</button>
+        <button class="tab" type="button" data-view="customers">Clienti</button>
+      </nav>
+    </div>
+    <div class="top__right">
+      <span class="who" id="who"></span>
+      <button class="btn btn--ghost btn--sm" type="button" id="logoutBtn">Esci</button>
+    </div>
+  </header>
+
+  <!-- ---------- PRENOTAZIONI ---------- -->
+  <main class="view" id="view-bookings">
+
+    <div class="chips" id="statusChips">
+      <button class="chip is-on" type="button" data-status="pending">Da decidere <b id="c-pending">0</b></button>
+      <button class="chip" type="button" data-status="confirmed">Confermate <b id="c-confirmed">0</b></button>
+      <button class="chip" type="button" data-status="rejected">Rifiutate <b id="c-rejected">0</b></button>
+      <button class="chip" type="button" data-status="cancelled">Annullate <b id="c-cancelled">0</b></button>
+      <button class="chip" type="button" data-status="">Tutte</button>
+    </div>
+
+    <form class="bar" id="bookFilters">
+      <div class="bar__f bar__f--grow">
+        <label for="b-q">Cerca</label>
+        <input id="b-q" type="search" placeholder="Nome, email o telefono">
+      </div>
+      <div class="bar__f">
+        <label for="b-from">Dal</label>
+        <input id="b-from" type="date">
+      </div>
+      <div class="bar__f">
+        <label for="b-to">Al</label>
+        <input id="b-to" type="date">
+      </div>
+      <button class="btn btn--ghost btn--sm" type="submit">Filtra</button>
+      <button class="btn btn--ghost btn--sm" type="reset">Azzera</button>
+    </form>
+
+    <p class="state" id="bookState">Carico…</p>
+    <div class="cards" id="bookList"></div>
+  </main>
+
+  <!-- ---------- CLIENTI ---------- -->
+  <main class="view" id="view-customers" hidden>
+
+    <form class="bar" id="custFilters">
+      <div class="bar__f bar__f--grow">
+        <label for="c-q">Cerca</label>
+        <input id="c-q" type="search" placeholder="Nome, email o telefono">
+      </div>
+      <div class="bar__f">
+        <label for="c-city">Città</label>
+        <input id="c-city" type="text" placeholder="Cervia">
+      </div>
+      <div class="bar__f bar__f--xs">
+        <label for="c-agemin">Età da</label>
+        <input id="c-agemin" type="number" min="0" max="120" inputmode="numeric">
+      </div>
+      <div class="bar__f bar__f--xs">
+        <label for="c-agemax">a</label>
+        <input id="c-agemax" type="number" min="0" max="120" inputmode="numeric">
+      </div>
+      <label class="bar__check"><input id="c-marketing" type="checkbox"> Solo con consenso</label>
+      <button class="btn btn--ghost btn--sm" type="submit">Filtra</button>
+      <button class="btn btn--ghost btn--sm" type="reset">Azzera</button>
+      <button class="btn btn--sm" type="button" id="exportBtn">Esporta Excel (CSV)</button>
+    </form>
+
+    <p class="state" id="custState">Carico…</p>
+    <div class="tablewrap">
+      <table class="tbl" id="custTable" hidden>
+        <thead>
+          <tr>
+            <th>Cliente</th><th>Contatti</th><th>Età</th><th>Città</th>
+            <th>Prenotazioni</th><th>Coperti</th><th>Preferenza</th>
+            <th>Ultima visita</th><th>Marketing</th><th>Note ed etichette</th>
+          </tr>
+        </thead>
+        <tbody id="custBody"></tbody>
+      </table>
+    </div>
+  </main>
+
+  <p class="toast" id="toast" role="status" aria-live="polite" hidden></p>
+</div>
+
+<script src="admin.js" type="module"></script>
+</body>
+</html>

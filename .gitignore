@@ -11,7 +11,10 @@ node_modules/
 dist/
 .vercel/
 
-# Variabili d'ambiente (Supabase, SMTP, ecc.)
+# Variabili d'ambiente (Supabase, Resend, ecc.)
+# L'eccezione va tenuta per ultima: in .gitignore vince l'ultima regola
+# che corrisponde, quindi un `.env*` più in basso rimetterebbe fuori
+# anche il file di esempio.
 .env
 .env.*
 !.env.example

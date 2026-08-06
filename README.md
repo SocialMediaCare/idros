@@ -1,10 +1,12 @@
 # IDROS — sito web
 
-Sito statico bilingue (IT/EN) per il ristorante IDROS di Milano Marittima.
+Sito bilingue (IT/EN) per il ristorante IDROS di Milano Marittima.
 Pagina unica, nero pieno, impaginazione ricostruita da
 [liogroup.com/mykonos](https://www.liogroup.com/mykonos).
 
-HTML + CSS + JavaScript. **Nessuna dipendenza esterna**, nessun build step.
+HTML + CSS + JavaScript, nessun build step. Le prenotazioni girano su funzioni
+serverless Vercel con database Supabase ed email Resend: la messa in funzione è
+descritta in **[SETUP.md](SETUP.md)**.
 
 ## Vederlo in locale
 
@@ -14,16 +16,22 @@ python3 serve.py
 
 Poi apri <http://localhost:8137>. Ctrl+C per fermare.
 
+Così funziona solo la parte pubblica: il modulo ha bisogno delle API, che
+richiedono `vercel dev` (vedi SETUP.md).
+
 ## Struttura
 
 ```
-index.html                  tutta la pagina
+index.html                  tutta la pagina pubblica
 assets/css/style.css        design system e layout
+assets/css/anim.css         stati iniziali delle animazioni, preloader, cursore
 assets/js/i18n.js           traduzioni (l'italiano sta nell'HTML, qui c'è l'inglese)
-assets/js/main.js           reveal, parallasse, menu, validazione, prenotazioni
-assets/img/                 vuota — qui vanno le foto
-design-system/idros/        misure prese dal riferimento e regole di layout
-serve.py                    server locale
+assets/js/anim.js           regia GSAP + Lenis
+assets/js/main.js           menu, validazione, invio del modulo, ripiego senza GSAP
+admin/                      pannello del proprietario (login, prenotazioni, clienti)
+api/                        funzioni serverless: modulo pubblico e area riservata
+supabase/schema.sql         tabelle, vista CRM e blocco degli accessi
+serve.py                    server locale per la sola parte grafica
 ```
 
 ---
@@ -52,7 +60,7 @@ Copia questo blocco e cambia testi e `data-img-slot`:
 ```html
 <section class="sec" data-layout="twoImagesText" id="la-tua-sezione">
   <div class="wrap tit">
-    <div class="tit__text" data-reveal>
+    <div class="tit__text" data-anim="lines">
       <p class="eyebrow">Occhiello</p>
       <h2 class="h2">Titolo della sezione</h2>
       <p>Testo.</p>
@@ -76,8 +84,12 @@ Aggiungi `data-mirror` alla `<section>` per specchiare la composizione (immagini
 sinistra, testo a destra). Nel sito è già così per la sezione Ristorante.
 
 **`data-parallax="secondary"`** è ciò che fa scorrere la foto piccola più lentamente
-della pagina: senza, la composizione resta ferma e perde tutto l'effetto.
-**`data-reveal`** fa comparire il blocco dal basso quando entra nella finestra.
+della pagina: senza, la composizione resta ferma e perde tutto l'effetto. Con
+`data-depth` si regola l'intensità.
+
+**`data-anim`** decide come entra il blocco: `lines` (righe di testo che salgono da
+una maschera), `rise`, `fade`, `stagger` (figli a cascata), `unveil` (foto svelata
+dal basso con la scala che rientra).
 
 ### I due tipi di pulsante
 
@@ -96,7 +108,7 @@ Nel layout `quickLinks` il testo sta **sopra** la fotografia, in basso a sinistr
 e non c'è paragrafo — solo titolo e link:
 
 ```html
-<article class="ql__card" data-reveal>
+<article class="ql__card" data-anim="rise">
   <figure class="media media--square" data-img-slot="nome">
     <span class="media__label">Fotografia · didascalia</span>
   </figure>
@@ -223,8 +235,11 @@ un sito. L'elenco vero sta nel PDF o nella pagina che collegherai qui.
 
 ### 6. Privacy e Cookie
 
-I link nel footer sono `href="#"`. Servono due pagine reali: il modulo raccoglie nome,
-telefono, email e note.
+I link nel footer sono `href="#"`. Servono due pagine reali, e ora servono davvero:
+il modulo raccoglie nome, telefono, email, note, e facoltativamente data di nascita
+e città; i dati restano su Supabase e alimentano l'anagrafica del ristorante. Con la
+spunta del consenso vengono usati anche per comunicazioni commerciali, quindi
+l'informativa deve dirlo e va indicato come si chiede la cancellazione.
 
 Il sito **non usa cookie e non traccia nulla**, quindi al momento non serve un banner.
 Se aggiungi Analytics, Meta Pixel o il widget di un motore di prenotazione, diventa
@@ -241,34 +256,34 @@ Tre ingressi, tutti verso lo stesso modulo:
 2. **Prenotazioni in navigazione**
 3. **Bottoni di sezione** — ognuno con il proprio `data-book`
 
-Il modulo valida i campi e apre il client di posta, oppure WhatsApp col pulsante
-dedicato. Messaggio generato:
+Il modulo valida i campi e li invia a `POST /api/reservations`. Da lì:
 
-```
-Richiesta di prenotazione — IDROS
+1. il cliente riceve subito la mail «Richiesta ricevuta» — che **non** è una conferma;
+2. al ristorante arriva l'avviso con un link al pannello;
+3. il proprietario apre `/admin`, vede telefono ed email per chiamare se serve, e
+   sceglie: **Conferma** manda la mail di conferma, **Rifiuta** quella di rifiuto;
+4. ogni persona che compila finisce nell'anagrafica, con età, città, storico delle
+   visite e consenso marketing, esportabile in CSV per Excel.
 
-Nome: Mario Rossi
-Telefono: 333 1234567
-Email: mario@esempio.it
-Data: 2026-08-22
-Ora: 20:30
-Coperti: 4
-Serata: DJ set & dopocena
-Note: Allergia ai crostacei.
-```
+Se l'email al cliente non parte, la decisione viene annullata e lo stato torna
+indietro: l'elenco non dice mai una cosa che il cliente non ha ricevuto.
 
-### Passare a un motore esterno
+Il pulsante WhatsApp resta come scorciatoia diretta, senza passare dal sistema.
 
-Si sostituisce `<form id="bookingForm">` con il widget di TheFork, OpenTable o
-Quandoo senza toccare il resto. Attenzione: quei widget portano la loro grafica,
-quasi sempre chiara e arrotondata — su questo impianto vanno ridisegnati.
+**Messa in funzione: [SETUP.md](SETUP.md).** Senza le variabili d'ambiente il
+modulo risponde «Non siamo riusciti a registrare la richiesta».
 
 ---
 
 ## Pubblicazione
 
-Sito statico: Netlify, Vercel, Cloudflare Pages, GitHub Pages o FTP tradizionale.
+**Vercel**, perché servono le funzioni in `api/`. Procedura completa in
+[SETUP.md](SETUP.md).
 
+- [ ] Variabili d'ambiente su Vercel (Supabase, Resend, ADMIN_EMAILS, SITE_URL)
+- [ ] `supabase/schema.sql` eseguito
+- [ ] Dominio verificato su Resend
+- [ ] Utente del proprietario creato in Supabase Auth
 - [ ] Contatti reali ovunque
 - [ ] Foto vere nei 19 slot
 - [ ] Menu, prezzi, calendario e FAQ reali
@@ -282,17 +297,20 @@ Sito statico: Netlify, Vercel, Cloudflare Pages, GitHub Pages o FTP tradizionale
 
 ## Note tecniche
 
-**Zero dipendenze.** Il sito di riferimento non usa GSAP né librerie di scroll, e
-nemmeno noi: reveal via `IntersectionObserver`, parallasse via `requestAnimationFrame`.
-Niente CDN da cui dipendere, niente da aggiornare.
+**Animazioni.** GSAP + ScrollTrigger + Lenis da CDN, con `defer`. Tre livelli di
+sicurezza: se le librerie arrivano, `anim.js` prende il comando; se non arrivano
+entro cinque secondi uno script inline toglie `gsap-on` e `main.js` fa comparire i
+blocchi con `IntersectionObserver`; senza JavaScript la pagina è statica e
+completamente leggibile. Nessuno di questi casi lascia un contenuto invisibile.
 
 **Accessibilità** — contrasti: bianco 21:1, secondario 11,6:1, terziario 7,3:1,
 ottone 8,2:1. Tutti AAA. Focus visibile, target touch ≥ 44px, ogni campo con label,
 `prefers-reduced-motion` disattiva parallasse e reveal.
 
-**Se JavaScript non parte** il sito resta completamente leggibile: tre reti di
-sicurezza indipendenti impediscono che un'animazione lasci un contenuto invisibile.
-Dettaglio in `design-system/idros/MASTER.md` §3.
+**Sicurezza.** Il repository è pubblico: nessuna chiave sta nel codice. Le tabelle
+Supabase hanno RLS attiva e zero policy, quindi la chiave anon non legge niente —
+si passa sempre dalle funzioni in `api/`, che verificano il token del proprietario
+e controllano che l'email sia in `ADMIN_EMAILS`.
 
 **Browser** — Chrome, Safari, Firefox ed Edge recenti. `backdrop-filter` ha già il
 prefisso `-webkit-` per Safari.
