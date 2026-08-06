@@ -268,9 +268,14 @@ html{scrollbar-color:rgba(255,255,255,.25) transparent;scrollbar-width:thin}
 /* Con lo scorrimento morbido attivo la barra nativa sparisce: al suo
    posto resta la riga di avanzamento in cima (#progress). La regola è
    legata a .lenis, così se lo scorrimento morbido non parte la barra
-   torna e la pagina resta navigabile come sempre. */
-html.lenis{scrollbar-width:none}
-html.lenis::-webkit-scrollbar{width:0;height:0}
+   torna e la pagina resta navigabile come sempre.
+   Safari ignora width:0 sulla barra principale: l'unica dichiarazione
+   che rispetta è display:none, e va ripetuta sul body perché a seconda
+   del browser l'elemento che scorre è l'uno o l'altro. */
+html.lenis,
+html.lenis body{scrollbar-width:none;-ms-overflow-style:none}
+html.lenis::-webkit-scrollbar,
+html.lenis body::-webkit-scrollbar{display:none;width:0;height:0}
 
 /* Con Lenis attivo lo scorrimento nativo va spento */
 html.lenis,html.lenis body{height:auto}
