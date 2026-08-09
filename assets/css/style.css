@@ -755,3 +755,16 @@ body.no-js [data-anim]{opacity:1;transform:none}
      una riga sola, e il min-height fa il resto. */
   .navmenu__panel a{font-size:1.35rem;letter-spacing:.06em;padding:.6rem .5rem}
 }
+
+/* ---------- LOGO ----------
+   Finché il file non c'è resta la scritta; appena `main.js` vede
+   l'immagine caricata la scritta sparisce. Se il file manca del tutto
+   l'`onerror` toglie l'immagine e il sito resta identico a prima:
+   in nessun caso compare il riquadro dell'immagine rotta. */
+/* Un lettermark si dimensiona in larghezza, non in altezza: l'altezza
+   dipende da quanto margine vuoto ha il file attorno al disegno. */
+.nav__logoimg,
+.footer__logoimg{display:none;height:auto;object-fit:contain}
+.has-logo .nav__logoimg{display:block;width:clamp(112px,13vw,168px)}
+.has-logo .footer__logoimg{display:block;width:clamp(190px,24vw,300px)}
+.has-logo .nav__logo{display:none}

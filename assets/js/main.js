@@ -28,7 +28,16 @@
 
   document.body.classList.add('reveal-ready');
 
-  /* ---------- 1. ANNO ---------- */
+  /* ---------- 1. LOGO ----------
+     La scritta di riserva sparisce solo a immagine effettivamente
+     caricata: così un file mancante o corrotto non lascia il posto vuoto. */
+  document.querySelectorAll('.nav__logoimg, .footer__logoimg').forEach(function (img) {
+    var mostra = function () { img.closest('a').classList.add('has-logo'); };
+    if (img.complete && img.naturalWidth > 0) mostra();
+    else img.addEventListener('load', mostra);
+  });
+
+  /* ---------- 1b. ANNO ---------- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
