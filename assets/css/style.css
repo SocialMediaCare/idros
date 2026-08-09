@@ -761,10 +761,31 @@ body.no-js [data-anim]{opacity:1;transform:none}
    l'immagine caricata la scritta sparisce. Se il file manca del tutto
    l'`onerror` toglie l'immagine e il sito resta identico a prima:
    in nessun caso compare il riquadro dell'immagine rotta. */
-/* Un lettermark si dimensiona in larghezza, non in altezza: l'altezza
-   dipende da quanto margine vuoto ha il file attorno al disegno. */
-.nav__logoimg,
-.footer__logoimg{display:none;height:auto;object-fit:contain}
-.has-logo .nav__logoimg{display:block;width:clamp(112px,13vw,168px)}
-.has-logo .footer__logoimg{display:block;width:clamp(190px,24vw,300px)}
+/* Il file ha la tela 2846x1600 con il disegno fra x 492-2353 e y 489-1253:
+   il 65% in larghezza e il 48% in altezza, il resto è vuoto. Lasciandolo
+   intero il riquadro trasparente allargava la barra da 72 a 94px.
+   Il contenitore mostra solo la finestra del disegno e l'immagine dentro
+   è spostata di conseguenza. `--s` è la scala applicata alla tela: tutte
+   le misure derivano da quella, quindi si ritocca in un punto solo.
+   In alto la dicitura "Milano Marittima" resta fuori dal ritaglio —
+   a quella misura sarebbe alta 9px, illeggibile. In fondo c'è tutta. */
+.logoclip{display:none;position:relative;overflow:hidden}
+.has-logo .logoclip{display:block}
+.logoclip img{
+  position:absolute;display:block;max-width:none;
+  width:calc(2846px * var(--s));
+  left:calc(-490px * var(--s));   /* 2px di margine: a 492 esatti si perdeva
+                                     l'ultimo pixel della "s" */
+  top:calc(-487px * var(--s));
+}
+/* intestazione — solo "idros" (y 489-1110) */
+.logoclip--nav{--s:.0808;width:calc(1866px * var(--s));height:calc(625px * var(--s))}
+/* piè di pagina — marchio e dicitura (y 489-1253) */
+.logoclip--foot{--s:.129;width:calc(1866px * var(--s));height:calc(769px * var(--s))}
+
+@media(max-width:600px){
+  .logoclip--nav{--s:.062}
+  .logoclip--foot{--s:.098}
+}
+
 .has-logo .nav__logo{display:none}
