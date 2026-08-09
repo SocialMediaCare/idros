@@ -779,13 +779,29 @@ body.no-js [data-anim]{opacity:1;transform:none}
   top:calc(-487px * var(--s));
 }
 /* intestazione — solo "idros" (y 489-1110) */
-.logoclip--nav{--s:.0808;width:calc(1866px * var(--s));height:calc(625px * var(--s))}
+.logoclip--nav{--s:.072;width:calc(1866px * var(--s));height:calc(625px * var(--s))}
 /* piè di pagina — marchio e dicitura (y 489-1253) */
-.logoclip--foot{--s:.129;width:calc(1866px * var(--s));height:calc(769px * var(--s))}
+.logoclip--foot{--s:.116;width:calc(1866px * var(--s));height:calc(769px * var(--s))}
 
 @media(max-width:600px){
-  .logoclip--nav{--s:.062}
-  .logoclip--foot{--s:.098}
+  .logoclip--nav{--s:.056}
+  .logoclip--foot{--s:.088}
 }
 
 .has-logo .nav__logo{display:none}
+
+/* ---------- LOGO NELLA SCHERMATA DI CARICAMENTO ----------
+   Sta dentro uno <span> di .loader__brand, così eredita la risalita che
+   anim.js applicava alle cinque lettere: nessuna modifica a quel file.
+   Se l'immagine non carica, l'onerror toglie il contenitore e per
+   adiacenza ricompare la scritta — senza bisogno di JavaScript. */
+.logoclip--load{--s:.12;width:calc(1866px * var(--s));height:calc(625px * var(--s))}
+@media(max-width:600px){.logoclip--load{--s:.088}}
+
+.loader__word{
+  font-size:clamp(1.6rem,1rem + 3vw,2.6rem);
+  font-weight:200;letter-spacing:.42em;line-height:1;padding-left:.42em;
+}
+.loader__brand .logoclip + .loader__word{display:none}
+/* Con il logo al posto delle lettere non servono spaziatura né rientro */
+.loader__brand{gap:0;padding-left:0;letter-spacing:normal}

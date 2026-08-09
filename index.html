@@ -72,7 +72,12 @@ setTimeout(function(){
 <!-- ═════════ SIPARIO ═════════ -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__inner">
-    <p class="loader__brand"><span>I</span><span>D</span><span>R</span><span>O</span><span>S</span></p>
+    <p class="loader__brand">
+      <span class="logoclip logoclip--load">
+        <img src="assets/img/logo.png" alt="" onerror="this.closest('.logoclip').remove()">
+      </span>
+      <span class="loader__word">IDROS</span>
+    </p>
     <div class="loader__bar"><i></i></div>
     <div class="loader__meta">
       <span data-i18n="load.place">Milano Marittima</span>
