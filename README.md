@@ -189,12 +189,12 @@ Tutto quello che segue è **segnaposto**. Il contenitore è finito, i contenuti 
 ```js
 var CONFIG = {
   whatsapp: '390000000000',        // numero vero, internazionale senza +
-  email:    'prenotazioni@idros.it'
+  email:    'info@idrosmilanomarittima.it'
 };
 ```
 
 Lo stesso numero va aggiornato anche in `index.html`: cerca `+39 0544 000000`
-(sezione Contatti e dati strutturati `schema.org`) e `prenotazioni@idros.it`.
+(sezione Contatti e dati strutturati `schema.org`) e `info@idrosmilanomarittima.it`.
 
 ### 2. Indirizzo, orari, P. IVA — `index.html`
 

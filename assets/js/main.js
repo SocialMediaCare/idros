@@ -17,7 +17,7 @@
   /* Contatti — segnaposto, da sostituire con quelli reali */
   var CONFIG = {
     whatsapp: '390000000000',   // formato internazionale, senza +
-    email:    'prenotazioni@idros.it',
+    email:    'info@idrosmilanomarittima.it',
     api:      '/api/reservations'
   };
 
