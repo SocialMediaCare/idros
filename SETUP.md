@@ -60,23 +60,24 @@ Alla fine avrete:
 
 ## 5. Dominio (idrosmilanomarittima.it)
 
-Il dominio e la casella `info@idrosmilanomarittima.it` stanno su **GoDaddy**, e
-anche il DNS resta lì: i record della posta li crea GoDaddy da sé quando si
-attiva la casella, e non vanno toccati. In **GoDaddy → Dominio → DNS** si
-aggiungono soltanto:
+Il dominio e la casella `info@idrosmilanomarittima.it` stanno su **Aruba**
+(intestatario IDROS S.R.L.), e anche il DNS resta lì: i record della posta
+(MX, SPF del dominio, `mail`, `pop3`, `smtp`, `webmail`…) li crea Aruba da sé e
+non vanno toccati. Nel **pannello di controllo Aruba → DNS del dominio** si
+cambiano due record e se ne aggiungono quattro:
 
 | Tipo  | Nome                | Valore                                    | A cosa serve |
 |-------|---------------------|-------------------------------------------|--------------|
-| A     | `@`                 | `76.76.21.21`                             | il sito su Vercel (sostituisce il record «Parked») |
-| CNAME | `www`               | `@` (già presente di serie)               | `www` rimanda al dominio senza `www` |
+| A     | *(dominio, nome vuoto)* | `76.76.21.21`                         | il sito su Vercel (sostituisce l'indirizzo di Aruba) |
+| A     | `www`               | `76.76.21.21`                             | `www` rimanda al dominio senza `www` |
 | TXT   | `resend._domainkey` | la chiave `p=…` mostrata da Resend        | firma DKIM delle email |
 | MX    | `send`              | `feedback-smtp.eu-west-1.amazonses.com`, priorità 10 | ritorni delle email |
 | TXT   | `send`              | `v=spf1 include:amazonses.com ~all`       | SPF delle email |
 | CNAME | `rsend`             | `send.forge.rmta.net`                     | richiesto da Resend |
 
-GoDaddy aggiunge da solo `.idrosmilanomarittima.it` in coda al nome: si scrive
-`send`, non `send.idrosmilanomarittima.it`. I valori aggiornati di Resend sono
-sempre in **Resend → Domains**.
+Nel nome si scrive solo la parte iniziale (`send`, non
+`send.idrosmilanomarittima.it`): il resto lo aggiunge il pannello. I valori
+aggiornati di Resend sono sempre in **Resend → Domains**.
 
 Quando il sito risponde sul dominio e Resend dà il dominio come *Verified*, su
 Vercel si cambiano `MAIL_FROM`, `MAIL_OWNER` e `SITE_URL` (valori in
