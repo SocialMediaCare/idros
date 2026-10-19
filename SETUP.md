@@ -85,6 +85,22 @@ Vercel si cambiano `MAIL_FROM`, `MAIL_OWNER` e `SITE_URL` (valori in
 `.env.example`) e si rilancia il deploy. Non prima: con il mittente su un
 dominio non ancora verificato le email di prenotazione non partono.
 
+## 6. Sito in arrivo
+
+Finché il sito non è pronto, chi apre il dominio vede `in-arrivo.html` (logo,
+una riga, l'email). Lo decide `middleware.js`, finché su Vercel esiste la
+variabile `PREVIEW_KEY`.
+
+- **Vedere il sito vero:** aprire una volta
+  `https://idrosmilanomarittima.it/?anteprima=<PREVIEW_KEY>`. Il browser
+  ricorda l'accesso per 90 giorni; `?anteprima=esci` lo dimentica.
+- **Sempre raggiungibili:** `/admin`, `/api`, `/assets`, `robots.txt`.
+- **Mettere online il sito:** Vercel → Settings → Environment Variables →
+  eliminare `PREVIEW_KEY` → rilanciare l'ultimo deploy da *Deployments*.
+
+In locale (`python3 serve.py`) il filtro non c'è: si vede sempre il sito vero,
+e la pagina d'attesa è a `/in-arrivo.html`.
+
 ---
 
 ## Come si usa il pannello
