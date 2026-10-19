@@ -12,7 +12,7 @@ const COOKIE = 'idros_anteprima';
 const NOVANTA_GIORNI = 60 * 60 * 24 * 90;
 
 export const config = {
-  matcher: ['/((?!api|admin|assets|in-arrivo|robots\\.txt|sitemap\\.xml).*)']
+  matcher: ['/((?!api|admin|assets|in-arrivo|favicon\\.ico|robots\\.txt|sitemap\\.xml).*)']
 };
 
 /* Le due risposte che Vercel riconosce: «prosegui» e «servi un
