@@ -62,14 +62,15 @@ Alla fine avrete:
 
 Il dominio e la casella `info@idrosmilanomarittima.it` stanno su **Aruba**
 (intestatario IDROS S.R.L.), e anche il DNS resta lì: i record della posta
-(MX, SPF del dominio, `mail`, `pop3`, `smtp`, `webmail`…) li crea Aruba da sé e
-non vanno toccati. Nel **pannello di controllo Aruba → DNS del dominio** si
-cambiano due record e se ne aggiungono quattro:
+(`mail`, `mx`, `pop3`, `smtp`, `imap`, `webmail`, l'SPF su `@`, `_dmarc`,
+`a1._domainkey`…) li crea Aruba da sé e non vanno toccati. Nel **pannello di
+controllo Aruba → DNS del dominio** si cambia un record e se ne aggiungono
+quattro:
 
 | Tipo  | Nome                | Valore                                    | A cosa serve |
 |-------|---------------------|-------------------------------------------|--------------|
-| A     | *(dominio, nome vuoto)* | `76.76.21.21`                         | il sito su Vercel (sostituisce l'indirizzo di Aruba) |
-| A     | `www`               | `76.76.21.21`                             | `www` rimanda al dominio senza `www` |
+| A     | `@`                 | `76.76.21.21`                             | il sito su Vercel (al posto di `62.149.128.40` di Aruba) |
+| CNAME | `www`               | `idrosmilanomarittima.it` (già presente)  | `www` segue il dominio; Vercel lo rimanda a quello senza `www` |
 | TXT   | `resend._domainkey` | la chiave `p=…` mostrata da Resend        | firma DKIM delle email |
 | MX    | `send`              | `feedback-smtp.eu-west-1.amazonses.com`, priorità 10 | ritorni delle email |
 | TXT   | `send`              | `v=spf1 include:amazonses.com ~all`       | SPF delle email |
