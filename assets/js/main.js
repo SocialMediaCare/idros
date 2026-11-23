@@ -14,11 +14,9 @@
      scorrimento passano a lui: qui restano solo i fallback. */
   var CINEMATIC = document.documentElement.classList.contains('anim-ready');
 
-  /* Contatti — segnaposto, da sostituire con quelli reali */
+  /* Casella a cui arrivano le richieste scritte dal modulo */
   var CONFIG = {
-    whatsapp: '390000000000',   // formato internazionale, senza +
-    email:    'info@idrosmilanomarittima.it',
-    api:      '/api/reservations'
+    email: 'info@idrosmilanomarittima.it'
   };
 
   /* Corsa del parallasse, misurata sul riferimento:
@@ -146,16 +144,18 @@
   }
 
 
-  /* ---------- 7. PRENOTAZIONI ---------- */
+  /* ---------- 7. PRENOTAZIONI ----------
+     La piattaforma (POST /api/reservations) per ora è spenta: si prenota
+     al telefono. Il modulo resta come alternativa, ma non manda niente
+     al server: compone una mail indirizzata al ristorante e la apre nel
+     programma di posta di chi prenota. I dati non passano dal sito.
+     Per tornare alla piattaforma: vedi la cronologia git di questo file
+     (commit «Sito online: …») e SETUP.md. */
   var form    = document.getElementById('bookingForm');
   var status  = document.getElementById('formStatus');
-  var waBtn   = document.getElementById('waSend');
-  var waLink  = document.getElementById('waLink');
   var kindSel = document.getElementById('f-kind');
 
-  if (waLink) waLink.href = 'https://wa.me/' + CONFIG.whatsapp;
-
-  /* I bottoni dell'hero preimpostano il tipo di serata nel modulo */
+  /* I bottoni «Eventi privati» preimpostano il tipo di serata nel modulo */
   document.querySelectorAll('[data-book]').forEach(function (a) {
     a.addEventListener('click', function () {
       if (kindSel) kindSel.value = a.getAttribute('data-book');
@@ -194,13 +194,11 @@
     var first = null, ok = true;
     function fail(input, key) { setError(input, key); ok = false; if (!first) first = input; }
 
-    var name    = form.querySelector('#f-name');
-    var phone   = form.querySelector('#f-phone');
-    var email   = form.querySelector('#f-email');
-    var date    = form.querySelector('#f-date');
-    var time    = form.querySelector('#f-time');
-    var guests  = form.querySelector('#f-guests');
-    var privacy = form.querySelector('#f-privacy');
+    var name   = form.querySelector('#f-name');
+    var phone  = form.querySelector('#f-phone');
+    var date   = form.querySelector('#f-date');
+    var time   = form.querySelector('#f-time');
+    var guests = form.querySelector('#f-guests');
 
     [name, time].forEach(function (el) {
       if (!el) return;
@@ -212,12 +210,6 @@
       if (!phone.value.trim()) fail(phone, 'msg.required');
       else if (digits.length < 8) fail(phone, 'msg.phone');
       else setError(phone, null);
-    }
-
-    if (email) {
-      if (!email.value.trim()) fail(email, 'msg.required');
-      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) fail(email, 'msg.email');
-      else setError(email, null);
     }
 
     if (date) {
@@ -233,10 +225,6 @@
       else setError(guests, null);
     }
 
-    if (privacy) {
-      if (!privacy.checked) fail(privacy, 'msg.privacy'); else setError(privacy, null);
-    }
-
     return { ok: ok, first: first };
   }
 
@@ -245,57 +233,41 @@
     return el ? el.value.trim() : '';
   }
 
-  function checked(id) {
-    var el = form.querySelector('#' + id);
-    return !!(el && el.checked);
+  /* 2026-11-24 → 24/11/2026: nella mail si legge meglio */
+  function niceDate(isoDate) {
+    var p = isoDate.split('-');
+    return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : isoDate;
   }
 
-  /* Quello che finisce nel database */
-  function payload() {
-    return {
-      name:      get('f-name'),
-      email:     get('f-email'),
-      phone:     get('f-phone'),
-      date:      get('f-date'),
-      time:      get('f-time'),
-      guests:    get('f-guests'),
-      kind:      kindSel ? kindSel.value : 'cena',
-      notes:     get('f-notes'),
-      birthdate: get('f-birth'),
-      city:      get('f-city'),
-      privacy:   checked('f-privacy'),
-      marketing: checked('f-marketing'),
-      website:   get('f-website'),
-      lang:      document.documentElement.lang === 'en' ? 'en' : 'it'
-    };
-  }
-
-  /* Quello che si legge in un messaggio WhatsApp */
-  function collect() {
+  /* Oggetto e testo della mail, nella lingua della pagina */
+  function compose() {
     var kindLabel = kindSel && kindSel.selectedOptions[0]
       ? kindSel.selectedOptions[0].textContent.trim() : '';
-
-    var L = document.documentElement.lang === 'en'
-      ? { n:'Name', p:'Phone', e:'Email', d:'Date', t:'Time', g:'Guests', k:'Evening', no:'Notes' }
-      : { n:'Nome', p:'Telefono', e:'Email', d:'Data', t:'Ora', g:'Coperti', k:'Serata', no:'Note' };
+    var when = niceDate(get('f-date')) + ', ' + get('f-time');
 
     var lines = [
-      L.n + ': ' + get('f-name'),
-      L.p + ': ' + get('f-phone'),
-      L.e + ': ' + get('f-email'),
-      L.d + ': ' + get('f-date'),
-      L.t + ': ' + get('f-time'),
-      L.g + ': ' + get('f-guests'),
-      L.k + ': ' + kindLabel
+      T('mail.hello'),
+      T('mail.intro'),
+      '',
+      T('mail.name') + ': ' + get('f-name'),
+      T('mail.phone') + ': ' + get('f-phone'),
+      T('mail.date') + ': ' + when,
+      T('mail.guests') + ': ' + get('f-guests'),
+      T('mail.kind') + ': ' + kindLabel
     ];
     var notes = get('f-notes');
-    if (notes) lines.push(L.no + ': ' + notes);
-    return lines.join('\n');
+    if (notes) lines.push(T('mail.notes') + ': ' + notes);
+    lines.push('', T('mail.thanks'));
+
+    return {
+      subject: T('mail.subject') + ' — ' + when + ', ' + get('f-guests') + ' ' + T('mail.people'),
+      body: lines.join('\r\n')
+    };
   }
 
   function say(key, isError) {
     if (!status) return;
-    status.textContent = T(key);
+    status.innerHTML = key ? T(key) : '';
     status.classList.toggle('is-error', !!isError);
   }
 
@@ -318,92 +290,21 @@
       });
     });
 
-    /* ---------- 7b. INVIO ALLA PIATTAFORMA ----------
-       La richiesta finisce nel database e fa partire due email:
-       il riepilogo al cliente e l'avviso al ristorante. La conferma
-       vera arriva solo quando il proprietario accetta. */
-    var submitBtn = document.getElementById('formSubmit');
-    var doneBox   = document.getElementById('formDone');
-    var refEl     = document.getElementById('formRef');
-    var againBtn  = document.getElementById('formAgain');
-    var sending   = false;
-
-    function setBusy(on) {
-      sending = on;
-      form.classList.toggle('is-busy', on);
-      if (submitBtn) submitBtn.disabled = on;
-    }
-
-    function showErrors(fields) {
-      var map = {
-        name: 'f-name', email: 'f-email', phone: 'f-phone', date: 'f-date',
-        time: 'f-time', guests: 'f-guests', privacy: 'f-privacy'
-      };
-      var first = null;
-      Object.keys(fields || {}).forEach(function (key) {
-        var el = form.querySelector('#' + (map[key] || ''));
-        if (!el) return;
-        setError(el, 'msg.' + fields[key]);
-        if (!first) first = el;
-      });
-      focusFirst(first);
-    }
-
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (sending) return;
-
       var v = validate();
       if (!v.ok) { say('msg.fix', true); focusFirst(v.first); return; }
 
-      setBusy(true);
-      say('msg.sending', false);
+      var mail = compose();
+      var href = 'mailto:' + CONFIG.email +
+        '?subject=' + encodeURIComponent(mail.subject) +
+        '&body=' + encodeURIComponent(mail.body);
 
-      fetch(CONFIG.api, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload())
-      }).then(function (r) {
-        return r.json().then(function (data) { return { status: r.status, data: data }; });
-      }).then(function (res) {
-        if (res.status === 422) { say('msg.fix', true); showErrors(res.data.fields); return; }
-        if (res.status === 429) { say('msg.throttled', true); return; }
-        if (!res.data || !res.data.ok) { say('msg.serverError', true); return; }
-
-        if (refEl) refEl.textContent = res.data.ref || '—';
-        say(res.data.mailed ? '' : 'msg.noMail', !res.data.mailed);
-        form.hidden = true;
-        if (doneBox) {
-          doneBox.hidden = false;
-          if (window.IDROS_SCROLL) window.IDROS_SCROLL(doneBox);
-        }
-        form.reset();
-      }).catch(function () {
-        say('msg.network', true);
-      }).then(function () {
-        setBusy(false);
-      });
+      /* Se sul dispositivo non c'è un programma di posta il clic non
+         produce nulla: il messaggio lo dice, con le alternative. */
+      say('msg.opening', false);
+      window.location.href = href;
     });
-
-    if (againBtn) {
-      againBtn.addEventListener('click', function () {
-        if (doneBox) doneBox.hidden = true;
-        form.hidden = false;
-        say('', false);
-        if (window.IDROS_SCROLL) window.IDROS_SCROLL(form);
-      });
-    }
-
-    if (waBtn) {
-      waBtn.addEventListener('click', function () {
-        var v = validate();
-        if (!v.ok) { say('msg.fix', true); focusFirst(v.first); return; }
-        say('msg.wa', false);
-        window.open('https://wa.me/' + CONFIG.whatsapp +
-          '?text=' + encodeURIComponent(T('msg.subject') + '\n\n' + collect()),
-          '_blank', 'noopener');
-      });
-    }
   }
 
   document.addEventListener('idros:lang', function () {

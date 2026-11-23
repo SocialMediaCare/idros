@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="it" class="no-js">
+<html lang="it" class="no-js" data-page="home">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IDROS Milano Marittima — Ristorante, Cena Spettacolo e Club</title>
-<meta name="description" content="IDROS, Milano Marittima. Alta cucina, cena spettacolo con musica dal vivo e DJ set con format esclusivi, dove un tempo sorgeva l'Idroscalo.">
+<meta name="description" content="IDROS, Milano Marittima. Ristorante di mare e di terra, sushi e pizza contemporanea, cena spettacolo e DJ set, dove un tempo sorgeva l'Idroscalo. Prenota il tuo tavolo.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#000000">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
@@ -12,24 +13,32 @@
 <link rel="canonical" href="https://idrosmilanomarittima.it/">
 
 <meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="IDROS Milano Marittima">
 <meta property="og:url" content="https://idrosmilanomarittima.it/">
 <meta property="og:title" content="IDROS Milano Marittima">
 <meta property="og:description" content="Alta cucina, spettacolo e musica sul mare di Milano Marittima.">
+<meta property="og:image" content="https://idrosmilanomarittima.it/assets/img/og-idros.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="La sala di IDROS con il lampadario di cristallo sopra il bar">
 <meta property="og:locale" content="it_IT">
 <meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Playfair+Display:wght@400;500&display=swap">
-<link rel="stylesheet" href="assets/css/style.css">
-<link rel="stylesheet" href="assets/css/anim.css">
+<!-- Tutto servito dal sito stesso: nessuna richiesta a server di terzi -->
+<link rel="preload" href="/assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="(min-aspect-ratio: 1/1)"
+      imagesrcset="/assets/img/foto/sala-lampadario-bar-wide-1600.webp 1600w, /assets/img/foto/sala-lampadario-bar-wide-2400.webp 2400w" imagesizes="100vw">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="(max-aspect-ratio: 1/1)"
+      imagesrcset="/assets/img/foto/sala-lampadario-bar-828.webp 828w, /assets/img/foto/sala-lampadario-bar-1280.webp 1280w" imagesizes="100vw">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/anim.css">
 
 <script>
 /* Gli stati iniziali delle animazioni vanno messi prima del primo
    disegno, altrimenti si vede un lampo di pagina già composta.
-   Se dopo 5s il motore non ha dato segno di vita, li togliamo: una
-   CDN che non risponde non deve lasciare la pagina bianca. */
+   Se dopo 5s il motore non ha dato segno di vita, li togliamo: uno
+   script che non risponde non deve lasciare la pagina bianca. */
 (function(){
   var d = document.documentElement;
   d.classList.remove('no-js');
@@ -45,21 +54,30 @@
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
+  "@id": "https://idrosmilanomarittima.it/#ristorante",
   "name": "IDROS",
+  "alternateName": "IDROS Milano Marittima",
   "url": "https://idrosmilanomarittima.it/",
+  "image": [
+    "https://idrosmilanomarittima.it/assets/img/og-idros.jpg",
+    "https://idrosmilanomarittima.it/assets/img/foto/sala-tavoli-sera-1280.webp",
+    "https://idrosmilanomarittima.it/assets/img/foto/pacchero-astice-1200.webp"
+  ],
+  "logo": "https://idrosmilanomarittima.it/assets/img/icon-192.png",
   "email": "info@idrosmilanomarittima.it",
-  "servesCuisine": ["Italiana", "Pesce", "Alta cucina"],
+  "telephone": "{{TEL}}",
+  "servesCuisine": ["Italiana", "Pesce", "Romagnola", "Sushi", "Pizza"],
   "priceRange": "€€€€",
+  "hasMenu": "https://idrosmilanomarittima.it/menu",
+  "acceptsReservations": true,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Viale Gramsci 1",
+    "streetAddress": "{{VIA}}",
     "addressLocality": "Milano Marittima",
     "addressRegion": "RA",
     "postalCode": "48015",
     "addressCountry": "IT"
-  },
-  "telephone": "+39 0544 000000",
-  "acceptsReservations": "True"
+  }
 }
 </script>
 </head>
@@ -81,7 +99,7 @@ setTimeout(function(){
   <div class="loader__inner">
     <p class="loader__brand">
       <span class="logoclip logoclip--load">
-        <img src="assets/img/logo.png" alt="" onerror="this.closest('.logoclip').remove()">
+        <img src="/assets/img/logo.png" alt="" onerror="this.closest('.logoclip').remove()">
       </span>
       <span class="loader__word">IDROS</span>
     </p>
@@ -121,7 +139,7 @@ setTimeout(function(){
     <!-- CENTRO — logo -->
     <a class="nav__brand" href="#hero" aria-label="IDROS — torna in cima">
       <span class="logoclip logoclip--nav">
-        <img class="nav__logoimg" src="assets/img/logo.png"
+        <img class="nav__logoimg" src="/assets/img/logo.png"
              alt="IDROS · Milano Marittima" onerror="this.closest('.logoclip').remove()">
       </span>
       <span class="nav__logo">IDROS</span>
@@ -134,7 +152,9 @@ setTimeout(function(){
         <span aria-hidden="true">/</span>
         <button type="button" class="lang__btn" data-lang="en" aria-pressed="false">EN</button>
       </div>
-      <a class="nav__reserve" href="#prenota" data-i18n="nav.book">Prenotazioni</a>
+      <!-- Prenotazioni: per ora solo al telefono. Il modulo in fondo alla
+           pagina apre la posta del cliente, non passa dalla piattaforma. -->
+      <a class="nav__reserve" href="tel:{{TEL_HREF}}" data-i18n="nav.book">Prenotazioni</a>
     </div>
 
   </div>
@@ -144,10 +164,11 @@ setTimeout(function(){
   <div class="navmenu__inner">
     <a href="#esperienza"   data-i18n="nav.exp">Esperienza</a>
     <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
+    <a href="/menu"         data-i18n="nav.carta">Il menu</a>
     <a href="#eventi"       data-i18n="nav.events">Eventi</a>
     <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
     <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
-    <a href="#prenota" class="navmenu__book" data-i18n="nav.book">Prenotazioni</a>
+    <a href="tel:{{TEL_HREF}}" class="navmenu__book" data-i18n="nav.book">Prenotazioni</a>
   </div>
 </nav>
 
@@ -156,15 +177,22 @@ setTimeout(function(){
 
 <!-- ═════════ 1 · HERO ═════════ -->
 <section class="sec sec--hero" data-layout="hero" id="hero">
-  <div class="hero__media media media--kb" data-img-slot="hero" aria-hidden="true">
-    <span class="media__label" data-i18n="slot.hero">Video o fotografia · La sala</span>
+  <div class="hero__media media media--kb" data-img-slot="hero">
+    <picture>
+      <source media="(min-aspect-ratio: 1/1)" width="2400" height="1500" sizes="100vw"
+              srcset="/assets/img/foto/sala-lampadario-bar-wide-1600.webp 1600w, /assets/img/foto/sala-lampadario-bar-wide-2400.webp 2400w">
+      <img src="/assets/img/foto/sala-lampadario-bar-828.webp" width="1280" height="1600" sizes="100vw"
+           srcset="/assets/img/foto/sala-lampadario-bar-828.webp 828w, /assets/img/foto/sala-lampadario-bar-1280.webp 1280w"
+           alt="La sala di IDROS con il grande lampadario di cristallo sopra il bancone del bar"
+           fetchpriority="high" decoding="async">
+    </picture>
   </div>
 
   <div class="booking">
-    <a class="ghost" href="#prenota"      data-book="cena"    data-i18n="book.b1">Prenota il tuo tavolo</a>
-    <a class="ghost" href="#eventi"                           data-i18n="book.b2">I nostri eventi</a>
-    <a class="ghost" href="#raggiungerci"                     data-i18n="book.b3">Come raggiungerci</a>
-    <a class="ghost" href="#prenota"      data-book="privato" data-i18n="book.b4">Eventi privati</a>
+    <a class="ghost" href="tel:{{TEL_HREF}}"                       data-i18n="book.b1">Prenota il tuo tavolo</a>
+    <a class="ghost" href="/menu"                                  data-i18n="book.b2">Il nostro menu</a>
+    <a class="ghost" href="#raggiungerci"                          data-i18n="book.b3">Come raggiungerci</a>
+    <a class="ghost" href="#prenota"       data-book="privato"     data-i18n="book.b4">Eventi privati</a>
   </div>
 
   <div class="hero__foot">
@@ -185,7 +213,10 @@ setTimeout(function(){
       <div class="ql__col">
         <article class="ql__card" data-cursor="Scopri">
           <figure class="media media--square" data-img-slot="ql-cena" data-anim="unveil">
-            <span class="media__label" data-i18n="slot.qlCena">Fotografia · Il piatto</span>
+            <img src="/assets/img/foto/pacchero-astice-720.webp" width="1200" height="1200"
+                 srcset="/assets/img/foto/pacchero-astice-720.webp 720w, /assets/img/foto/pacchero-astice-1200.webp 1200w"
+                 sizes="(min-width: 900px) 45vw, 92vw" loading="lazy" decoding="async"
+                 alt="“Il classico”: paccheri all'astice serviti al tavolo">
           </figure>
           <div class="ql__over" data-anim="stagger">
             <h3 class="ql__t" data-i18n="ql.1.t">Vieni a cena</h3>
@@ -195,7 +226,10 @@ setTimeout(function(){
 
         <article class="ql__card" data-cursor="Scopri">
           <figure class="media media--square" data-img-slot="ql-eventi" data-anim="unveil">
-            <span class="media__label" data-i18n="slot.qlEv">Fotografia · Il DJ set</span>
+            <img src="/assets/img/foto/bartender-cocktail-720.webp" width="1200" height="1200"
+                 srcset="/assets/img/foto/bartender-cocktail-720.webp 720w, /assets/img/foto/bartender-cocktail-1200.webp 1200w"
+                 sizes="(min-width: 900px) 45vw, 92vw" loading="lazy" decoding="async"
+                 alt="Il barman prepara un cocktail al bancone">
           </figure>
           <div class="ql__over" data-anim="stagger">
             <h3 class="ql__t" data-i18n="ql.3.t">Le nostre serate</h3>
@@ -207,7 +241,10 @@ setTimeout(function(){
       <div class="ql__col ql__col--offset">
         <article class="ql__card" data-cursor="Scopri">
           <figure class="media media--square" data-img-slot="ql-esperienza" data-anim="unveil">
-            <span class="media__label" data-i18n="slot.qlExp">Fotografia · Lo spettacolo</span>
+            <img src="/assets/img/foto/lampadario-cristallo-720.webp" width="1200" height="1200"
+                 srcset="/assets/img/foto/lampadario-cristallo-720.webp 720w, /assets/img/foto/lampadario-cristallo-1200.webp 1200w"
+                 sizes="(min-width: 900px) 45vw, 92vw" loading="lazy" decoding="async"
+                 alt="Il lampadario di cristallo che illumina la sala">
           </figure>
           <div class="ql__over" data-anim="stagger">
             <h3 class="ql__t" data-i18n="ql.2.t">L'esperienza IDROS</h3>
@@ -230,18 +267,24 @@ setTimeout(function(){
         Un violino attraversa i tavoli, due ballerine aprono lo spazio al centro,
         un attore racconta un pezzo di questa costa.
       </p>
-      <a class="link link--block" data-anim="rise" href="#prenota" data-book="spettacolo" data-i18n="cta.book">Prenota</a>
+      <a class="link link--block" data-anim="rise" href="tel:{{TEL_HREF}}" data-i18n="cta.book">Prenota</a>
     </div>
 
     <div class="tit__sec" data-parallax="secondary" data-depth="1.6">
       <figure class="media media--23" data-img-slot="esperienza-2" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.exp2">Fotografia · Dettaglio</span>
+        <img src="/assets/img/foto/specchio-dettaglio-400.webp" width="760" height="1118"
+             srcset="/assets/img/foto/specchio-dettaglio-400.webp 400w, /assets/img/foto/specchio-dettaglio-760.webp 760w"
+             sizes="(min-width: 900px) 22vw, 38vw" loading="lazy" decoding="async"
+             alt="Dettaglio della sala: specchio e applique in ottone">
       </figure>
     </div>
 
     <div class="tit__main">
       <figure class="media media--47" data-img-slot="esperienza-1" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.exp1">Fotografia · La sala</span>
+        <img src="/assets/img/foto/sala-lampadario-dall-alto-560.webp" width="1000" height="1759"
+             srcset="/assets/img/foto/sala-lampadario-dall-alto-560.webp 560w, /assets/img/foto/sala-lampadario-dall-alto-1000.webp 1000w"
+             sizes="(min-width: 900px) 30vw, 55vw" loading="lazy" decoding="async"
+             alt="La sala vista dalla balconata, con il lampadario di cristallo e il bar">
       </figure>
     </div>
   </div>
@@ -249,8 +292,15 @@ setTimeout(function(){
 
 <!-- ═════════ 4 · FULL BLEED (dichiarazione) ═════════ -->
 <section class="sec sec--bleed" data-layout="fullBleedMedia" id="dichiarazione">
-  <div class="media bleed__media media--kb" data-img-slot="bleed" aria-hidden="true">
-    <span class="media__label" data-i18n="slot.bleed">Fotografia a tutta pagina · La notte</span>
+  <div class="media bleed__media media--kb" data-img-slot="bleed">
+    <picture>
+      <source media="(min-aspect-ratio: 1/1)" width="2400" height="1500" sizes="100vw"
+              srcset="/assets/img/foto/sala-tavoli-sera-wide-1600.webp 1600w, /assets/img/foto/sala-tavoli-sera-wide-2400.webp 2400w">
+      <img src="/assets/img/foto/sala-tavoli-sera-828.webp" width="1280" height="1600" sizes="100vw"
+           srcset="/assets/img/foto/sala-tavoli-sera-828.webp 828w, /assets/img/foto/sala-tavoli-sera-1280.webp 1280w"
+           loading="lazy" decoding="async"
+           alt="La sala apparecchiata, con le applique accese lungo le pareti a specchio">
+    </picture>
   </div>
   <div class="bleed__body">
     <h2 class="h2 h2--xl" data-i18n="bleed.title">Spettacolare</h2>
@@ -276,20 +326,26 @@ setTimeout(function(){
       </p>
 
       <div class="actions" data-anim="stagger">
-        <a class="link" href="#prenota" data-book="cena" data-i18n="cta.bookTable">Prenota un tavolo</a>
-        <a class="link" href="#" data-i18n="cta.menu">Scopri il nostro menù</a>
+        <a class="link" href="/menu" data-i18n="cta.menu">Scopri il nostro menu</a>
+        <a class="link" href="tel:{{TEL_HREF}}" data-i18n="cta.bookTable">Prenota un tavolo</a>
       </div>
     </div>
 
     <div class="tit__sec" data-parallax="secondary" data-depth="1.6">
       <figure class="media media--23" data-img-slot="ristorante-2" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.rest2">Fotografia · Il piatto</span>
+        <img src="/assets/img/foto/risotto-oro-400.webp" width="760" height="1118"
+             srcset="/assets/img/foto/risotto-oro-400.webp 400w, /assets/img/foto/risotto-oro-760.webp 760w"
+             sizes="(min-width: 900px) 22vw, 38vw" loading="lazy" decoding="async"
+             alt="Riso con foglia d'oro, vongole e squacquerone">
       </figure>
     </div>
 
     <div class="tit__main">
       <figure class="media media--47" data-img-slot="ristorante-1" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.rest1">Fotografia · La cucina</span>
+        <img src="/assets/img/foto/chef-flambe-560.webp" width="1000" height="1759"
+             srcset="/assets/img/foto/chef-flambe-560.webp 560w, /assets/img/foto/chef-flambe-1000.webp 1000w"
+             sizes="(min-width: 900px) 30vw, 55vw" loading="lazy" decoding="async"
+             alt="Una preparazione alla fiamma servita davanti agli ospiti">
       </figure>
     </div>
   </div>
@@ -300,14 +356,20 @@ setTimeout(function(){
   <div class="wrap alt">
     <div class="alt__main">
       <figure class="media media--69" data-img-slot="eventi-1" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.ev1">Fotografia · La serata</span>
+        <img src="/assets/img/foto/champagne-krug-800.webp" width="1400" height="2035"
+             srcset="/assets/img/foto/champagne-krug-800.webp 800w, /assets/img/foto/champagne-krug-1400.webp 1400w"
+             sizes="(min-width: 900px) 48vw, 92vw" loading="lazy" decoding="async"
+             alt="Bottiglie di champagne pronte per la serata">
       </figure>
     </div>
 
     <div class="alt__side">
       <div class="alt__sec" data-parallax="secondary" data-depth="1.4">
         <figure class="media media--68" data-img-slot="eventi-2" data-anim="unveil">
-          <span class="media__label" data-i18n="slot.ev2">Fotografia · Evento privato</span>
+          <img src="/assets/img/foto/sala-evento-privato-400.webp" width="760" height="1116"
+               srcset="/assets/img/foto/sala-evento-privato-400.webp 400w, /assets/img/foto/sala-evento-privato-760.webp 760w"
+               sizes="(min-width: 900px) 23vw, 92vw" loading="lazy" decoding="async"
+               alt="Una lunga tavolata apparecchiata per un evento privato">
         </figure>
       </div>
 
@@ -315,6 +377,18 @@ setTimeout(function(){
         <p class="eyebrow" data-anim="fade" data-i18n="ev.eyebrow">Eventi</p>
         <h2 class="h2" data-anim="lines" data-i18n="ev.title">I prossimi appuntamenti</h2>
 
+        <!-- In attesa del calendario. Quando ci sono le date: si toglie
+             questo blocco «soon» e si riattiva l'elenco qui sotto. -->
+        <div class="soon" data-anim="rise">
+          <p class="soon__tag" data-i18n="ev.soon.tag">Coming soon</p>
+          <p class="soon__text" data-i18n="ev.soon.text">Il calendario delle prossime serate è in preparazione: cene spettacolo, DJ set e appuntamenti speciali. Tornate a trovarci presto.</p>
+        </div>
+
+        <!-- ELENCO EVENTI — pronto, solo spento.
+             Per riattivarlo: togliere i segni di commento attorno a <ul>,
+             aggiornare date (datetime="AAAA-MM-GG" e testo GG.MM) e titoli,
+             e le traduzioni con la stessa chiave in assets/js/i18n.js
+             (ev.1.t … ev.4.t, tag.show, tag.special, tag.dj).
         <ul class="events" data-anim="stagger">
           <li class="event">
             <time class="event__date" datetime="2026-08-08">08.08</time>
@@ -345,6 +419,7 @@ setTimeout(function(){
             </div>
           </li>
         </ul>
+        FINE ELENCO EVENTI -->
 
         <a class="link link--block" data-anim="rise" href="#prenota" data-book="privato" data-i18n="ev.cta">Eventi privati</a>
       </div>
@@ -356,26 +431,26 @@ setTimeout(function(){
 <section class="sec sec--gallery" data-layout="gallery" id="galleria" aria-label="Galleria">
   <div class="gal">
     <div class="gal__track">
-      <figure class="media gal__p" data-img-slot="gal-1"><span class="media__label" data-i18n="slot.g1">Sala</span></figure>
-      <figure class="media gal__l" data-img-slot="gal-2"><span class="media__label" data-i18n="slot.g2">Terrazza</span></figure>
-      <figure class="media gal__p" data-img-slot="gal-3"><span class="media__label" data-i18n="slot.g3">Danza</span></figure>
-      <figure class="media gal__l" data-img-slot="gal-4"><span class="media__label" data-i18n="slot.g4">Bar</span></figure>
-      <figure class="media gal__p" data-img-slot="gal-5"><span class="media__label" data-i18n="slot.g5">Piatto</span></figure>
-      <figure class="media gal__l" data-img-slot="gal-6"><span class="media__label" data-i18n="slot.g6">Notte</span></figure>
+      <figure class="media gal__p" data-img-slot="gal-1"><img src="/assets/img/foto/cena-ospite-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Un'ospite a cena da IDROS"></figure>
+      <figure class="media gal__l" data-img-slot="gal-2"><img src="/assets/img/foto/cantina-vini-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="La parete della cantina con le bottiglie in esposizione"></figure>
+      <figure class="media gal__p" data-img-slot="gal-3"><img src="/assets/img/foto/sfera-cioccolato-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="La sfera di cioccolato con mascarpone e amarene"></figure>
+      <figure class="media gal__l" data-img-slot="gal-4"><img src="/assets/img/foto/carrello-formaggi-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="Il carrello dei formaggi servito al tavolo"></figure>
+      <figure class="media gal__p" data-img-slot="gal-5"><img src="/assets/img/foto/ospiti-menu-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Due ospiti sfogliano il menu"></figure>
+      <figure class="media gal__l" data-img-slot="gal-6"><img src="/assets/img/foto/sushi-uramaki-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="Uramaki della carta sushi"></figure>
       <!-- copia della serie: serve a far sembrare il nastro infinito -->
       <div class="gal__clone" aria-hidden="true">
-      <figure class="media gal__p" data-img-slot="gal-1"><span class="media__label" >Sala</span></figure>
-      <figure class="media gal__l" data-img-slot="gal-2"><span class="media__label" >Terrazza</span></figure>
-      <figure class="media gal__p" data-img-slot="gal-3"><span class="media__label" >Danza</span></figure>
-      <figure class="media gal__l" data-img-slot="gal-4"><span class="media__label" >Bar</span></figure>
-      <figure class="media gal__p" data-img-slot="gal-5"><span class="media__label" >Piatto</span></figure>
-      <figure class="media gal__l" data-img-slot="gal-6"><span class="media__label" >Notte</span></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/cena-ospite-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__l"><img src="/assets/img/foto/cantina-vini-900.webp" width="900" height="531" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/sfera-cioccolato-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__l"><img src="/assets/img/foto/carrello-formaggi-900.webp" width="900" height="531" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/ospiti-menu-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__l"><img src="/assets/img/foto/sushi-uramaki-900.webp" width="900" height="531" loading="lazy" decoding="async" alt=""></figure>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════════ 8 · COME RAGGIUNGERCI (twoImagesText) ═════════ -->
+<!-- ═════════ 8 · COME RAGGIUNGERCI ═════════ -->
 <section class="sec" data-layout="reach" id="raggiungerci">
   <div class="wrap reach">
     <div class="reach__text">
@@ -383,7 +458,7 @@ setTimeout(function(){
       <h2 class="h2" data-anim="lines" data-i18n="reach.title">Sul mare, dietro la pineta</h2>
 
       <address class="addr" data-anim="rise">
-        Viale Gramsci 1<br>
+        {{VIA}}<br>
         48015 Milano Marittima (RA)
       </address>
 
@@ -393,19 +468,26 @@ setTimeout(function(){
       </p>
 
       <a class="link link--block" data-anim="rise"
-         href="https://maps.google.com/?q=Milano+Marittima+Ravenna"
+         href="{{MAPPA}}"
          target="_blank" rel="noopener noreferrer" data-i18n="reach.cta">Apri in mappa</a>
     </div>
 
     <div class="reach__media">
       <figure class="media media--23" data-img-slot="raggiungerci-1" data-anim="unveil">
-        <span class="media__label" data-i18n="slot.reach1">Fotografia · L'ingresso</span>
+        <img src="/assets/img/foto/cocktail-bar-400.webp" width="760" height="1118"
+             srcset="/assets/img/foto/cocktail-bar-400.webp 400w, /assets/img/foto/cocktail-bar-760.webp 760w"
+             sizes="(min-width: 400px) 352px, 92vw" loading="lazy" decoding="async"
+             alt="Un cocktail servito sul bancone in velluto del bar">
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ═════════ 9 · CONTATTI + MODULO ═════════ -->
+<!-- ═════════ 9 · CONTATTI E PRENOTAZIONI ═════════
+     La piattaforma di prenotazione (POST /api/reservations) è spenta.
+     Si prenota al telefono, oppure con il modulo qui sotto, che non
+     invia nulla al server: compone una mail e la apre nel programma di
+     posta del cliente, indirizzata al ristorante. -->
 <section class="sec" data-layout="form" id="contatti">
   <div class="wrap">
     <div class="cont">
@@ -413,13 +495,17 @@ setTimeout(function(){
         <p class="eyebrow" data-anim="fade" data-i18n="cont.eyebrow">Contatti</p>
         <h2 class="h2" data-anim="lines" data-i18n="cont.title">Riserviamo il vostro tavolo</h2>
         <p class="lead" data-anim="rise" data-i18n="cont.lead">
-          Compilate il modulo e rispondiamo entro poche ore. Per la stessa sera,
-          o per gruppi oltre le dieci persone, chiamateci: è più rapido.
+          Il modo più rapido è una telefonata: vi diciamo subito se il tavolo c'è.
+          Se preferite scriverci, compilate il modulo e si aprirà la vostra posta
+          con la richiesta già pronta da inviare.
         </p>
 
+        <div class="cont__cta" data-anim="rise">
+          <a class="ghost ghost--solid" href="tel:{{TEL_HREF}}" data-i18n="cont.call">Chiama e prenota</a>
+        </div>
+
         <dl class="cont__list" data-anim="stagger">
-          <div><dt data-i18n="cont.phone">Telefono</dt><dd><a href="tel:+390544000000">+39 0544 000000</a></dd></div>
-          <div><dt data-i18n="cont.wa">WhatsApp</dt><dd><a id="waLink" href="https://wa.me/390000000000" target="_blank" rel="noopener noreferrer" data-i18n="cont.waD">Scriveteci</a></dd></div>
+          <div><dt data-i18n="cont.phone">Telefono</dt><dd><a href="tel:{{TEL_HREF}}">{{TEL}}</a></dd></div>
           <div><dt>Email</dt><dd><a href="mailto:info@idrosmilanomarittima.it">info@idrosmilanomarittima.it</a></dd></div>
           <div><dt data-i18n="cont.hours">Orari</dt><dd>
             <span data-i18n="cont.h1">Martedì — Domenica, 19:30 — 23:00</span><br>
@@ -429,8 +515,9 @@ setTimeout(function(){
         </dl>
       </div>
 
-      <form class="form" id="bookingForm" novalidate data-anim="rise">
-        <p class="form__title" id="prenota" data-i18n="f.title">Modulo di prenotazione</p>
+      <form class="form" id="bookingForm" novalidate data-anim="rise"
+            action="mailto:info@idrosmilanomarittima.it" method="get">
+        <p class="form__title" id="prenota" data-i18n="f.title">Oppure scriveteci</p>
 
         <div class="row">
           <div class="field">
@@ -442,24 +529,6 @@ setTimeout(function(){
             <label for="f-phone" data-i18n="f.phone">Telefono</label>
             <input id="f-phone" name="phone" type="tel" autocomplete="tel" required>
             <p class="err" data-err-for="f-phone" hidden></p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="f-email" data-i18n="f.email">Email</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" required>
-          <p class="err" data-err-for="f-email" hidden></p>
-        </div>
-
-        <div class="row">
-          <div class="field">
-            <label for="f-birth" data-i18n="f.birth">Data di nascita <span class="opt">facoltativa</span></label>
-            <input id="f-birth" name="birthdate" type="date" autocomplete="bday">
-            <p class="err" data-err-for="f-birth" hidden></p>
-          </div>
-          <div class="field">
-            <label for="f-city" data-i18n="f.city">Città <span class="opt">facoltativa</span></label>
-            <input id="f-city" name="city" type="text" autocomplete="address-level2">
           </div>
         </div>
 
@@ -475,7 +544,7 @@ setTimeout(function(){
             <p class="err" data-err-for="f-time" hidden></p>
           </div>
           <div class="field">
-            <label for="f-guests" data-i18n="f.guests">Coperti</label>
+            <label for="f-guests" data-i18n="f.guests">Persone</label>
             <input id="f-guests" name="guests" type="number" min="1" max="40" value="2" required>
             <p class="err" data-err-for="f-guests" hidden></p>
           </div>
@@ -484,11 +553,10 @@ setTimeout(function(){
         <div class="field">
           <label for="f-kind" data-i18n="f.kind">Tipo di serata</label>
           <select id="f-kind" name="kind">
-            <option value="cena"         data-i18n="f.k1">Tavoli ristorante</option>
-            <option value="spettacolo"   data-i18n="f.k2">Cena spettacolo</option>
-            <option value="degustazione" data-i18n="f.k3">Menu degustazione</option>
-            <option value="club"         data-i18n="f.k4">DJ set &amp; dopocena</option>
-            <option value="privato"      data-i18n="f.k5">Evento privato</option>
+            <option value="cena"       data-i18n="f.k1">Cena al ristorante</option>
+            <option value="spettacolo" data-i18n="f.k2">Cena spettacolo</option>
+            <option value="club"       data-i18n="f.k4">DJ set &amp; dopocena</option>
+            <option value="privato"    data-i18n="f.k5">Evento privato</option>
           </select>
         </div>
 
@@ -497,44 +565,13 @@ setTimeout(function(){
           <textarea id="f-notes" name="notes" rows="3"></textarea>
         </div>
 
-        <div class="field field--check">
-          <input id="f-privacy" name="privacy" type="checkbox" required>
-          <label for="f-privacy" data-i18n="f.privacy">Ho letto l'informativa privacy e acconsento al trattamento dei dati per la gestione della prenotazione.</label>
-          <p class="err" data-err-for="f-privacy" hidden></p>
-        </div>
-
-        <div class="field field--check">
-          <input id="f-marketing" name="marketing" type="checkbox">
-          <label for="f-marketing" data-i18n="f.marketing">Desidero ricevere le novità di IDROS: serate, menu stagionali e inviti riservati.</label>
-        </div>
-
-        <!-- Campo esca contro i moduli compilati dai robot: è nascosto
-             e nessuna persona lo vede, quindi se arriva pieno si scarta. -->
-        <div class="hp" aria-hidden="true">
-          <label for="f-website">Sito web</label>
-          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-
         <div class="form__actions">
-          <button type="submit" class="ghost ghost--solid" id="formSubmit" data-i18n="f.submit">Invia richiesta</button>
-          <button type="button" class="ghost" id="waSend" data-i18n="f.wa">Invia su WhatsApp</button>
+          <button type="submit" class="ghost ghost--solid" id="formSubmit" data-i18n="f.submit">Prepara la mail</button>
         </div>
 
         <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
-        <p class="note" data-i18n="f.legal">La richiesta non è confermata finché non ricevete la nostra risposta.</p>
+        <p class="note" data-i18n="f.legal">Il modulo non invia nulla da solo: apre il vostro programma di posta con il messaggio già scritto, e siete voi a spedirlo. La prenotazione è confermata solo dalla nostra risposta. Come trattiamo i vostri dati: <a href="/privacy">informativa privacy</a>.</p>
       </form>
-
-      <!-- Esito dell'invio: prende il posto del modulo a richiesta accettata -->
-      <div class="done" id="formDone" hidden>
-        <p class="done__mark" aria-hidden="true">✓</p>
-        <h3 class="done__title" data-i18n="done.title">Richiesta inviata</h3>
-        <p class="done__lead" data-i18n="done.lead">
-          Vi abbiamo scritto una email di riepilogo. Non è ancora una prenotazione confermata:
-          appena il tavolo è nostro da riservare vi arriva la conferma definitiva.
-        </p>
-        <p class="done__ref"><span data-i18n="done.ref">Riferimento</span> <b id="formRef">—</b></p>
-        <button type="button" class="link" id="formAgain" data-i18n="done.again">Invia un'altra richiesta</button>
-      </div>
     </div>
   </div>
 </section>
@@ -558,7 +595,7 @@ setTimeout(function(){
       </details>
       <details class="faq__item">
         <summary data-i18n="faq.4.q">Gestite intolleranze e allergie?</summary>
-        <p data-i18n="faq.4.a">Sì. Segnalatele in fase di prenotazione e la cucina riscrive il percorso su misura.</p>
+        <p data-i18n="faq.4.a">Sì. Segnalatele in fase di prenotazione e la cucina riscrive il percorso su misura. Gli allergeni di ogni piatto sono indicati nel <a href="/menu#allergeni">menu</a>.</p>
       </details>
     </div>
   </div>
@@ -572,7 +609,7 @@ setTimeout(function(){
 
     <a class="footer__logo" href="#hero" aria-label="IDROS — torna in cima">
       <span class="logoclip logoclip--foot">
-        <img class="footer__logoimg" src="assets/img/logo.png"
+        <img class="footer__logoimg" src="/assets/img/logo.png"
              alt="IDROS · Milano Marittima" onerror="this.closest('.logoclip').remove()">
       </span>
       <span class="nav__logo">IDROS</span>
@@ -580,28 +617,37 @@ setTimeout(function(){
 
     <p class="footer__claim" data-i18n="foot.claim">Cucina, musica e scena sul mare di Milano Marittima.</p>
 
+    <!-- SOCIAL — spenti finché non ci sono gli indirizzi veri delle pagine.
+         Per riattivarli: togliere il commento e mettere gli URL al posto di #.
     <div class="social social--footer">
       <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
       <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.5h-2.5A4.5 4.5 0 0 0 10 7v1.5H7.5V12H10v9.5h4V12h2.5l.5-3.5H14Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
       <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.6 9.4c2.9-.8 6-.5 8.6.9M8.2 12.4c2.4-.6 5-.4 7.1.8M8.8 15.3c1.9-.5 3.9-.3 5.6.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
     </div>
+    -->
+
+    <nav class="footer__links" aria-label="Informazioni legali">
+      <a href="/menu" data-i18n="foot.menu">Menu</a>
+      <a href="/privacy" data-i18n="foot.privacy">Privacy</a>
+      <a href="/cookie" data-i18n="foot.cookie">Cookie</a>
+      <a href="/termini" data-i18n="foot.terms">Termini e condizioni</a>
+    </nav>
 
     <p class="footer__meta">
-      © <span id="year">2026</span> IDROS · <span data-i18n="foot.vat">P. IVA 00000000000</span>
-      · <a href="#" data-i18n="foot.privacy">Privacy</a>
-      · <a href="#" data-i18n="foot.cookie">Cookie</a>
+      © <span id="year">2026</span> IDROS S.R.L. · <span data-i18n="foot.vat">P. IVA</span> {{PIVA}}<br>
+      <span data-i18n="foot.seat">Sede legale</span> {{SEDE_LEGALE}} · REA {{REA}} · <span data-i18n="foot.capital">Capitale sociale</span> € {{CAPITALE}} i.v.
     </p>
   </div>
 </footer>
 
-<!-- Motore animazioni. `defer` garantisce l'ordine: quando anim.js parte,
-     GSAP e Lenis sono già in memoria. Se una CDN cade, anim.js esce da solo. -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+<!-- Motore animazioni, servito dal sito. `defer` garantisce l'ordine:
+     quando anim.js parte, GSAP e Lenis sono già in memoria. -->
+<script src="/assets/vendor/gsap.min.js" defer></script>
+<script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/vendor/lenis.min.js" defer></script>
 
-<script src="assets/js/i18n.js" defer></script>
-<script src="assets/js/anim.js" defer></script>
-<script src="assets/js/main.js" defer></script>
+<script src="/assets/js/i18n.js" defer></script>
+<script src="/assets/js/anim.js" defer></script>
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

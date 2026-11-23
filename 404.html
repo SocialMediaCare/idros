@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pagina non trovata — IDROS Milano Marittima</title>
+<meta name="description" content="La pagina richiesta non esiste.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-doc">
+
+<a class="skip-link" href="#main">Vai al contenuto principale</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <div class="navmenu">
+      <button type="button" class="navmenu__btn" id="menuBtn" aria-expanded="false" aria-controls="menuPanel">
+        <span class="navmenu__bars" aria-hidden="true"><span></span><span></span></span>
+        <span class="navmenu__word">Menu</span>
+      </button>
+    </div>
+    <a class="nav__brand" href="/" aria-label="IDROS — pagina principale">
+      <span class="logoclip logoclip--nav">
+        <img class="nav__logoimg" src="/assets/img/logo.png" alt="IDROS · Milano Marittima" onerror="this.closest('.logoclip').remove()">
+      </span>
+      <span class="nav__logo">IDROS</span>
+    </a>
+    <div class="nav__actions">
+      <a class="nav__reserve" href="tel:{{TEL_HREF}}">Prenotazioni</a>
+    </div>
+  </div>
+</header>
+
+<nav class="navmenu__panel" id="menuPanel" hidden aria-label="Navigazione principale">
+  <div class="navmenu__inner">
+    <a href="/">Home</a>
+    <a href="/menu">Il menu</a>
+    <a href="/#eventi">Eventi</a>
+    <a href="/#raggiungerci">Come raggiungerci</a>
+    <a href="/#contatti">Contatti</a>
+    <a href="tel:{{TEL_HREF}}" class="navmenu__book">Prenotazioni</a>
+  </div>
+</nav>
+
+<main id="main">
+<article class="doc doc--404">
+  <p class="eyebrow doc__eyebrow">Errore 404</p>
+  <h1>Pagina non trovata</h1>
+  <p>La pagina che cercate non c'è, o non c'è più. <span lang="en">This page does not exist.</span></p>
+  <div class="mhead__cta">
+    <a class="ghost ghost--solid" href="/">Torna alla home</a>
+    <a class="ghost" href="/menu">Il menu</a>
+  </div>
+</article>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <a class="footer__logo" href="/" aria-label="IDROS — pagina principale">
+      <span class="logoclip logoclip--foot">
+        <img class="footer__logoimg" src="/assets/img/logo.png" alt="IDROS · Milano Marittima" onerror="this.closest('.logoclip').remove()">
+      </span>
+      <span class="nav__logo">IDROS</span>
+    </a>
+    <nav class="footer__links" aria-label="Informazioni legali">
+      <a href="/menu">Menu</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/cookie">Cookie</a>
+      <a href="/termini">Termini e condizioni</a>
+    </nav>
+    <p class="footer__meta">
+      © <span id="year">2026</span> IDROS S.R.L. · P. IVA {{PIVA}}<br>
+      Sede legale {{SEDE_LEGALE}} · REA {{REA}} · Capitale sociale € {{CAPITALE}} i.v.
+    </p>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>

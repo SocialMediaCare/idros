@@ -114,7 +114,7 @@ preceduto da una riga e da un quadratino costruiti con gli pseudo-elementi:
 | Transizione | 500ms `cubic-bezier(.4,0,.2,1)` | identica |
 
 Verificato a misura: a riposo testo bianco e quadratino 5px; in hover testo
-`rgb(219,71,86)` e quadratino 35px.
+`--gold-lt` e quadratino 35px.
 
 I bottoni bordati (46px, bordo 1px) restano solo dove li usa il riferimento:
 la pila dell'hero. Nel modulo restano bottoni perché sono controlli di form,
@@ -187,17 +187,16 @@ Nero e bianco come il riferimento. L'unica deviazione è l'accento.
 | Testo | `--white` | `#FFFFFF` | **21:1** su nero |
 | Testo secondario | `--dim` | `#B4B4B4` | **11,6:1** su nero |
 | Testo terziario | `--muted` | `#9A9A9A` | **7,3:1** su nero |
-| Accento riempimenti | `--wine` | `#8E1B2C` | bianco sopra: **8,96:1** |
-| Accento testo e hover | `--wine-lt` | `#DB4756` | **5,05:1** su nero |
+| Accento riempimenti | `--gold` | `#B8924A` | nero sopra: **7,25:1** |
+| Accento testo e hover | `--gold-lt` | `#C9A45C` | **8,95:1** su nero |
 
 > **Deviazione.** Lío usa un magenta `#F013BF` sul link RESERVATIONS. Al suo posto
-> il bordeaux.
+> l'oro (novembre 2026; prima era un bordeaux), che riprende gli ottoni della sala
+> e il ricamo del logo sulle divise.
 >
-> **Perché due token e non uno.** Un bordeaux pieno (`#8E1B2C`) su fondo nero dà
-> 2,34:1: illeggibile come testo. Quindi il bordeaux vive nei riempimenti, dove
-> sopra ci va il bianco, e per testo e hover si usa `--wine-lt`, che sullo stesso
-> nero arriva a 5,05:1. Usare il bordeaux pieno per un link sarebbe un errore
-> di accessibilità, non una scelta estetica.
+> **Perché due token e non uno.** Su un fondo d'oro il bianco scende sotto 3:1:
+> dove l'oro è un riempimento (selezione del testo, bottone pieno al passaggio)
+> sopra ci va il nero. Per testo, righe e dettagli su nero si usa `--gold-lt`.
 
 Nessun `border-radius` in tutto il sito.
 

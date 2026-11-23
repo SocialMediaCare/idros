@@ -164,7 +164,13 @@
      ============================================================ */
   function heroIn() {
     var hero = document.getElementById('hero');
-    if (!hero) return;
+    /* Le pagine interne (il menu) non hanno l'hero: entra solo la barra,
+       che altrimenti resterebbe spenta dallo stato iniziale del CSS. */
+    if (!hero) {
+      gsap.fromTo('.nav__inner > *', { y: -18, opacity: 0 },
+        { y: 0, opacity: 1, duration: .8, stagger: .06, ease: EASE });
+      return;
+    }
 
     var title = hero.querySelector('.hero__title');
     var lines = title ? splitLines(title) : [];

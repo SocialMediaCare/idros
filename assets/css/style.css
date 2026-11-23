@@ -5,6 +5,32 @@
    non stimate: vedi design-system/idros/MASTER.md §3.
    ============================================================ */
 
+/* ---------- 0. CARATTERI ----------
+   Serviti dal sito stesso, non da Google Fonts: così l'indirizzo IP
+   dei visitatori non arriva a terzi (niente consenso da chiedere) e la
+   pagina non aspetta un secondo server. Sono file variabili: un solo
+   file copre tutti i pesi. Licenza SIL Open Font License. */
+@font-face{
+  font-family:"Jost";font-style:normal;font-weight:100 900;font-display:swap;
+  src:url("../fonts/jost-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:"Jost";font-style:normal;font-weight:100 900;font-display:swap;
+  src:url("../fonts/jost-latin-ext.woff2") format("woff2");
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face{
+  font-family:"Playfair Display";font-style:normal;font-weight:400 900;font-display:swap;
+  src:url("../fonts/playfair-latin.woff2") format("woff2");
+  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face{
+  font-family:"Playfair Display";font-style:normal;font-weight:400 900;font-display:swap;
+  src:url("../fonts/playfair-latin-ext.woff2") format("woff2");
+  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* ---------- 1. TOKEN ---------- */
 :root{
   --black:   #000000;
@@ -14,10 +40,12 @@
   --white:   #FFFFFF;      /* 21:1  */
   --dim:     #B4B4B4;      /* 11.6:1 */
   --muted:   #9A9A9A;      /*  7.3:1 */
-  /* Bordeaux. Il bordeaux pieno non regge come testo su nero (2,3:1),
-     quindi la coppia: --wine per i riempimenti, --wine-lt per testo e hover. */
-  --wine:    #8E1B2C;      /* bianco sopra: 8,96:1 */
-  --wine-lt: #DB4756;      /* su nero: 5,05:1 */
+  /* Oro. Il colore d'accento del marchio: riprende gli ottoni della
+     sala e il ricamo del logo sulle divise. Su un fondo d'oro il testo
+     va in nero (il bianco scende sotto 3:1), quindi la coppia:
+     --gold per i riempimenti, --gold-lt per testo e dettagli su nero. */
+  --gold:    #B8924A;      /* nero sopra: 7,25:1 */
+  --gold-lt: #C9A45C;      /* su nero: 8,95:1 */
 
   --line:      rgba(255,255,255,.22);
   --line-soft: rgba(255,255,255,.10);
@@ -88,7 +116,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- 3. TIPOGRAFIA ---------- */
 .eyebrow{
   font-size:var(--fs-eyebrow);letter-spacing:.28em;text-transform:uppercase;
-  font-weight:400;color:var(--wine-lt);margin:0 0 var(--sp-3);
+  font-weight:400;color:var(--gold-lt);margin:0 0 var(--sp-3);
 }
 .h2{font-size:var(--fs-h2);letter-spacing:.02em;text-transform:uppercase;font-weight:200;margin-bottom:var(--sp-4)}
 .h2--xl{
@@ -133,7 +161,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ghost:hover{background:var(--white);color:var(--black)}
 .ghost:active{transform:scale(.985)}
 .ghost--solid{background:var(--white);color:var(--black)}
-.ghost--solid:hover{background:var(--wine-lt);border-color:var(--wine-lt)}
+.ghost--solid:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--black)}
 
 /* ---------- 4b. LINK CON IL TRATTINO ----------
    Il "pulsante" delle sezioni nel riferimento non ha bordo: è un
@@ -162,11 +190,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .link::after{width:5px;height:5px;top:calc(50% - 2px)} /* il quadratino */
 
 .link:hover,
-.link:focus-visible{color:var(--wine-lt)}
+.link:focus-visible{color:var(--gold-lt)}
 .link:hover::after,
-.link:focus-visible::after{width:35px;background:var(--wine-lt)}
+.link:focus-visible::after{width:35px;background:var(--gold-lt)}
 .link:hover::before,
-.link:focus-visible::before{background:var(--wine-lt)}
+.link:focus-visible::before{background:var(--gold-lt)}
 
 .link--block{margin-top:var(--sp-4);align-self:flex-start}
 
@@ -207,7 +235,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 @media(min-width:1024px){.nav__actions{margin-left:0}}
 .nav__reserve{
   display:none;align-items:center;min-height:44px;
-  font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--wine-lt);
+  font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-lt);
   transition:color var(--dur) var(--ease);
 }
 @media(min-width:900px){.nav__reserve{display:inline-flex}}
@@ -258,7 +286,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .hero__media{position:absolute;inset:0;z-index:0;aspect-ratio:auto}
 .sec--hero::before{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.2) 35%,rgba(0,0,0,.85));
+  /* Con la foto vera il lampadario finisce dietro ai pulsanti:
+     il velo al centro è più scuro di quello pensato per il segnaposto. */
+  background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.4) 38%,rgba(0,0,0,.88));
 }
 .hero__media .media__label{left:auto;right:var(--gutter);bottom:var(--gutter)}
 @media(max-width:600px){.hero__media .media__label{display:none}}
@@ -410,7 +440,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   display:flex;align-items:baseline;gap:var(--sp-4);
   padding:var(--sp-3) 0;border-bottom:1px solid var(--line-soft);
 }
-.event__date{font-size:1rem;letter-spacing:.1em;color:var(--wine-lt);font-variant-numeric:tabular-nums;flex:none}
+.event__date{font-size:1rem;letter-spacing:.1em;color:var(--gold-lt);font-variant-numeric:tabular-nums;flex:none}
 .event__title{font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;font-weight:300;margin:0}
 .event__tag{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 
@@ -419,14 +449,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .ways{display:grid;gap:var(--sp-4);padding-top:var(--sp-4);border-top:1px solid var(--line-soft)}
 @media(min-width:600px){.ways{grid-template-columns:1fr 1fr;gap:var(--sp-4) var(--sp-5)}}
 @media(min-width:900px){.ways{grid-template-columns:1fr}}
-.ways dt{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--wine-lt);margin-bottom:.25rem}
+.ways dt{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.25rem}
 .ways dd{color:var(--muted);font-size:.9rem;line-height:1.6}
 
 /* ---------- 16. CONTATTI + FORM ---------- */
 .cont{display:grid;gap:var(--sp-7);grid-template-columns:1fr}
 @media(min-width:1000px){.cont{grid-template-columns:.85fr 1.15fr;gap:var(--sp-8)}}
 .cont__list{display:grid;gap:var(--sp-4);margin-top:var(--sp-5);padding-top:var(--sp-5);border-top:1px solid var(--line-soft)}
-.cont__list dt{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--wine-lt);margin-bottom:.25rem}
+.cont__list dt{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:.25rem}
 .cont__list dd{color:var(--dim);font-size:.96rem;line-height:1.75}
 .cont__list a{border-bottom:1px solid var(--line-soft);transition:border-color var(--dur) var(--ease)}
 .cont__list a:hover{border-color:var(--white)}
@@ -473,7 +503,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .field--check .err{grid-column:1/-1}
 
 .form__actions{display:flex;flex-wrap:wrap;gap:var(--sp-3)}
-.form__status{margin:0;min-height:1.4em;font-size:.88rem;color:var(--wine-lt)}
+.form__status{margin:0;min-height:1.4em;font-size:.88rem;color:var(--gold-lt)}
 .form__status.is-error{color:#E8A0A0}
 .form.is-busy{opacity:.55;pointer-events:none}
 
@@ -493,7 +523,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .done[hidden]{display:none}
 .done__mark{
   margin:0;display:grid;place-items:center;width:54px;height:54px;
-  border:1px solid var(--wine-lt);border-radius:50%;color:var(--wine-lt);
+  border:1px solid var(--gold-lt);border-radius:50%;color:var(--gold-lt);
   font-size:1.35rem;line-height:1;
 }
 .done__title{font-size:var(--fs-h3);letter-spacing:.12em;text-transform:uppercase;font-weight:300;margin:0}
@@ -516,7 +546,7 @@ button,input,select,textarea{font:inherit;color:inherit}
   transition:color var(--dur) var(--ease);
 }
 .faq__item summary::-webkit-details-marker{display:none}
-.faq__item summary:hover{color:var(--wine-lt)}
+.faq__item summary:hover{color:var(--gold-lt)}
 .faq__item summary::after{
   content:"";position:absolute;right:.5rem;top:50%;
   width:11px;height:11px;margin-top:-6px;
@@ -571,7 +601,7 @@ body.no-js [data-anim]{opacity:1;transform:none}
   font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;font-weight:300;
   transition:color var(--dur) var(--ease);
 }
-.navmenu__btn:hover{color:var(--wine-lt)}
+.navmenu__btn:hover{color:var(--gold-lt)}
 .navmenu__bars{display:flex;flex-direction:column;gap:5px;width:20px}
 .navmenu__bars span{
   display:block;height:1px;background:currentColor;
@@ -604,13 +634,12 @@ body.no-js [data-anim]{opacity:1;transform:none}
   color:var(--dim);
   transition:color 420ms var(--ease);
 }
-/* Vira la parola, non il suo sfondo. Il bordeaux pieno (--wine) su nero
-   dà 2,3:1: illeggibile. Qui serve --wine-lt, che arriva a 5,05:1. */
+/* Vira la parola, non il suo sfondo: la voce passa all'oro. */
 .navmenu__panel a:hover,
-.navmenu__panel a:focus-visible{color:var(--wine-lt)}
+.navmenu__panel a:focus-visible{color:var(--gold-lt)}
 /* Nessun margine extra: le voci devono essere equidistanti.
    A distinguere Prenotazioni basta il colore. */
-.navmenu__book{color:var(--wine-lt)}
+.navmenu__book{color:var(--gold-lt)}
 .navmenu__book:hover{color:var(--white)}
 
 .nav__brand{justify-self:center;padding:0}
@@ -663,7 +692,7 @@ body.no-js [data-anim]{opacity:1;transform:none}
   border:1px solid var(--line-soft);color:var(--muted);
   transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease);
 }
-.social--footer a:hover{color:var(--wine-lt);border-color:var(--wine-lt)}
+.social--footer a:hover{color:var(--gold-lt);border-color:var(--gold-lt)}
 .social--footer svg{width:18px;height:18px}
 
 /* ---------- RITMO VERTICALE PER SEZIONE ----------
@@ -805,3 +834,168 @@ body.no-js [data-anim]{opacity:1;transform:none}
 .loader__brand .logoclip + .loader__word{display:none}
 /* Con il logo al posto delle lettere non servono spaziatura né rientro */
 .loader__brand{gap:0;padding-left:0;letter-spacing:normal}
+
+/* ============================================================
+   FOTO VERE NEGLI SLOT
+   La trama a righe serviva solo ai segnaposto: con la foto si toglie.
+   ============================================================ */
+.media:has(img)::after{content:none}
+.media--45{aspect-ratio:4/5}
+/* Zoom lento e continuo sulle foto a tutto schermo */
+.media--kb img{animation:kenburns 26s ease-in-out infinite alternate}
+@media(prefers-reduced-motion:reduce){.media--kb img{animation:none}}
+
+/* Link dentro i testi: sottolineatura sottile, oro al passaggio */
+.note a,.form__status a,.faq__item p a,.lead a,.doc a,.mlegal a{
+  border-bottom:1px solid var(--line);
+  transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease);
+}
+.note a:hover,.form__status a:hover,.faq__item p a:hover,.lead a:hover,.doc a:hover,.mlegal a:hover{
+  color:var(--gold-lt);border-color:var(--gold-lt);
+}
+
+/* ---------- EVENTI IN ARRIVO ----------
+   Tiene il posto dell'elenco finché non c'è il calendario. */
+.soon{
+  margin-top:var(--sp-4);padding:var(--sp-5) 0;
+  border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);
+}
+.soon__tag{
+  margin:0 0 var(--sp-3);
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,1.3rem + 2vw,3rem);line-height:1;
+  color:var(--gold-lt);
+}
+.soon__text{margin:0;color:var(--dim);max-width:40ch}
+
+/* ---------- PRENOTAZIONI ---------- */
+.cont__cta{margin-top:var(--sp-4)}
+.form__title{color:var(--gold-lt)}
+
+/* ---------- PIÈ DI PAGINA: link legali ---------- */
+.footer__links{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0 1.75rem;
+  margin:0 0 var(--sp-3);
+}
+.footer__links a{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+  transition:color var(--dur) var(--ease);
+}
+.footer__links a:hover{color:var(--gold-lt)}
+.footer__meta{line-height:1.9}
+.footer__claim{margin-bottom:var(--sp-4)}
+
+/* ============================================================
+   PAGINA MENU
+   Stessa grammatica della home: titolo a sinistra che resta in vista
+   mentre scorre l'elenco a destra, righe sottili, prezzi in oro.
+   ============================================================ */
+.page-menu main{padding-top:4.5rem}
+
+.mhead__grid{display:grid;gap:var(--sp-6);grid-template-columns:1fr;align-items:end}
+@media(min-width:900px){
+  .mhead__grid{grid-template-columns:1.1fr .9fr;gap:clamp(2rem,6vw,7rem);padding-top:var(--sp-6)}
+}
+.mhead__title{font-size:var(--fs-h1);font-weight:200;max-width:16ch}
+.mhead__text .lead{max-width:46ch}
+.mhead__cta{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin:var(--sp-5) 0 var(--sp-4)}
+.mhead__note{max-width:52ch}
+.mhead__media{width:100%;max-width:34rem;justify-self:end}
+
+.mindex{margin-top:var(--sp-5);padding-top:var(--sp-4);border-top:1px solid var(--line-soft)}
+.mindex__t{margin:0 0 var(--sp-2);font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.mindex__links{display:flex;flex-wrap:wrap;gap:0 1.6rem}
+.mindex__links a{
+  display:inline-flex;align-items:center;min-height:44px;
+  font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+  transition:color var(--dur) var(--ease);
+}
+.mindex__links a:hover,.mindex__links a:focus-visible{color:var(--gold-lt)}
+
+/* Sezione del menu */
+.mcat{scroll-margin-top:4.5rem}
+.page-menu .sec + .sec{margin-top:0}
+.mcat__grid{display:grid;gap:var(--sp-4);grid-template-columns:1fr;padding-block:var(--sp-6);border-top:1px solid var(--line-soft)}
+@media(min-width:900px){
+  .mcat__grid{grid-template-columns:32% 1fr;gap:clamp(2rem,6vw,7rem);padding-block:var(--sp-7)}
+  .mcat__head{position:sticky;top:6.5rem;align-self:start}
+}
+.mcat__num{margin:0 0 var(--sp-2);font-size:.78rem;letter-spacing:.3em;color:var(--gold-lt);font-variant-numeric:tabular-nums}
+.mcat__title{font-family:var(--font-display);font-weight:400;text-transform:none;letter-spacing:0;font-size:clamp(2.4rem,1.6rem + 3vw,4.2rem);margin:0}
+
+.mgroup + .mgroup{margin-top:var(--sp-6)}
+.mgroup__title{
+  margin:0 0 var(--sp-2);
+  font-size:.75rem;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-lt);
+}
+.mgroup__note{margin:0 0 var(--sp-2);font-size:.92rem;font-style:italic;color:var(--muted)}
+
+.dishes{border-top:1px solid var(--line-soft)}
+.dish{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft)}
+.dish__head{display:flex;align-items:baseline;gap:var(--sp-3)}
+.dish__name{
+  margin:0;font-size:1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;line-height:1.4;
+  color:var(--white);
+}
+/* il filo che porta l'occhio dal nome al prezzo */
+.dish__line{flex:1;min-width:1.5rem;border-bottom:1px dotted rgba(255,255,255,.22);transform:translateY(-.3em)}
+.dish__price{flex:none;font-size:1.05rem;color:var(--gold-lt);font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.dish__cur{font-size:.72em;margin-right:.3em;color:var(--muted)}
+.dish__desc{margin:.35rem 0 0;color:var(--dim);font-size:.96rem;line-height:1.6;max-width:56ch}
+.dish__extra{margin:.15rem 0 0;color:var(--muted);font-size:.88rem;font-style:italic;max-width:56ch}
+.dish__all{margin:.45rem 0 0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.frz{color:var(--gold-lt);margin-left:.05em}
+
+/* Coppia di foto fra una sezione e l'altra */
+.minter{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3);align-items:end;padding-block:var(--sp-4)}
+@media(min-width:900px){
+  .minter{grid-template-columns:40% 26%;justify-content:center;gap:clamp(2rem,5vw,6rem);padding-block:var(--sp-6)}
+  .minter__b{margin-bottom:-6rem}
+}
+
+/* Allergeni e note di legge */
+.allergens{display:grid;gap:.15rem 2rem;grid-template-columns:1fr;margin:0;padding:0;list-style:none;border-top:1px solid var(--line-soft)}
+@media(min-width:700px){.allergens{grid-template-columns:1fr 1fr}}
+.allergens li{display:flex;gap:.9rem;align-items:baseline;padding:.6rem 0;border-bottom:1px solid var(--line-soft);color:var(--dim);font-size:.92rem}
+.allergens__n{flex:none;min-width:1.6rem;color:var(--gold-lt);font-variant-numeric:tabular-nums}
+.mlegal{margin-top:var(--sp-5);display:grid;gap:var(--sp-3)}
+.mlegal p{margin:0;font-size:.84rem;color:var(--muted);max-width:70ch;line-height:1.75}
+
+.mend{text-align:center}
+.mend__inner{display:flex;flex-direction:column;align-items:center;padding-block:var(--sp-7);border-top:1px solid var(--line-soft)}
+.mend__inner .lead{max-width:44ch}
+.mend__cta{justify-content:center;margin-bottom:0}
+
+/* ============================================================
+   PAGINE DI TESTO (privacy, cookie, termini)
+   ============================================================ */
+.page-doc main{padding-top:4.5rem}
+.doc{width:calc(100% - var(--gutter)*2);max-width:46rem;margin-inline:auto;padding-block:var(--sp-6) var(--sp-7)}
+.doc__eyebrow{margin-bottom:var(--sp-2)}
+.doc h1{font-size:var(--fs-h2);font-weight:200;letter-spacing:.02em;text-transform:uppercase;margin:0 0 var(--sp-3)}
+.doc__updated{margin:0 0 var(--sp-6);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.doc__en{margin:0 0 var(--sp-5);padding:var(--sp-3) var(--sp-4);border-left:2px solid var(--gold);background:var(--surface);font-size:.9rem;color:var(--dim)}
+.doc h2{
+  font-size:.8rem;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lt);
+  margin:var(--sp-6) 0 var(--sp-3);padding-top:var(--sp-4);border-top:1px solid var(--line-soft);line-height:1.5;
+}
+.doc h3{font-size:1rem;font-weight:400;letter-spacing:.06em;margin:var(--sp-4) 0 var(--sp-2);color:var(--white)}
+.doc p,.doc li{color:var(--dim);font-size:.98rem;line-height:1.8}
+.doc ul{list-style:none;margin:0 0 var(--sp-3);padding:0}
+.doc ul li{position:relative;padding-left:1.4rem;margin-bottom:.4rem}
+.doc ul li::before{content:"";position:absolute;left:0;top:.85em;width:.6rem;height:1px;background:var(--gold-lt)}
+.doc strong{color:var(--white);font-weight:400}
+.doc table{width:100%;border-collapse:collapse;margin:0 0 var(--sp-4);font-size:.9rem}
+.doc th,.doc td{text-align:left;vertical-align:top;padding:.7rem .8rem .7rem 0;border-bottom:1px solid var(--line-soft);color:var(--dim)}
+.doc th{font-weight:400;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.doc__table{overflow-x:auto}
+.doc address{font-style:normal;color:var(--dim);line-height:1.9;margin-bottom:var(--sp-3)}
+
+/* L'occhiello resta in oro anche dentro i blocchi di testo grigio */
+.tit__text .eyebrow,.alt__text .eyebrow{color:var(--gold-lt)}
+@media(max-width:600px){
+  .mhead__cta .ghost,.cont__cta .ghost{width:100%}
+  .dish__name{font-size:.92rem;letter-spacing:.1em}
+}
+.doc .eyebrow{color:var(--gold-lt)}

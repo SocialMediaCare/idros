@@ -137,7 +137,7 @@ function shell({ title, lead, table, extra, foot }) {
         <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#7a7a7a">${foot}</p>
       </td></tr>
     </table>
-    <p style="margin:20px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#5a5a5a">Viale Gramsci 1 · 48015 Milano Marittima (RA)</p>
+    <p style="margin:20px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#5a5a5a">{{VIA}} · 48015 Milano Marittima (RA)</p>
   </td></tr>
 </table>
 </body></html>`;
@@ -146,9 +146,9 @@ function shell({ title, lead, table, extra, foot }) {
 function noteBlock(text, label) {
   if (!text) return '';
   return `<tr><td style="padding:0 32px 20px">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#131313;border-left:2px solid #8E1B2C">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#131313;border-left:2px solid #B8924A">
       <tr><td style="padding:16px 18px;font-family:Helvetica,Arial,sans-serif">
-        <p style="margin:0 0 6px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#DB4756">${escapeHtml(label)}</p>
+        <p style="margin:0 0 6px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#C9A45C">${escapeHtml(label)}</p>
         <p style="margin:0;font-size:14px;line-height:1.6;color:#e6e6e6">${escapeHtml(text)}</p>
       </td></tr>
     </table>

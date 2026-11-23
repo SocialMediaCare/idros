@@ -1,5 +1,7 @@
 User-agent: *
+Allow: /
 Disallow: /admin
 Disallow: /api/
+Disallow: /tools/
 
 Sitemap: https://idrosmilanomarittima.it/sitemap.xml

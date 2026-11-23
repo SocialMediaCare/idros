@@ -156,7 +156,7 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 /* Barra di avanzamento della lettura */
 .progress{
   position:fixed;top:0;left:0;right:0;height:2px;z-index:70;
-  background:var(--wine-lt);transform:scaleX(0);transform-origin:left center;
+  background:var(--gold-lt);transform:scaleX(0);transform-origin:left center;
   pointer-events:none;
 }
 
@@ -173,10 +173,10 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 .ghost:focus-visible::before{transform:translateY(0)}
 .ghost{transition:color 380ms var(--ease-out-expo),border-color 380ms var(--ease-out-expo)}
 .ghost:hover{background:transparent;color:var(--black)}
-.ghost--solid::before{background:var(--wine-lt);transform:translateY(0)}
+.ghost--solid::before{background:var(--gold-lt);transform:translateY(0)}
 .ghost--solid{background:var(--white);color:var(--black)}
 .ghost--solid::before{transform:translateY(101%)}
-.ghost--solid:hover{background:var(--white);color:var(--white);border-color:var(--wine-lt)}
+.ghost--solid:hover{background:var(--white);color:var(--black);border-color:var(--gold-lt)}
 
 /* ---------- 8. QUICK LINKS: ingrandimento morbido ---------- */
 .ql__card .media{transition:transform 900ms var(--ease-out-expo),filter 900ms var(--ease-out-expo)}
@@ -192,12 +192,12 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 }
 .event::before{
   content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
-  background:var(--wine-lt);transform:scaleY(0);transform-origin:bottom center;
+  background:var(--gold-lt);transform:scaleY(0);transform-origin:bottom center;
   transition:transform 520ms var(--ease-out-expo);
 }
 .event:hover{padding-left:1.1rem}
 .event:hover::before{transform:scaleY(1);transform-origin:top center}
-.event:hover .event__title{color:var(--wine-lt)}
+.event:hover .event__title{color:var(--gold-lt)}
 .event__title{transition:color 380ms var(--ease-out-expo)}
 
 /* ---------- 10. GALLERIA: inclinazione sulla velocità ---------- */
@@ -221,7 +221,7 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 .footer{position:relative;overflow:hidden}
 
 /* ---------- 14. SELEZIONE E SCROLLBAR ---------- */
-::selection{background:var(--wine);color:var(--white)}
+::selection{background:var(--gold);color:var(--black)}
 html{scrollbar-color:rgba(255,255,255,.25) transparent;scrollbar-width:thin}
 
 /* Con lo scorrimento morbido attivo la barra nativa sparisce: al suo

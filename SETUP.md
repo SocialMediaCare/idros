@@ -85,21 +85,30 @@ Vercel si cambiano `MAIL_FROM`, `MAIL_OWNER` e `SITE_URL` (valori in
 `.env.example`) e si rilancia il deploy. Non prima: con il mittente su un
 dominio non ancora verificato le email di prenotazione non partono.
 
-## 6. Sito in arrivo
+## 6. Prenotazioni online sospese (novembre 2026)
 
-Finché il sito non è pronto, chi apre il dominio vede `in-arrivo.html` (logo,
-una riga, l'email). Lo decide `middleware.js`, finché su Vercel esiste la
-variabile `PREVIEW_KEY`.
+Per ora la piattaforma è **spenta**: il sito fa prenotare al telefono, e il
+modulo della home apre la posta del cliente con una mail già scritta per
+`info@idrosmilanomarittima.it` (non passa dal server, niente database).
+Il pannello `/admin` resta com'è, protetto da password.
 
-- **Vedere il sito vero:** aprire una volta
-  `https://idrosmilanomarittima.it/?anteprima=<PREVIEW_KEY>`. Il browser
-  ricorda l'accesso per 90 giorni; `?anteprima=esci` lo dimentica.
-- **Sempre raggiungibili:** `/admin`, `/api`, `/assets`, `robots.txt`.
-- **Mettere online il sito:** Vercel → Settings → Environment Variables →
-  eliminare `PREVIEW_KEY` → rilanciare l'ultimo deploy da *Deployments*.
+`POST /api/reservations` risponde `503` finché su Vercel non esiste la
+variabile `RESERVATIONS_OPEN=true`: così l'indirizzo non si può usare
+nemmeno chiamandolo direttamente.
 
-In locale (`python3 serve.py`) il filtro non c'è: si vede sempre il sito vero,
-e la pagina d'attesa è a `/in-arrivo.html`.
+**Per riaccenderla**
+
+1. Vercel → Settings → Environment Variables → `RESERVATIONS_OPEN` = `true`.
+2. Rimettere il modulo che invia alla piattaforma: in `index.html` (sezione
+   Contatti) e in `assets/js/main.js` (sezione 7), recuperandoli dalla
+   cronologia git (commit precedente a «Sito online»).
+3. Aggiornare l'informativa privacy (`privacy.html`): con la piattaforma i dati
+   finiscono su Supabase e le email partono da Resend, che vanno aggiunti fra
+   i responsabili del trattamento, con i relativi tempi di conservazione.
+
+La vecchia pagina «in arrivo» (`in-arrivo.html` + `middleware.js`) è stata tolta
+con la messa online: se su Vercel è rimasta la variabile `PREVIEW_KEY`, non
+viene più letta da nessuno e si può eliminare.
 
 ---
 

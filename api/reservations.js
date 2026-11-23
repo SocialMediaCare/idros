@@ -64,6 +64,16 @@ function validate(input) {
 export default async function handler(req, res) {
   if (!guardMethod(req, res, ['POST'])) return;
 
+  /* Piattaforma spenta: il sito pubblico per ora fa prenotare al
+     telefono o via mail e non chiama più questo indirizzo. Lo chiudiamo
+     anche qui, così nessuno può usarlo direttamente (per esempio per
+     far partire mail di «richiesta ricevuta» verso indirizzi altrui).
+     Per riaccenderlo: variabile RESERVATIONS_OPEN=true su Vercel,
+     più il modulo di index.html e main.js come prima (vedi SETUP.md). */
+  if (process.env.RESERVATIONS_OPEN !== 'true') {
+    return fail(res, 503, 'closed', 'Le prenotazioni online sono sospese. Chiamateci per prenotare.');
+  }
+
   const input = body(req);
 
   /* Campo esca: è nascosto nel modulo, un umano non lo compila mai. */
