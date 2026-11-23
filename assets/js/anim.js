@@ -28,23 +28,14 @@
   var EASE = 'expo.out';
 
   /* ============================================================
-     1. SCORRIMENTO INERZIALE (Lenis)
+     1. SCORRIMENTO
+     Nativo, come sul telefono. Lo scorrimento inerziale (Lenis) su
+     computer intercettava la rotellina e faceva scivolare la pagina
+     per oltre un secondo dopo ogni scatto: sembrava che il sito
+     arrancasse. Le animazioni legate allo scorrimento restano tutte,
+     agganciate allo scorrimento vero.
      ============================================================ */
   var lenis = null;
-
-  if (window.Lenis) {
-    lenis = new window.Lenis({
-      duration: 1.15,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.6,
-      infinite: false
-    });
-    lenis.on('scroll', ST.update);
-    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-  }
 
   /* main.js e il drawer usano questi due ganci invece di toccare
      direttamente window.scrollTo, che con Lenis non funziona. */
@@ -212,6 +203,10 @@
      ============================================================ */
   function buildReveals(scope) {
     scope = scope || document;
+    /* Ogni comparsa parte una volta sola e poi resta ferma. Non si usa
+       `once: true`: il trigger si eliminerebbe da solo mentre ScrollTrigger
+       li sta ancora ricalcolando tutti (pagina aperta già scorsa), e
+       questo a volte fermava l'avvio delle animazioni con un errore. */
 
     /* 5a — titoli e testi in righe mascherate */
     scope.querySelectorAll('[data-anim="lines"]').forEach(function (el) {
@@ -220,7 +215,7 @@
       gsap.to(lines, {
         y: '0%', duration: 1.15, stagger: .085, ease: EASE,
         onComplete: function () { unmask(el); },
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
       });
     });
 
@@ -228,7 +223,7 @@
     scope.querySelectorAll('[data-anim="rise"]').forEach(function (el) {
       gsap.fromTo(el, { y: 46, opacity: 0 }, {
         y: 0, opacity: 1, duration: 1.1, ease: EASE,
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
       });
     });
 
@@ -236,7 +231,7 @@
     scope.querySelectorAll('[data-anim="fade"]').forEach(function (el) {
       gsap.fromTo(el, { opacity: 0 }, {
         opacity: 1, duration: 1.2, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
       });
     });
 
@@ -244,7 +239,7 @@
     scope.querySelectorAll('[data-anim="stagger"]').forEach(function (el) {
       gsap.fromTo(el.children, { y: 30, opacity: 0 }, {
         y: 0, opacity: 1, duration: .9, stagger: .08, ease: EASE,
-        scrollTrigger: { trigger: el, start: 'top 86%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none none' }
       });
     });
 
@@ -253,7 +248,7 @@
       var label = el.querySelector('.media__label');
       var shot = el.querySelector('img, video');
       var tl = gsap.timeline({
-        scrollTrigger: { trigger: el, start: 'top 90%', once: true }
+        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
       });
       tl.fromTo(el,
         { clipPath: 'inset(0 0 100% 0)' },
@@ -274,7 +269,7 @@
       var depth = parseFloat(el.getAttribute('data-depth')) || 1;
       gsap.fromTo(el, { yPercent: 14 * depth }, {
         yPercent: -14 * depth, ease: 'none',
-        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 1 }
+        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: .4 }
       });
     });
   }
@@ -292,7 +287,7 @@
     var word = sec.querySelector('.h2--xl');
 
     var tl = gsap.timeline({
-      scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: 1 }
+      scrollTrigger: { trigger: sec, start: 'top bottom', end: 'bottom top', scrub: .4 }
     });
     if (media) tl.fromTo(media, { yPercent: -12, scale: 1.15 }, { yPercent: 12, scale: 1, ease: 'none' }, 0);
     if (word) tl.fromTo(word, { scale: .82, letterSpacing: '.12em' }, { scale: 1.06, letterSpacing: '0em', ease: 'none' }, 0);
@@ -474,17 +469,9 @@
     });
   }
 
-  /* ============================================================
-     14. SEZIONI: velo che si dissolve entrando
-     ============================================================ */
-  function sections() {
-    document.querySelectorAll('.sec:not(.sec--hero)').forEach(function (sec) {
-      gsap.fromTo(sec, { opacity: .45 }, {
-        opacity: 1, ease: 'none',
-        scrollTrigger: { trigger: sec, start: 'top bottom', end: 'top 62%', scrub: true }
-      });
-    });
-  }
+  /* 14. (Il velo che si dissolveva sulle sezioni è stato tolto: cambiare
+     l'opacità di sezioni intere, foto comprese, a ogni fotogramma di
+     scorrimento costava troppo sui computer meno potenti.) */
 
   /* ============================================================
      15. AVVIO
@@ -501,7 +488,6 @@
     navBar();
     faq();
     footerMark();
-    sections();
     ST.refresh();
   }
 

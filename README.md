@@ -29,7 +29,7 @@ termini.html  404.html
 assets/css/style.css        design system e layout
 assets/css/anim.css         stati iniziali delle animazioni, preloader, cursore
 assets/js/i18n.js           traduzioni (l'italiano sta nell'HTML, qui c'è l'inglese)
-assets/js/anim.js           regia GSAP + Lenis
+assets/js/anim.js           regia GSAP + ScrollTrigger (scorrimento nativo)
 assets/js/i18n-menu.js      traduzioni inglesi della pagina menu (generate)
 assets/js/main.js           menu, validazione, modulo che apre la mail, ripiego senza GSAP
 assets/fonts/ assets/vendor/  caratteri e librerie serviti dal sito (niente terze parti)
@@ -256,7 +256,7 @@ quando si aggiunge una pagina).
 
 ## Note tecniche
 
-**Animazioni.** GSAP + ScrollTrigger + Lenis, serviti dal sito (`assets/vendor/`), con `defer`. Tre livelli di
+**Animazioni.** GSAP + ScrollTrigger, serviti dal sito (`assets/vendor/`), con `defer`, sopra lo scorrimento nativo del browser (lo scorrimento inerziale Lenis è stato tolto: su computer sembrava andare a rilento). Tre livelli di
 sicurezza: se le librerie arrivano, `anim.js` prende il comando; se non arrivano
 entro cinque secondi uno script inline toglie `gsap-on` e `main.js` fa comparire i
 blocchi con `IntersectionObserver`; senza JavaScript la pagina è statica e

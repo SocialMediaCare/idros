@@ -222,8 +222,9 @@ button,input,select,textarea{font:inherit;color:inherit}
   transition:background 620ms var(--ease),border-color 620ms var(--ease);
 }
 .nav.is-stuck{
-  background:rgba(0,0,0,.82);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  /* Fondo quasi pieno al posto della sfocatura: ricalcolare il blur di
+     quello che scorre sotto a ogni fotogramma rallentava i computer. */
+  background:rgba(0,0,0,.92);
   border-bottom-color:var(--line-soft);
 }
 .nav__inner{
@@ -841,9 +842,8 @@ body.no-js [data-anim]{opacity:1;transform:none}
    ============================================================ */
 .media:has(img)::after{content:none}
 .media--45{aspect-ratio:4/5}
-/* Zoom lento e continuo sulle foto a tutto schermo */
-.media--kb img{animation:kenburns 26s ease-in-out infinite alternate}
-@media(prefers-reduced-motion:reduce){.media--kb img{animation:none}}
+/* Niente zoom continuo sulle foto a tutto schermo: si muovono già
+   con lo scorrimento, e animare sempre immagini così grandi pesava. */
 
 /* Link dentro i testi: sottolineatura sottile, oro al passaggio */
 .note a,.form__status a,.faq__item p a,.lead a,.doc a,.mlegal a{
@@ -999,3 +999,9 @@ body.no-js [data-anim]{opacity:1;transform:none}
   .dish__name{font-size:.92rem;letter-spacing:.1em}
 }
 .doc .eyebrow{color:var(--gold-lt)}
+
+/* Firma del sito, sotto i dati della società */
+.footer__credit{margin:var(--sp-3) 0 0;font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+.footer__credit a{border-bottom:1px solid var(--line-soft);transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.footer__credit a:hover{color:var(--gold-lt);border-color:var(--gold-lt)}
+.footer .social--footer{margin-top:0}

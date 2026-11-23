@@ -1,7 +1,7 @@
 /* ============================================================
    IDROS — livello cinematico
    Stati iniziali, overlay e componenti animate.
-   Il movimento è guidato da assets/js/anim.js (GSAP + Lenis);
+   Il movimento è guidato da assets/js/anim.js (GSAP + ScrollTrigger);
    qui stanno solo gli stati di partenza e i fallback.
    ============================================================ */
 
@@ -61,8 +61,12 @@ html.no-js .loader__panel{display:none}
    Una pellicola sottilissima sopra tutto: toglie la piattezza
    del nero puro e tiene insieme foto e fondali. */
 .grain{
-  position:fixed;inset:-150%;z-index:150;pointer-events:none;
-  opacity:.05;mix-blend-mode:screen;
+  /* Appena più grande dello schermo, quanto basta al tremolio (±4%).
+     Prima era 4×4 schermi e fuso col resto (mix-blend-mode): un livello
+     enorme da ricomporre a ogni fotogramma, la prima causa degli scatti
+     su computer. */
+  position:fixed;inset:-10%;z-index:150;pointer-events:none;
+  opacity:.04;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:grain 6s steps(6) infinite;
   will-change:transform;
@@ -131,7 +135,8 @@ html.gsap-on .line__in{transform:translateY(115%)}
 html.gsap-on [data-anim="unveil"]{clip-path:inset(0 0 100% 0)}
 html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 
-/* Zoom lento e continuo sulle foto grandi */
+/* Zoom lento e continuo sul fondo segnaposto: con la foto vera non serve */
+.media--kb:has(img)::before{content:none}
 .media--kb::before{
   content:"";position:absolute;inset:-6%;z-index:0;
   background:inherit;
@@ -161,7 +166,6 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 }
 
 /* ---------- 7. BOTTONI MAGNETICI ---------- */
-.ghost,.link{will-change:transform}
 .ghost{position:relative;overflow:hidden;isolation:isolate}
 /* riempimento che sale dal basso invece del cambio colore secco */
 .ghost::before{
@@ -201,7 +205,6 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 .event__title{transition:color 380ms var(--ease-out-expo)}
 
 /* ---------- 10. GALLERIA: inclinazione sulla velocità ---------- */
-.gal>*{will-change:transform}
 .gal__cue{
   display:flex;align-items:center;gap:.6rem;
   margin:1rem auto 0;width:fit-content;
@@ -215,7 +218,7 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 
 /* ---------- 12. FAQ: apertura fluida ---------- */
 .faq__item{overflow:hidden}
-.faq__item p{will-change:opacity,transform}
+
 
 /* ---------- 13. FOOTER ---------- */
 .footer{position:relative;overflow:hidden}
@@ -224,23 +227,21 @@ html.gsap-on [data-anim="unveil"] .media__label{opacity:0}
 ::selection{background:var(--gold);color:var(--black)}
 html{scrollbar-color:rgba(255,255,255,.25) transparent;scrollbar-width:thin}
 
-/* Con lo scorrimento morbido attivo la barra nativa sparisce: al suo
-   posto resta la riga di avanzamento in cima (#progress). La regola è
-   legata a .lenis, così se lo scorrimento morbido non parte la barra
-   torna e la pagina resta navigabile come sempre.
+/* Con le animazioni attive la barra nativa sparisce: al suo posto resta
+   la riga di avanzamento in cima (#progress). La regola è legata ad
+   .anim-ready, così se le animazioni non partono la barra torna.
    Safari ignora width:0 sulla barra principale: l'unica dichiarazione
    che rispetta è display:none, e va ripetuta sul body perché a seconda
    del browser l'elemento che scorre è l'uno o l'altro. */
-html.lenis,
-html.lenis body{scrollbar-width:none;-ms-overflow-style:none}
-html.lenis::-webkit-scrollbar,
-html.lenis body::-webkit-scrollbar{display:none;width:0;height:0}
+html.anim-ready,
+html.anim-ready body{scrollbar-width:none;-ms-overflow-style:none}
+html.anim-ready::-webkit-scrollbar,
+html.anim-ready body::-webkit-scrollbar{display:none;width:0;height:0}
 
-/* Con Lenis attivo lo scorrimento nativo va spento */
-html.lenis,html.lenis body{height:auto}
-html.lenis{scroll-behavior:auto}
-.lenis.lenis-smooth{scroll-behavior:auto}
-.lenis.lenis-stopped{overflow:hidden}
+/* Con le animazioni attive lo scorrimento animato lo fa main.js (clic sui
+   link interni); quello del CSS resterebbe attivo anche quando ScrollTrigger
+   ricalcola e riposiziona la pagina, che allora scivolerebbe da sola. */
+html.anim-ready{scroll-behavior:auto}
 
 /* ---------- 15. MOVIMENTO RIDOTTO ----------
    Chi lo chiede vede la pagina ferma e completa. */

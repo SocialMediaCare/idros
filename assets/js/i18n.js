@@ -149,7 +149,8 @@
     'foot.menu': 'Menu',
     'foot.privacy': 'Privacy',
     'foot.cookie': 'Cookies',
-    'foot.terms': 'Terms and conditions'
+    'foot.terms': 'Terms and conditions',
+    'foot.credit': 'Website by'
   };
 
   /* Le pagine con testi propri (il menu) aggiungono qui le loro

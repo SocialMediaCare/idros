@@ -70,6 +70,10 @@
   "priceRange": "€€€€",
   "hasMenu": "https://idrosmilanomarittima.it/menu",
   "acceptsReservations": true,
+  "sameAs": [
+    "https://www.instagram.com/idrosmilanomarittima/",
+    "https://www.facebook.com/people/Idros-Milano-Marittima/61595955028912/"
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Viale Romagna 3",
@@ -617,14 +621,10 @@ setTimeout(function(){
 
     <p class="footer__claim" data-i18n="foot.claim">Cucina, musica e scena sul mare di Milano Marittima.</p>
 
-    <!-- SOCIAL — spenti finché non ci sono gli indirizzi veri delle pagine.
-         Per riattivarli: togliere il commento e mettere gli URL al posto di #.
     <div class="social social--footer">
-      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
-      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.5h-2.5A4.5 4.5 0 0 0 10 7v1.5H7.5V12H10v9.5h4V12h2.5l.5-3.5H14Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
-      <a href="#" aria-label="Spotify"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M7.6 9.4c2.9-.8 6-.5 8.6.9M8.2 12.4c2.4-.6 5-.4 7.1.8M8.8 15.3c1.9-.5 3.9-.3 5.6.6" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></a>
+      <a href="https://www.instagram.com/idrosmilanomarittima/" target="_blank" rel="noopener noreferrer" aria-label="IDROS su Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://www.facebook.com/people/Idros-Milano-Marittima/61595955028912/" target="_blank" rel="noopener noreferrer" aria-label="IDROS su Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8.5V7a1.5 1.5 0 0 1 1.5-1.5H17V2.5h-2.5A4.5 4.5 0 0 0 10 7v1.5H7.5V12H10v9.5h4V12h2.5l.5-3.5H14Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg></a>
     </div>
-    -->
 
     <nav class="footer__links" aria-label="Informazioni legali">
       <a href="/menu" data-i18n="foot.menu">Menu</a>
@@ -637,14 +637,14 @@ setTimeout(function(){
       © <span id="year">2026</span> IDROS S.R.L. · <span data-i18n="foot.vat">P. IVA</span> 02834090397<br>
       <span data-i18n="foot.seat">Sede legale</span> Viale Romagna 3, 48015 Milano Marittima – Cervia (RA) · REA RA-264581
     </p>
+    <p class="footer__credit"><span data-i18n="foot.credit">Sito realizzato da</span> <a href="https://tommyzaffa.com" target="_blank" rel="noopener">Thomas Zaffalon</a></p>
   </div>
 </footer>
 
 <!-- Motore animazioni, servito dal sito. `defer` garantisce l'ordine:
-     quando anim.js parte, GSAP e Lenis sono già in memoria. -->
+     quando anim.js parte, GSAP e ScrollTrigger sono già in memoria. -->
 <script src="/assets/vendor/gsap.min.js" defer></script>
 <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="/assets/vendor/lenis.min.js" defer></script>
 
 <script src="/assets/js/i18n.js" defer></script>
 <script src="/assets/js/anim.js" defer></script>
