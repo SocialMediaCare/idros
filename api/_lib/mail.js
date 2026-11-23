@@ -137,7 +137,7 @@ function shell({ title, lead, table, extra, foot }) {
         <p style="margin:0;font-family:Helvetica,Arial,sans-serif;font-size:12px;line-height:1.7;color:#7a7a7a">${foot}</p>
       </td></tr>
     </table>
-    <p style="margin:20px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#5a5a5a">{{VIA}} · 48015 Milano Marittima (RA)</p>
+    <p style="margin:20px 0 0;font-family:Helvetica,Arial,sans-serif;font-size:11px;color:#5a5a5a">Viale Romagna 3 · 48015 Milano Marittima (RA)</p>
   </td></tr>
 </table>
 </body></html>`;
