@@ -106,9 +106,27 @@ nemmeno chiamandolo direttamente.
    finiscono su Supabase e le email partono da Resend, che vanno aggiunti fra
    i responsabili del trattamento, con i relativi tempi di conservazione.
 
-La vecchia pagina «in arrivo» (`in-arrivo.html` + `middleware.js`) è stata tolta
-con la messa online: se su Vercel è rimasta la variabile `PREVIEW_KEY`, non
-viene più letta da nessuno e si può eliminare.
+---
+
+## 7. Sito in revisione (interruttore)
+
+Mentre il sito è in revisione, chi apre il dominio vede `revisione.html`
+(logo, «Sito in revisione», telefono, email, social, dati della società), a
+qualunque indirizzo e con stato `503` + `Retry-After`: per Google è una pausa
+temporanea, non una pagina nuova da indicizzare. Lo decide `middleware.js`.
+
+- **Rimettere online il sito:** in `middleware.js` scrivere
+  `const IN_REVISIONE = false;`, poi commit e push. Il deploy parte da solo.
+  Per rimetterlo in revisione, di nuovo `true`.
+- **Vedere il sito vero mentre è in revisione:** aprire una volta
+  `https://idrosmilanomarittima.it/?anteprima=<PREVIEW_KEY>` (la chiave è la
+  variabile `PREVIEW_KEY` su Vercel, mai nel codice: il repo è pubblico). Il
+  browser lo ricorda per 90 giorni; `?anteprima=esci` lo dimentica.
+- **Sempre raggiungibili:** `/admin`, `/api`, `/assets`, `/privacy`,
+  `/cookie`, `/termini`, `robots.txt`, `sitemap.xml`.
+
+In locale (`python3 serve.py`) il filtro non c'è: si vede sempre il sito vero,
+e la pagina d'attesa è a `/revisione.html`.
 
 ---
 

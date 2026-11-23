@@ -71,6 +71,19 @@ Da qui in poi userai solo `pull` e `push`.
 
 ---
 
+## 1e. Il sito è in revisione?
+
+Finché in `middleware.js` c'è `const IN_REVISIONE = true;`, chi apre
+idrosmilanomarittima.it vede solo la pagina «Sito in revisione». In locale
+(`python3 serve.py`) si vede sempre il sito vero, quindi si può lavorare
+normalmente. Quando il sito è pronto, a Claude Code basta dire:
+
+> "Rimetti online il sito: metti IN_REVISIONE a false in middleware.js, poi commit e push."
+
+Dettagli in `SETUP.md`, punto 7.
+
+---
+
 ## 2. Il ciclo di lavoro (ogni volta che ci lavori)
 
 ### PRIMA di toccare qualsiasi file → PULL

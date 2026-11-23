@@ -26,6 +26,7 @@ index.html                  la home
 menu.html                   il menu (generato, vedi «Il menu»)
 privacy.html cookie.html    pagine legali
 termini.html  404.html
+revisione.html middleware.js  pagina «sito in revisione» e il suo interruttore
 assets/css/style.css        design system e layout
 assets/css/anim.css         stati iniziali delle animazioni, preloader, cursore
 assets/js/i18n.js           traduzioni (l'italiano sta nell'HTML, qui c'è l'inglese)
@@ -247,6 +248,10 @@ e vanno aggiornate privacy e cookie policy.
 **Vercel**, perché servono le funzioni in `api/`. Ogni push su `main` pubblica il
 sito da solo (`.github/workflows/deploy.yml`). Procedura completa in
 [SETUP.md](SETUP.md).
+
+**Sito in revisione**: finché in `middleware.js` c'è `IN_REVISIONE = true`, il
+pubblico vede solo `revisione.html`. Per tornare online: `false`, commit e push
+([SETUP.md](SETUP.md), punto 7).
 
 **Google Search Console**: proprietà `https://idrosmilanomarittima.it/`,
 sitemap `https://idrosmilanomarittima.it/sitemap.xml` (va aggiornata a mano
