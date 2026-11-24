@@ -20,7 +20,7 @@
    In locale (python3 serve.py) questo file non conta: si vede
    sempre il sito vero, e la pagina d'attesa è a /revisione.html.
    ============================================================ */
-const IN_REVISIONE = true;
+const IN_REVISIONE = false;
 
 const COOKIE = 'idros_anteprima';
 const NOVANTA_GIORNI = 60 * 60 * 24 * 90;
