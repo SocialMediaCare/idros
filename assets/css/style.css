@@ -867,6 +867,8 @@ body.no-js [data-anim]{opacity:1;transform:none}
   color:var(--gold-lt);
 }
 .soon__text{margin:0;color:var(--dim);max-width:40ch}
+.soon__text a{color:var(--gold-lt);border-bottom:1px solid var(--line-soft);transition:border-color var(--dur) var(--ease)}
+.soon__text a:hover{border-color:var(--gold-lt)}
 
 /* ---------- PRENOTAZIONI ---------- */
 .cont__cta{margin-top:var(--sp-4)}

@@ -74,6 +74,11 @@
     "https://www.instagram.com/idrosmilanomarittima/",
     "https://www.facebook.com/people/Idros-Milano-Marittima/61595955028912/"
   ],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Thursday", "opens": "19:00", "closes": "23:59" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "19:00", "closes": "03:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "23:59" }
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Viale Romagna 3",
@@ -170,6 +175,7 @@ setTimeout(function(){
     <a href="#ristorante"   data-i18n="nav.rest">Ristorante</a>
     <a href="/menu"         data-i18n="nav.carta">Il menu</a>
     <a href="#eventi"       data-i18n="nav.events">Eventi</a>
+    <a href="#eventi-privati" data-i18n="nav.private">Eventi privati</a>
     <a href="#raggiungerci" data-i18n="nav.reach">Come raggiungerci</a>
     <a href="#contatti"     data-i18n="nav.contact">Contatti</a>
     <a href="tel:+393501333937" class="navmenu__book" data-i18n="nav.book">Prenotazioni</a>
@@ -196,7 +202,7 @@ setTimeout(function(){
     <a class="ghost" href="tel:+393501333937"                       data-i18n="book.b1">Prenota il tuo tavolo</a>
     <a class="ghost" href="/menu"                                  data-i18n="book.b2">Il nostro menu</a>
     <a class="ghost" href="#raggiungerci"                          data-i18n="book.b3">Come raggiungerci</a>
-    <a class="ghost" href="#prenota"       data-book="privato"     data-i18n="book.b4">Eventi privati</a>
+    <a class="ghost" href="#eventi-privati"                       data-i18n="book.b4">Eventi privati</a>
   </div>
 
   <div class="hero__foot">
@@ -229,21 +235,6 @@ setTimeout(function(){
         </article>
 
         <article class="ql__card" data-cursor="Scopri">
-          <figure class="media media--square" data-img-slot="ql-eventi" data-anim="unveil">
-            <img src="/assets/img/foto/bartender-cocktail-720.webp" width="1200" height="1200"
-                 srcset="/assets/img/foto/bartender-cocktail-720.webp 720w, /assets/img/foto/bartender-cocktail-1200.webp 1200w"
-                 sizes="(min-width: 900px) 45vw, 92vw" loading="lazy" decoding="async"
-                 alt="Il barman prepara un cocktail al bancone">
-          </figure>
-          <div class="ql__over" data-anim="stagger">
-            <h3 class="ql__t" data-i18n="ql.3.t">Le nostre serate</h3>
-            <a class="link" href="#eventi" data-i18n="ql.3.c">Il calendario</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="ql__col ql__col--offset">
-        <article class="ql__card" data-cursor="Scopri">
           <figure class="media media--square" data-img-slot="ql-esperienza" data-anim="unveil">
             <img src="/assets/img/foto/lampadario-cristallo-720.webp" width="1200" height="1200"
                  srcset="/assets/img/foto/lampadario-cristallo-720.webp 720w, /assets/img/foto/lampadario-cristallo-1200.webp 1200w"
@@ -256,6 +247,21 @@ setTimeout(function(){
           </div>
         </article>
       </div>
+
+      <div class="ql__col ql__col--offset">
+        <article class="ql__card" data-cursor="Scopri">
+          <figure class="media media--square" data-img-slot="ql-eventi" data-anim="unveil">
+            <img src="/assets/img/foto/bartender-cocktail-720.webp" width="1200" height="1200"
+                 srcset="/assets/img/foto/bartender-cocktail-720.webp 720w, /assets/img/foto/bartender-cocktail-1200.webp 1200w"
+                 sizes="(min-width: 900px) 45vw, 92vw" loading="lazy" decoding="async"
+                 alt="Il barman prepara un cocktail al bancone">
+          </figure>
+          <div class="ql__over" data-anim="stagger">
+            <h3 class="ql__t" data-i18n="ql.3.t">Le nostre serate</h3>
+            <a class="link" href="#eventi" data-i18n="ql.3.c">Il calendario</a>
+          </div>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -265,30 +271,40 @@ setTimeout(function(){
   <div class="wrap tit">
     <div class="tit__text">
       <p class="eyebrow" data-anim="fade" data-i18n="exp.eyebrow">L'esperienza</p>
-      <h2 class="h2" data-anim="lines" data-i18n="exp.title">Una cena che non resta seduta</h2>
+      <h2 class="h2" data-anim="lines" data-i18n="exp.title">Lo stupore comincia dalla soglia</h2>
       <p data-anim="rise" data-i18n="exp.lead">
-        Dove ammaravano gli idrovolanti, oggi la sala si spegne fra una portata e l'altra.
-        Un violino attraversa i tavoli, due ballerine aprono lo spazio al centro,
-        un attore racconta un pezzo di questa costa.
+        Si varca l'ingresso e la sala si rivela tutta insieme: il cristallo del lampadario,
+        il velluto blu, gli specchi che moltiplicano le luci. IDROS è un locale elegante
+        ed esclusivo, pensato per lasciarvi senza parole fin dal primo passo.
+      </p>
+      <p data-anim="rise" data-i18n="exp.lead2">
+        Prima la cena, con una cucina che parte da materie prime d'eccellenza.
+        Poi lo spettacolo, che prende vita fra un tavolo e l'altro. E quando la notte
+        si allunga, le luci si abbassano, entra il DJ set e la serata cambia ritmo,
+        senza mai cambiare stile.
+      </p>
+      <p data-anim="rise" data-i18n="exp.lead3">
+        La domenica apriamo già a pranzo: ci si ferma per l'aperitivo e si arriva
+        alla cena, con il DJ set a fare da colonna sonora.
       </p>
       <a class="link link--block" data-anim="rise" href="tel:+393501333937" data-i18n="cta.book">Prenota</a>
     </div>
 
     <div class="tit__sec" data-parallax="secondary" data-depth="1.6">
       <figure class="media media--23" data-img-slot="esperienza-2" data-anim="unveil">
-        <img src="/assets/img/foto/specchio-dettaglio-400.webp" width="760" height="1118"
-             srcset="/assets/img/foto/specchio-dettaglio-400.webp 400w, /assets/img/foto/specchio-dettaglio-760.webp 760w"
+        <img src="/assets/img/foto/sfera-cioccolato-400.webp" width="760" height="950"
+             srcset="/assets/img/foto/sfera-cioccolato-400.webp 400w, /assets/img/foto/sfera-cioccolato-760.webp 760w"
              sizes="(min-width: 900px) 22vw, 38vw" loading="lazy" decoding="async"
-             alt="Dettaglio della sala: specchio e applique in ottone">
+             alt="La sfera di cioccolato con mascarpone e amarene, aperta al cucchiaio">
       </figure>
     </div>
 
     <div class="tit__main">
       <figure class="media media--47" data-img-slot="esperienza-1" data-anim="unveil">
-        <img src="/assets/img/foto/sala-lampadario-dall-alto-560.webp" width="1000" height="1759"
-             srcset="/assets/img/foto/sala-lampadario-dall-alto-560.webp 560w, /assets/img/foto/sala-lampadario-dall-alto-1000.webp 1000w"
+        <img src="/assets/img/foto/ospiti-menu-sala-560.webp" width="1000" height="1250"
+             srcset="/assets/img/foto/ospiti-menu-sala-560.webp 560w, /assets/img/foto/ospiti-menu-sala-1000.webp 1000w"
              sizes="(min-width: 900px) 30vw, 55vw" loading="lazy" decoding="async"
-             alt="La sala vista dalla balconata, con il lampadario di cristallo e il bar">
+             alt="Due ospiti sfogliano il menu sul divanetto in velluto blu">
       </figure>
     </div>
   </div>
@@ -299,16 +315,16 @@ setTimeout(function(){
   <div class="media bleed__media media--kb" data-img-slot="bleed">
     <picture>
       <source media="(min-aspect-ratio: 1/1)" width="2400" height="1500" sizes="100vw"
-              srcset="/assets/img/foto/sala-tavoli-sera-wide-1600.webp 1600w, /assets/img/foto/sala-tavoli-sera-wide-2400.webp 2400w">
-      <img src="/assets/img/foto/sala-tavoli-sera-828.webp" width="1280" height="1600" sizes="100vw"
-           srcset="/assets/img/foto/sala-tavoli-sera-828.webp 828w, /assets/img/foto/sala-tavoli-sera-1280.webp 1280w"
+              srcset="/assets/img/foto/flambe-sala-wide-1600.webp 1600w">
+      <img src="/assets/img/foto/flambe-sala-828.webp" width="1280" height="1600" sizes="100vw"
+           srcset="/assets/img/foto/flambe-sala-828.webp 828w, /assets/img/foto/flambe-sala-1280.webp 1280w"
            loading="lazy" decoding="async"
-           alt="La sala apparecchiata, con le applique accese lungo le pareti a specchio">
+           alt="Una preparazione alla fiamma in sala: le fiamme si alzano dalla padella davanti agli ospiti">
     </picture>
   </div>
   <div class="bleed__body">
     <h2 class="h2 h2--xl" data-i18n="bleed.title">Spettacolare</h2>
-    <p class="bleed__lead" data-anim="fade" data-i18n="bleed.lead">Dal tramonto all'ultimo set.</p>
+    <p class="bleed__lead" data-anim="fade" data-i18n="bleed.lead">Qui ogni sera è una prima.</p>
   </div>
 </section>
 
@@ -317,16 +333,17 @@ setTimeout(function(){
   <div class="wrap tit">
     <div class="tit__text">
       <p class="eyebrow" data-anim="fade" data-i18n="rest.eyebrow">Il ristorante</p>
-      <h2 class="h2" data-anim="lines" data-i18n="rest.title">Adriatico, tecnica, insolenza</h2>
+      <h2 class="h2" data-anim="lines" data-i18n="rest.title">Una carta senza confini</h2>
       <p data-anim="rise" data-i18n="rest.lead">
-        Una carta breve, che cambia con il pescato e con la stagione.
-        Crudi dell'Adriatico, paste tirate a mano, pesce al sale e cotture sulla brace:
-        pochi piatti, ognuno con una ragione precisa per essere in lista.
+        Un menu ricercato, costruito su materie prime d'eccellenza. Si comincia dal caviale,
+        dalle ostriche e dal crudo del pescato del giorno; si prosegue con le paste fatte
+        al mattarello e il pacchero all'astice, fino al Wagyu A5 alla griglia
+        e alla cotoletta alla bolognese.
       </p>
       <p data-anim="rise" data-i18n="rest.lead2">
-        La cantina segue lo stesso criterio — Romagna, bollicine e qualche incursione
-        francese — e la cucina riscrive volentieri un piatto attorno a un'allergia
-        o a una preferenza, se ce lo dite in prenotazione.
+        Accanto alla cucina, due mondi curati con la stessa attenzione: il sushi, fra uramaki
+        e nigiri, e la pizzeria, classica a impasto sottile o contemporanea, alta e soffice.
+        Segnalateci allergie o preferenze quando prenotate: la cucina adatta i piatti su misura.
       </p>
 
       <div class="actions" data-anim="stagger">
@@ -346,10 +363,10 @@ setTimeout(function(){
 
     <div class="tit__main">
       <figure class="media media--47" data-img-slot="ristorante-1" data-anim="unveil">
-        <img src="/assets/img/foto/chef-flambe-560.webp" width="1000" height="1759"
-             srcset="/assets/img/foto/chef-flambe-560.webp 560w, /assets/img/foto/chef-flambe-1000.webp 1000w"
+        <img src="/assets/img/foto/ospite-tartufo-560.webp" width="1000" height="1250"
+             srcset="/assets/img/foto/ospite-tartufo-560.webp 560w, /assets/img/foto/ospite-tartufo-1000.webp 1000w"
              sizes="(min-width: 900px) 30vw, 55vw" loading="lazy" decoding="async"
-             alt="Una preparazione alla fiamma servita davanti agli ospiti">
+             alt="Un'ospite assaggia un piatto di pasta al tartufo">
       </figure>
     </div>
   </div>
@@ -370,10 +387,10 @@ setTimeout(function(){
     <div class="alt__side">
       <div class="alt__sec" data-parallax="secondary" data-depth="1.4">
         <figure class="media media--68" data-img-slot="eventi-2" data-anim="unveil">
-          <img src="/assets/img/foto/sala-evento-privato-400.webp" width="760" height="1116"
-               srcset="/assets/img/foto/sala-evento-privato-400.webp 400w, /assets/img/foto/sala-evento-privato-760.webp 760w"
+          <img src="/assets/img/foto/tartare-midollo-400.webp" width="760" height="950"
+               srcset="/assets/img/foto/tartare-midollo-400.webp 400w, /assets/img/foto/tartare-midollo-760.webp 760w"
                sizes="(min-width: 900px) 23vw, 92vw" loading="lazy" decoding="async"
-               alt="Una lunga tavolata apparecchiata per un evento privato">
+               alt="Un'ospite davanti alla tartare di razza piemontese servita sul midollo">
         </figure>
       </div>
 
@@ -385,7 +402,7 @@ setTimeout(function(){
              questo blocco «soon» e si riattiva l'elenco qui sotto. -->
         <div class="soon" data-anim="rise">
           <p class="soon__tag" data-i18n="ev.soon.tag">Coming soon</p>
-          <p class="soon__text" data-i18n="ev.soon.text">Il calendario delle prossime serate è in preparazione: cene spettacolo, DJ set e appuntamenti speciali. Tornate a trovarci presto.</p>
+          <p class="soon__text" data-i18n="ev.soon.text">Il calendario delle prossime serate è in preparazione: cene spettacolo, DJ set e appuntamenti speciali. Restate aggiornati sui nostri profili social, <a href="https://www.instagram.com/idrosmilanomarittima/" target="_blank" rel="noopener noreferrer">Instagram</a> e <a href="https://www.facebook.com/people/Idros-Milano-Marittima/61595955028912/" target="_blank" rel="noopener noreferrer">Facebook</a>.</p>
         </div>
 
         <!-- ELENCO EVENTI — pronto, solo spento.
@@ -425,8 +442,51 @@ setTimeout(function(){
         </ul>
         FINE ELENCO EVENTI -->
 
-        <a class="link link--block" data-anim="rise" href="#prenota" data-book="privato" data-i18n="ev.cta">Eventi privati</a>
+        <a class="link link--block" data-anim="rise" href="#eventi-privati" data-i18n="ev.cta">Eventi privati</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ 6b · EVENTI PRIVATI (twoImagesText) ═════════ -->
+<section class="sec" data-layout="twoImagesText" id="eventi-privati">
+  <div class="wrap tit">
+    <div class="tit__text">
+      <p class="eyebrow" data-anim="fade" data-i18n="priv.eyebrow">Eventi privati</p>
+      <h2 class="h2" data-anim="lines" data-i18n="priv.title">La sala, tutta per te</h2>
+      <p data-anim="rise" data-i18n="priv.lead">
+        Stai organizzando un evento privato o aziendale? Contattaci per scoprire
+        come IDROS può diventare il palcoscenico della tua serata.
+      </p>
+      <p data-anim="rise" data-i18n="priv.lead2">
+        Compleanni, anniversari, cene aziendali, feste su invito: costruiamo l'evento
+        insieme a te. Menu personalizzato, locale addobbato per l'occasione e piena
+        personalizzazione di ogni dettaglio, dall'accoglienza all'ultimo brindisi.
+      </p>
+
+      <div class="actions" data-anim="stagger">
+        <a class="link" href="#prenota" data-book="privato" data-i18n="priv.form">Richiedi informazioni</a>
+        <a class="link" href="https://ig.me/m/idrosmilanomarittima" target="_blank" rel="noopener noreferrer" data-i18n="priv.ig">Scrivici su Instagram</a>
+        <a class="link" href="tel:+393501333937" data-i18n="priv.call">Chiamaci</a>
+      </div>
+    </div>
+
+    <div class="tit__sec" data-parallax="secondary" data-depth="1.6">
+      <figure class="media media--23" data-img-slot="privati-2" data-anim="unveil">
+        <img src="/assets/img/foto/sala-evento-privato-400.webp" width="760" height="1116"
+             srcset="/assets/img/foto/sala-evento-privato-400.webp 400w, /assets/img/foto/sala-evento-privato-760.webp 760w"
+             sizes="(min-width: 900px) 22vw, 38vw" loading="lazy" decoding="async"
+             alt="Una lunga tavolata apparecchiata per un evento privato">
+      </figure>
+    </div>
+
+    <div class="tit__main">
+      <figure class="media media--47" data-img-slot="privati-1" data-anim="unveil">
+        <img src="/assets/img/foto/sala-lampadario-dall-alto-560.webp" width="1000" height="1759"
+             srcset="/assets/img/foto/sala-lampadario-dall-alto-560.webp 560w, /assets/img/foto/sala-lampadario-dall-alto-1000.webp 1000w"
+             sizes="(min-width: 900px) 30vw, 55vw" loading="lazy" decoding="async"
+             alt="La sala vista dalla balconata, con il lampadario di cristallo e il bar">
+      </figure>
     </div>
   </div>
 </section>
@@ -435,20 +495,20 @@ setTimeout(function(){
 <section class="sec sec--gallery" data-layout="gallery" id="galleria" aria-label="Galleria">
   <div class="gal">
     <div class="gal__track">
-      <figure class="media gal__p" data-img-slot="gal-1"><img src="/assets/img/foto/cena-ospite-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Un'ospite a cena da IDROS"></figure>
+      <figure class="media gal__p" data-img-slot="gal-1"><img src="/assets/img/foto/lampadario-dal-basso-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Il lampadario di cristallo visto dal basso"></figure>
       <figure class="media gal__l" data-img-slot="gal-2"><img src="/assets/img/foto/cantina-vini-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="La parete della cantina con le bottiglie in esposizione"></figure>
-      <figure class="media gal__p" data-img-slot="gal-3"><img src="/assets/img/foto/sfera-cioccolato-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="La sfera di cioccolato con mascarpone e amarene"></figure>
-      <figure class="media gal__l" data-img-slot="gal-4"><img src="/assets/img/foto/carrello-formaggi-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="Il carrello dei formaggi servito al tavolo"></figure>
-      <figure class="media gal__p" data-img-slot="gal-5"><img src="/assets/img/foto/ospiti-menu-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Due ospiti sfogliano il menu"></figure>
-      <figure class="media gal__l" data-img-slot="gal-6"><img src="/assets/img/foto/sushi-uramaki-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="Uramaki della carta sushi"></figure>
+      <figure class="media gal__p" data-img-slot="gal-3"><img src="/assets/img/foto/sushi-piatto-oro-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Sushi servito su un piatto bianco"></figure>
+      <figure class="media gal__p" data-img-slot="gal-4"><img src="/assets/img/foto/seppia-finferli-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="Seppia alla brace con zucca e finferli"></figure>
+      <figure class="media gal__l" data-img-slot="gal-5"><img src="/assets/img/foto/carrello-formaggi-900.webp" width="900" height="531" loading="lazy" decoding="async" alt="Il carrello dei formaggi servito al tavolo"></figure>
+      <figure class="media gal__p" data-img-slot="gal-6"><img src="/assets/img/foto/parete-vini-480.webp" width="480" height="630" loading="lazy" decoding="async" alt="La parete illuminata delle bottiglie di vino"></figure>
       <!-- copia della serie: serve a far sembrare il nastro infinito -->
       <div class="gal__clone" aria-hidden="true">
-      <figure class="media gal__p"><img src="/assets/img/foto/cena-ospite-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/lampadario-dal-basso-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
       <figure class="media gal__l"><img src="/assets/img/foto/cantina-vini-900.webp" width="900" height="531" loading="lazy" decoding="async" alt=""></figure>
-      <figure class="media gal__p"><img src="/assets/img/foto/sfera-cioccolato-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/sushi-piatto-oro-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/seppia-finferli-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
       <figure class="media gal__l"><img src="/assets/img/foto/carrello-formaggi-900.webp" width="900" height="531" loading="lazy" decoding="async" alt=""></figure>
-      <figure class="media gal__p"><img src="/assets/img/foto/ospiti-menu-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
-      <figure class="media gal__l"><img src="/assets/img/foto/sushi-uramaki-900.webp" width="900" height="531" loading="lazy" decoding="async" alt=""></figure>
+      <figure class="media gal__p"><img src="/assets/img/foto/parete-vini-480.webp" width="480" height="630" loading="lazy" decoding="async" alt=""></figure>
       </div>
     </div>
   </div>
@@ -463,12 +523,14 @@ setTimeout(function(){
 
       <address class="addr" data-anim="rise">
         Viale Romagna 3<br>
-        48015 Milano Marittima (RA)
+        48015 Cervia – Milano Marittima (RA)
       </address>
 
       <p class="reach__note" data-anim="rise" data-i18n="reach.note">
-        Uscita Cervia dalla E45, parcheggio custodito a cento metri.
-        Stazione di Cervia–Milano Marittima a dieci minuti a piedi.
+        A due passi dalla Rotonda Primo Maggio, nel cuore di Milano Marittima.
+        In auto, il parcheggio più comodo è quello di viale Forlì, a pochi minuti
+        a piedi; gratuito il parcheggio di via Jelenia Gora, a una decina di minuti.
+        La stazione di Cervia – Milano Marittima è a circa due chilometri.
       </p>
 
       <a class="link link--block" data-anim="rise"
@@ -499,7 +561,7 @@ setTimeout(function(){
         <p class="eyebrow" data-anim="fade" data-i18n="cont.eyebrow">Contatti</p>
         <h2 class="h2" data-anim="lines" data-i18n="cont.title">Riserviamo il vostro tavolo</h2>
         <p class="lead" data-anim="rise" data-i18n="cont.lead">
-          Il modo più rapido è una telefonata: vi diciamo subito se il tavolo c'è.
+          Il modo più rapido è una telefonata: vi comunichiamo immediatamente la disponibilità ad accogliervi.
           Se preferite scriverci, compilate il modulo e si aprirà la vostra posta
           con la richiesta già pronta da inviare.
         </p>
@@ -512,9 +574,11 @@ setTimeout(function(){
           <div><dt data-i18n="cont.phone">Telefono</dt><dd><a href="tel:+393501333937">+39 350 133 3937</a></dd></div>
           <div><dt>Email</dt><dd><a href="mailto:info@idrosmilanomarittima.it">info@idrosmilanomarittima.it</a></dd></div>
           <div><dt data-i18n="cont.hours">Orari</dt><dd>
-            <span data-i18n="cont.h1">Martedì — Domenica, 19:30 — 23:00</span><br>
-            <span data-i18n="cont.h2">Bar e DJ set venerdì e sabato fino alle 3:00</span><br>
-            <span data-i18n="cont.h3">Lunedì chiuso</span>
+            <span data-i18n="cont.h1">Mercoledì: aperti su evento (consultate la sezione <a href="#eventi">eventi</a> o contattate il locale)</span><br>
+            <span data-i18n="cont.h2">Giovedì 19:00 — 00:00</span><br>
+            <span data-i18n="cont.h3">Venerdì e sabato 19:00 — 03:00</span><br>
+            <span data-i18n="cont.h4">Domenica 12:00 — 00:00</span><br>
+            <span data-i18n="cont.h5">Lunedì e martedì chiuso</span>
           </dd></div>
         </dl>
       </div>
@@ -587,19 +651,39 @@ setTimeout(function(){
     <div class="faq__list" data-anim="stagger">
       <details class="faq__item">
         <summary data-i18n="faq.1.q">Che cos'è l'esperienza IDROS?</summary>
-        <p data-i18n="faq.1.a">Una cena in cui il servizio e la scena si intrecciano: tre quadri di danza, teatro e musica dal vivo distribuiti fra le portate.</p>
+        <p data-i18n="faq.1.a">Una serata completa in un unico luogo: la cena al ristorante, gli spettacoli che animano la sala e, dopo cena, il DJ set. La domenica si comincia già a pranzo, con aperitivo e cena accompagnati dal DJ set.</p>
       </details>
       <details class="faq__item">
-        <summary data-i18n="faq.2.q">Cosa succede dopo lo spettacolo?</summary>
-        <p data-i18n="faq.2.a">Il venerdì e il sabato la sala cambia forma e si va avanti con il DJ set fino alle tre. L'accesso è riservato agli ospiti a cena.</p>
+        <summary data-i18n="faq.2.q">Quando siete aperti?</summary>
+        <p data-i18n="faq.2.a">Giovedì dalle 19:00 a mezzanotte, venerdì e sabato dalle 19:00 alle 3:00, domenica dalle 12:00 a mezzanotte. Il mercoledì apriamo in occasione degli eventi: consultate la sezione <a href="#eventi">eventi</a> o contattateci. Lunedì e martedì siamo chiusi.</p>
       </details>
       <details class="faq__item">
-        <summary data-i18n="faq.3.q">C'è un dress code?</summary>
-        <p data-i18n="faq.3.a">Elegante. Non serve l'abito da sera, ma vestitevi per una serata a teatro più che per una cena in spiaggia.</p>
+        <summary data-i18n="faq.3.q">Cosa si mangia da IDROS?</summary>
+        <p data-i18n="faq.3.a">Un menu ricercato di mare e di terra, dal caviale e dai crudi fino al Wagyu, con le paste fatte al mattarello, il sushi e la pizza, classica e contemporanea. Lo trovate completo nella pagina del <a href="/menu">menu</a>.</p>
       </details>
       <details class="faq__item">
-        <summary data-i18n="faq.4.q">Gestite intolleranze e allergie?</summary>
-        <p data-i18n="faq.4.a">Sì. Segnalatele in fase di prenotazione e la cucina riscrive il percorso su misura. Gli allergeni di ogni piatto sono indicati nel <a href="/menu#allergeni">menu</a>.</p>
+        <summary data-i18n="faq.4.q">Cosa succede dopo cena?</summary>
+        <p data-i18n="faq.4.a">Le luci si abbassano, entra il DJ set e la sala cambia ritmo. Il venerdì e il sabato si va avanti fino alle tre.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.5.q">Organizzate eventi privati e aziendali?</summary>
+        <p data-i18n="faq.5.a">Sì: compleanni, anniversari, cene aziendali e feste su invito, con menu personalizzato, locale addobbato per l'occasione e ogni dettaglio su misura. Scopriteli nella sezione <a href="#eventi-privati">eventi privati</a>, oppure chiamateci.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.6.q">Come si prenota?</summary>
+        <p data-i18n="faq.6.a">Il modo più rapido è chiamare il <a href="tel:+393501333937">+39 350 133 3937</a>: vi comunichiamo subito la disponibilità. Potete anche compilare il <a href="#prenota">modulo</a> e inviarci la richiesta via email.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.7.q">C'è un dress code?</summary>
+        <p data-i18n="faq.7.a">Elegante. Non serve l'abito da sera, ma vestitevi per una serata a teatro più che per una cena in spiaggia.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.8.q">Gestite intolleranze e allergie?</summary>
+        <p data-i18n="faq.8.a">Sì. Segnalatele in fase di prenotazione e la cucina adatta i piatti su misura. Gli allergeni di ogni piatto sono indicati nel <a href="/menu#allergeni">menu</a>.</p>
+      </details>
+      <details class="faq__item">
+        <summary data-i18n="faq.9.q">Dove si parcheggia?</summary>
+        <p data-i18n="faq.9.a">Il parcheggio più comodo è quello di viale Forlì, a pochi minuti a piedi. Gratuito il parcheggio di via Jelenia Gora, a una decina di minuti dal locale.</p>
       </details>
     </div>
   </div>
@@ -618,8 +702,6 @@ setTimeout(function(){
       </span>
       <span class="nav__logo">IDROS</span>
     </a>
-
-    <p class="footer__claim" data-i18n="foot.claim">Cucina, musica e scena sul mare di Milano Marittima.</p>
 
     <div class="social social--footer">
       <a href="https://www.instagram.com/idrosmilanomarittima/" target="_blank" rel="noopener noreferrer" aria-label="IDROS su Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>

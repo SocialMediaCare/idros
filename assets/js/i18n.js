@@ -19,6 +19,7 @@
     'nav.exp': 'Experience',
     'nav.rest': 'Restaurant',
     'nav.events': 'Events',
+    'nav.private': 'Private events',
     'nav.reach': 'Reach us',
     'nav.contact': 'Contact',
     'nav.book': 'Reservations',
@@ -48,18 +49,20 @@
 
     /* --- esperienza --- */
     'exp.eyebrow': 'The experience',
-    'exp.title': 'A dinner that will not stay seated',
-    'exp.lead': 'Where the seaplanes once landed, the room now goes dark between one course and the next. A violin crosses the tables, two dancers open the space at the centre, an actor tells a piece of this coastline.',
+    'exp.title': 'Wonder begins at the threshold',
+    'exp.lead': 'Step through the door and the room reveals itself all at once: the crystal of the chandelier, the blue velvet, the mirrors multiplying the lights. IDROS is an elegant, exclusive venue, designed to leave you speechless from the very first step.',
+    'exp.lead2': 'First comes dinner, from a kitchen built on outstanding ingredients. Then the show, coming to life between one table and the next. And as the night stretches on, the lights dim, the DJ set begins and the evening changes pace without ever changing style.',
+    'exp.lead3': 'On Sunday we open at lunchtime: stay on for the aperitivo and carry on into dinner, with the DJ set as the soundtrack.',
 
     /* --- full bleed --- */
     'bleed.title': 'Spectacular',
-    'bleed.lead': 'From sunset to the last set.',
+    'bleed.lead': 'Every night here is opening night.',
 
     /* --- ristorante --- */
     'rest.eyebrow': 'The restaurant',
-    'rest.title': 'Adriatic, technique, insolence',
-    'rest.lead': 'A short list, changing with the catch and the season. Adriatic crudo, hand-pulled pasta, fish in a salt crust and cooking over coals: few dishes, each with a precise reason to be there.',
-    'rest.lead2': 'The cellar follows the same rule — Romagna, sparkling and a few French incursions — and the kitchen will happily rewrite a dish around an allergy or a preference, if you tell us when you book.',
+    'rest.title': 'A menu without borders',
+    'rest.lead': 'A refined menu built on outstanding ingredients. Begin with caviar, oysters and crudo from the catch of the day; continue with rolling-pin pasta and paccheri with lobster, all the way to grilled A5 Wagyu and veal cutlet Bolognese style.',
+    'rest.lead2': 'Alongside the kitchen, two worlds handled with the same care: sushi, from uramaki to nigiri, and the pizzeria, classic with a thin base or contemporary, tall and airy. Tell us about allergies or preferences when you book: the kitchen will tailor the dishes to you.',
     'cta.menu': 'Discover our menu',
 
     /* --- eventi --- */
@@ -74,24 +77,33 @@
     'ev.4.t': 'Last Flight — end of summer',
     'ev.cta': 'Private events',
     'ev.soon.tag': 'Coming soon',
-    'ev.soon.text': 'The calendar of upcoming nights is being prepared: dinner shows, DJ sets and special occasions. Come back and see us soon.',
+    'ev.soon.text': 'The calendar of upcoming nights is being prepared: dinner shows, DJ sets and special occasions. Stay up to date on our social profiles, <a href="https://www.instagram.com/idrosmilanomarittima/" target="_blank" rel="noopener noreferrer">Instagram</a> and <a href="https://www.facebook.com/people/Idros-Milano-Marittima/61595955028912/" target="_blank" rel="noopener noreferrer">Facebook</a>.',
+    'priv.eyebrow': 'Private events',
+    'priv.title': 'The room, all yours',
+    'priv.lead': 'Planning a private or corporate event? Get in touch to discover how IDROS can become the stage for your evening.',
+    'priv.lead2': 'Birthdays, anniversaries, corporate dinners, invitation-only parties: we build the event together with you. A personalised menu, the venue dressed for the occasion and every detail tailored, from the welcome to the final toast.',
+    'priv.form': 'Request information',
+    'priv.ig': 'Message us on Instagram',
+    'priv.call': 'Call us',
 
     /* --- come raggiungerci --- */
     'reach.eyebrow': 'Reach us',
     'reach.title': 'On the sea, behind the pine forest',
-    'reach.note': 'Cervia exit from the E45, guarded parking a hundred metres away. Cervia–Milano Marittima station is ten minutes on foot.',
+    'reach.note': 'A stone’s throw from Rotonda Primo Maggio, in the heart of Milano Marittima. By car, the most convenient car park is on Viale Forlì, a few minutes’ walk away; the car park on Via Jelenia Gora is free, about ten minutes away. Cervia – Milano Marittima station is about two kilometres away.',
     'reach.cta': 'Open in maps',
 
     /* --- contatti --- */
     'cont.eyebrow': 'Contact',
     'cont.title': 'Let us hold your table',
-    'cont.lead': 'The quickest way is a phone call: we will tell you straight away if the table is free. If you would rather write, fill in the form and your email app will open with the request ready to send.',
+    'cont.lead': 'The quickest way is a phone call: we will let you know straight away whether we can welcome you. If you would rather write, fill in the form and your email app will open with the request ready to send.',
     'cont.call': 'Call to book',
     'cont.phone': 'Telephone',
     'cont.hours': 'Opening hours',
-    'cont.h1': 'Tuesday — Sunday, 7:30 pm — 11:00 pm',
-    'cont.h2': 'Bar and DJ set Friday and Saturday until 3:00 am',
-    'cont.h3': 'Closed on Monday',
+    'cont.h1': 'Wednesday: open for events (see the <a href="#eventi">events</a> section or contact us)',
+    'cont.h2': 'Thursday 7:00 pm — midnight',
+    'cont.h3': 'Friday and Saturday 7:00 pm — 3:00 am',
+    'cont.h4': 'Sunday 12:00 pm — midnight',
+    'cont.h5': 'Closed on Monday and Tuesday',
 
     /* --- modulo --- */
     'f.title': 'Or write to us',
@@ -125,13 +137,23 @@
     /* --- FAQ --- */
     'faq.title': 'Frequently asked questions',
     'faq.1.q': 'What is the IDROS experience?',
-    'faq.1.a': 'A dinner where service and stage are woven together: three tableaux of dance, theatre and live music spread across the courses.',
-    'faq.2.q': 'What happens after the show?',
-    'faq.2.a': 'On Friday and Saturday the room changes shape and the DJ set carries on until three. Access is reserved for dinner guests.',
-    'faq.3.q': 'Is there a dress code?',
-    'faq.3.a': 'Smart. No black tie required, but dress for an evening at the theatre rather than dinner on the beach.',
-    'faq.4.q': 'Do you cater for intolerances and allergies?',
-    'faq.4.a': 'Yes. Tell us when you book and the kitchen rewrites the route around you. The allergens in every dish are listed on the <a href="/menu#allergeni">menu</a>.',
+    'faq.1.a': 'A whole evening in one place: dinner at the restaurant, shows that bring the room to life and, after dinner, the DJ set. On Sunday it all starts at lunchtime, with aperitivo and dinner accompanied by the DJ set.',
+    'faq.2.q': 'When are you open?',
+    'faq.2.a': 'Thursday from 7:00 pm to midnight, Friday and Saturday from 7:00 pm to 3:00 am, Sunday from noon to midnight. On Wednesday we open for events: see the <a href="#eventi">events</a> section or get in touch. Closed on Monday and Tuesday.',
+    'faq.3.q': 'What is on the menu?',
+    'faq.3.a': 'A refined menu from sea and land, from caviar and crudo to Wagyu, with rolling-pin pasta, sushi and pizza, both classic and contemporary. You will find it in full on the <a href="/menu">menu</a> page.',
+    'faq.4.q': 'What happens after dinner?',
+    'faq.4.a': 'The lights go down, the DJ set begins and the room changes pace. On Friday and Saturday it carries on until three.',
+    'faq.5.q': 'Do you host private and corporate events?',
+    'faq.5.a': 'Yes: birthdays, anniversaries, corporate dinners and invitation-only parties, with a personalised menu, the venue dressed for the occasion and every detail tailored. Find out more in the <a href="#eventi-privati">private events</a> section, or give us a call.',
+    'faq.6.q': 'How do I book?',
+    'faq.6.a': 'The quickest way is to call <a href="tel:+393501333937">+39 350 133 3937</a>: we will tell you our availability straight away. You can also fill in the <a href="#prenota">form</a> and send us your request by email.',
+    'faq.7.q': 'Is there a dress code?',
+    'faq.7.a': 'Smart. No black tie required, but dress for an evening at the theatre rather than dinner on the beach.',
+    'faq.8.q': 'Do you cater for intolerances and allergies?',
+    'faq.8.a': 'Yes. Tell us when you book and the kitchen will tailor the dishes to you. The allergens in every dish are listed on the <a href="/menu#allergeni">menu</a>.',
+    'faq.9.q': 'Where can I park?',
+    'faq.9.a': 'The most convenient car park is on Viale Forlì, a few minutes’ walk away. The car park on Via Jelenia Gora is free, about ten minutes from us.',
 
     /* --- messaggi runtime --- */
     'msg.required': 'This field is required.',
@@ -142,7 +164,6 @@
     'msg.opening': 'Opening your email app with the request ready to send. If nothing opens, write to us at <a href="mailto:info@idrosmilanomarittima.it">info@idrosmilanomarittima.it</a> or give us a call.',
 
     /* --- footer --- */
-    'foot.claim': 'Kitchen, music and stage on the sea at Milano Marittima.',
     'foot.vat': 'VAT no.',
     'foot.seat': 'Registered office',
     'foot.capital': 'Share capital',
