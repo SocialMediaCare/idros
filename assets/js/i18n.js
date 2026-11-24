@@ -49,10 +49,11 @@
 
     /* --- esperienza --- */
     'exp.eyebrow': 'The experience',
-    'exp.title': 'Step inside and look around',
-    'exp.lead': 'The moment you walk into IDROS you can tell it is no ordinary restaurant. The great crystal chandelier, the blue velvet, the mirrors and the soft lighting make for an elegant, exclusive setting that surprises you from the door.',
-    'exp.lead2': 'The evening begins at the table, with our cooking. During dinner the room comes alive with the shows, and once the meal is over the lights go down and the DJ set begins, for anyone who feels like staying late.',
-    'exp.lead3': 'On Sunday we are also open for lunch. Stay on for the aperitivo and through to dinner, with the DJ set all along.',
+    'exp.title': 'More than a dinner. The IDROS experience.',
+    'exp.lead': 'A great crystal chandelier, blue velvet, the play of reflections in the mirrors and the magic of soft lighting. At IDROS every detail helps create an atmosphere to be lived, even before you sit down at the table.',
+    'exp.lead2': 'Food, entertainment and music come together in an experience that evolves over the evening. The pleasure of dinner gives way to the show, the rhythm builds and the DJ set carries the night.',
+    'exp.lead3': 'On Sunday, the pleasure of being together starts at lunchtime and carries on through aperitivo, music and dinner.',
+    'exp.lead4': 'A place where time slips by without you noticing, where every moment is a good reason to stay a little longer.',
 
     /* --- full bleed --- */
     'bleed.title': 'Spectacular',
