@@ -325,4 +325,68 @@
       target.focus({ preventScroll: true });
     });
   });
+
+  /* ---------- 9. CHIAMATA ----------
+     I link «tel:» sul telefono aprono subito la chiamata. Su un computer
+     invece il clic non fa nulla di visibile: lì si apre una finestra con
+     il numero in grande, il pulsante per chiamare (sul Mac passa la
+     chiamata all'iPhone o a FaceTime) e quello per copiare il numero. */
+  var CAN_CALL = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  var TXT = {
+    it: { eye: 'Prenotazioni', t: 'Chiamateci per prenotare', note: 'Dal cellulare basta toccare il numero per avviare la chiamata.', call: 'Chiama', copy: 'Copia il numero', copied: 'Numero copiato', close: 'Chiudi' },
+    en: { eye: 'Reservations', t: 'Call us to book', note: 'On your phone, just tap the number to start the call.', call: 'Call', copy: 'Copy the number', copied: 'Number copied', close: 'Close' }
+  };
+  var dlg = null;
+
+  function buildCallDialog() {
+    dlg = document.createElement('dialog');
+    dlg.className = 'calldlg';
+    dlg.setAttribute('aria-labelledby', 'calldlg-t');
+    dlg.innerHTML =
+      '<button type="button" class="calldlg__x" data-k="close" aria-label=""><span aria-hidden="true">×</span></button>' +
+      '<p class="eyebrow calldlg__eye" data-t="eye"></p>' +
+      '<p class="calldlg__t" id="calldlg-t" data-t="t"></p>' +
+      '<a class="calldlg__num" data-direct href=""></a>' +
+      '<p class="calldlg__note" data-t="note"></p>' +
+      '<div class="calldlg__actions">' +
+        '<a class="ghost ghost--solid" data-direct data-t="call" href=""></a>' +
+        '<button type="button" class="ghost" data-copy data-t="copy"></button>' +
+      '</div>';
+    document.body.appendChild(dlg);
+    dlg.querySelector('.calldlg__x').addEventListener('click', function () { dlg.close(); });
+    /* clic sullo sfondo scuro: chiude */
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () { if (window.IDROS_LOCK) window.IDROS_LOCK(false); });
+    dlg.querySelector('[data-copy]').addEventListener('click', function () {
+      var b = this, n = dlg.querySelector('.calldlg__num').textContent;
+      var done = function () { b.textContent = TXT[lang()].copied; };
+      if (navigator.clipboard) navigator.clipboard.writeText(n).then(done, function () {});
+    });
+  }
+  function lang() { return document.documentElement.lang === 'en' ? 'en' : 'it'; }
+
+  function openCall(href, shown) {
+    if (!dlg) buildCallDialog();
+    var t = TXT[lang()];
+    dlg.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t[el.getAttribute('data-t')]; });
+    dlg.querySelector('.calldlg__x').setAttribute('aria-label', t.close);
+    dlg.querySelectorAll('a[data-direct]').forEach(function (a) { a.href = href; });
+    dlg.querySelector('.calldlg__num').textContent = shown;
+    if (window.IDROS_LOCK) window.IDROS_LOCK(true);
+    dlg.showModal();
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="tel:"]');
+    if (!a || a.hasAttribute('data-direct') || CAN_CALL) return;
+    if (typeof HTMLDialogElement === 'undefined') return;   /* browser molto vecchio: resta il link */
+    e.preventDefault();
+    var href = a.getAttribute('href');
+    var digits = href.replace(/^tel:/, '');
+    /* +393501333937 → +39 350 133 3937 */
+    var shown = /^\+39\d{10}$/.test(digits)
+      ? '+39 ' + digits.slice(3, 6) + ' ' + digits.slice(6, 9) + ' ' + digits.slice(9)
+      : digits;
+    openCall(href, shown);
+  });
 })();
