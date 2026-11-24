@@ -937,13 +937,10 @@ body.no-js [data-anim]{opacity:1;transform:none}
 .dish{padding:var(--sp-4) 0;border-bottom:1px solid var(--line-soft)}
 .dish__head{display:flex;align-items:baseline;gap:var(--sp-3)}
 .dish__name{
-  margin:0;font-size:1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;line-height:1.4;
+  flex:1;margin:0;font-size:1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;line-height:1.4;
   color:var(--white);
 }
-/* il filo che porta l'occhio dal nome al prezzo */
-.dish__line{flex:1;min-width:1.5rem;border-bottom:1px dotted rgba(255,255,255,.22);transform:translateY(-.3em)}
 .dish__price{flex:none;font-size:1.05rem;color:var(--gold-lt);font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.dish__cur{font-size:.72em;margin-right:.3em;color:var(--muted)}
 .dish__desc{margin:.35rem 0 0;color:var(--dim);font-size:.96rem;line-height:1.6;max-width:56ch}
 .dish__extra{margin:.15rem 0 0;color:var(--muted);font-size:.88rem;font-style:italic;max-width:56ch}
 .dish__all{margin:.45rem 0 0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}

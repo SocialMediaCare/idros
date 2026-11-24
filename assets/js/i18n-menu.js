@@ -111,7 +111,6 @@ window.IDROS_EN_EXTRA = {
   "m.pdf": "Download the PDF menu",
   "m.index": "Sections",
   "m.legal.t": "Notes",
-  "m.end.eyebrow": "IDROS · Milano Marittima",
   "m.end.title": "We look forward to having you",
   "m.end.lead": "The quickest way to book is a phone call. Prefer to keep the menu with you? Download it as a PDF."
 };

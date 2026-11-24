@@ -39,8 +39,7 @@ def dish_html(cat, d):
     out = ['          <li class="dish">',
            '            <div class="dish__head">',
            f'              <h4 class="dish__name">{star(name)}</h4>',
-           '              <span class="dish__line" aria-hidden="true"></span>',
-           f'              <span class="dish__price"><span class="dish__cur">€</span>{price}</span>',
+           f'              <span class="dish__price">{price}</span>',
            '            </div>',
            f'            <p class="dish__desc" data-i18n="{key(f"m.{cat}.{s}.d", den_html)}">{star(dit)}</p>']
     if xit:
@@ -151,7 +150,6 @@ EN.update({
   'm.pdf': 'Download the PDF menu',
   'm.index': 'Sections',
   'm.legal.t': 'Notes',
-  'm.end.eyebrow': 'IDROS · Milano Marittima',
   'm.end.title': 'We look forward to having you',
   'm.end.lead': 'The quickest way to book is a phone call. Prefer to keep the menu with you? Download it as a PDF.',
 })

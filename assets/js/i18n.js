@@ -16,7 +16,7 @@
     'skip': 'Skip to main content',
     'load.place': 'Milano Marittima',
 
-    'nav.exp': 'Experience',
+    'nav.exp': 'The IDROS experience',
     'nav.rest': 'Restaurant',
     'nav.events': 'Events',
     'nav.private': 'Private events',
@@ -24,7 +24,7 @@
     'nav.contact': 'Contact',
     'nav.book': 'Reservations',
     'nav.menu': 'Menu',
-    'nav.carta': 'Our menu',
+    'nav.carta': 'Menu',
     'nav.home': 'Home',
 
     /* --- hero --- */
@@ -85,7 +85,7 @@
     'priv.lead2': 'Birthdays, anniversaries, corporate dinners, invitation-only parties. You can book the whole venue or our private room, more intimate and secluded.',
     'priv.lead3': 'Together with you we take care of every detail, from a personalised menu to decorating the venue, from the welcome to the final toast.',
     'priv.form': 'Request information',
-    'priv.ig': 'Message us on Instagram',
+    'priv.wa': 'Message us on WhatsApp',
     'priv.call': 'Call us',
 
     /* --- come raggiungerci --- */
