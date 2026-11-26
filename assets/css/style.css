@@ -372,7 +372,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 @media(min-width:900px){
   .tit{flex-wrap:nowrap}
-  .tit__text{width:32%;order:0;padding-bottom:0}
+  .tit__text{width:32%;order:0;padding-bottom:0;padding-top:0}
   .tit__sec{width:23%;order:1;margin-left:auto}
   .tit__main{width:31.6%;order:2}
 }
@@ -709,8 +709,10 @@ body.no-js [data-anim]{opacity:1;transform:none}
      sotto le card a 900. La formula sotto risale di quasi tutto lo spazio
      lasciandone ~150px a ogni misura. Il clamp regge oltre i 1664px, dove
      il contenuto smette di allargarsi e lo spazio si assesta.
-     Se un domani i testi cambiano lunghezza, va ritarata. */
-  #esperienza{margin-top:clamp(-445px, calc(716px - 69.8vw), 95px)}
+     Questo valore è solo il ripiego senza JavaScript, prudente: la
+     risalita vera la calcola main.js (§10) misurando la pagina, così
+     regge anche quando i testi cambiano lunghezza o carattere. */
+  #esperienza{margin-top:0}
 
   /* "I prossimi appuntamenti" è la sezione più importante della pagina:
      qui l'incastro si ferma e il blocco prende aria da entrambi i lati. */

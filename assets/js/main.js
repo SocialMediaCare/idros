@@ -376,6 +376,54 @@
     dlg.showModal();
   }
 
+
+  /* ---------- 10. INCASTRO «SCOPRI» / ESPERIENZA ----------
+     Da 900px in su la sezione Esperienza risale sotto le card di
+     «Scopri» per compenetrarsi con loro. Quanto può risalire dipende
+     dalla larghezza e dalla lunghezza dei testi, quindi lo misuriamo:
+     si prende la distanza fra il fondo delle card e l'inizio del testo
+     (e delle foto) e si risale fino a lasciarne GAP. Le misure usano
+     offsetTop, che ignora le trasformazioni delle animazioni. */
+  var scopri = document.getElementById('scopri');
+  var exp = document.getElementById('esperienza');
+  var WIDE = window.matchMedia('(min-width: 900px)');
+  var GAP = 120;
+  function docTop(el) { var y = 0; for (var e = el; e; e = e.offsetParent) y += e.offsetTop; return y; }
+  function docBottom(el) { return docTop(el) + el.offsetHeight; }
+  function fitExperience() {
+    if (!scopri || !exp) return;
+    if (!WIDE.matches) { exp.style.marginTop = ''; return; }
+    var cols = scopri.querySelectorAll('.ql__col');
+    var text = exp.querySelector('.tit__text');
+    var figs = exp.querySelectorAll('figure');
+    if (cols.length < 2 || !text || !figs.length) return;
+    var now = parseFloat(getComputedStyle(exp).marginTop) || 0;
+    var textTop = docTop(text.firstElementChild || text);
+    var figTop = Infinity;
+    figs.forEach(function (f) { figTop = Math.min(figTop, docTop(f)); });
+    /* il fondo dell'ultima card, non della colonna: la colonna di destra
+       è stirata dalla griglia fino all'altezza di quella di sinistra */
+    var lastCard = function (col) { var c = col.querySelectorAll('.ql__card'); return c[c.length - 1] || col; };
+    var free = Math.min(textTop - docBottom(lastCard(cols[0])), figTop - docBottom(lastCard(cols[1])));
+    var next = now - (free - GAP);   /* < 0 risale, > 0 scende se il testo non ci sta */
+    if (Math.abs(next - now) < 1) return;
+    exp.style.marginTop = Math.round(next) + 'px';
+    if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+  }
+  var fitTimer;
+  function fitSoon() { clearTimeout(fitTimer); fitTimer = setTimeout(fitExperience, 120); }
+  fitExperience();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitExperience);
+  window.addEventListener('load', fitExperience);
+  window.addEventListener('resize', fitSoon);
+  /* anche quando cambiano le misure senza un evento resize (zoom, font, immagini) */
+  if (window.ResizeObserver && scopri && exp) {
+    var ro = new ResizeObserver(fitSoon);
+    ro.observe(scopri);
+    var tt = exp.querySelector('.tit__text'); if (tt) ro.observe(tt);
+  }
+  document.addEventListener('idros:lang', fitSoon);     /* l'inglese ha altre lunghezze */
+
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href^="tel:"]');
     if (!a || a.hasAttribute('data-direct') || CAN_CALL) return;
